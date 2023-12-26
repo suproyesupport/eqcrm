@@ -1,0 +1,153 @@
+﻿@using EqCrm.Models
+
+@{
+    ViewBag.Title = "AnulacionOrdenServicioTaller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OrdenServicio
+
+<script src="~/js/funciones_anulacion_ordenserviciotaller.js"></script>
+
+<div id="panel-2" class="panel">
+
+
+    <div class="panel-hdr text-success">
+        <h2><a href="#" onclick="abrirBusqueda();">Orden de Servicio</a><span class="fw-300"><i>Filtros</i></span></h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div id="panel_busqueda" class="panel-container">
+        <div class="panel-content">
+            <div class="form-group row">
+                <div class="col-lg-2">
+                    <label>No. Orden</label>
+                    <div class="input-group">
+                        @*<input type="number" class="form-control" id="bid_orden" name="bid_orden" onkeydown="onKeyDownHandler(event);" onchange="limparaOrden();">*@
+                        <input type="number" class="form-control" id="bid_orden" name="bid_orden" onchange="limparaOrden();">
+                    </div>
+                </div>
+                <!--<div class="col-lg-2">
+        <label>Buscar Cliente</label>
+        <div class="input-group">-->
+                @*<input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="idcliente" name="idcliente" onchange="BuscarCliente();">*@
+                <!--<input type="text" class="form-control" id="bidcliente" name="bidcliente" onchange="BuscarCliente();limparaCliente()">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaclientes">Buscar</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <label>Cliente</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="bcliente" name="bcliente" disabled="">
+        </div>
+    </div>-->
+                <div class="col-lg-2">
+                    <label>No. de placa</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="b_placa" name="b_placa" onchange="limparaPlaca();">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label>De la fecha</label>
+                    <div class="input-group">
+                        @*<input type="hidden" name="consulta" value="1" />*@
+                        <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha" onchange="limparaFecha();">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label>A la fecha</label>
+                    <div class="input-group">
+                        <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha" onchange="limparaFecha();">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <label> </label>
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="BuscarFiltro();">Buscar</button>
+                    <div id="mostrar_consulta2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div id="panel_tabla" class="panel-container show">
+        <div id="mostrar_consulta"></div>
+    </div>
+</div>
+
+
+
+
+
+@*AQUI VAN LOS MODALES PARA CLIENTE, ERROR Y PRODUCTOS*@
+<div class="modal fade modal-backdrop-transparent" id="modal-anular" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Orden de Servicio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-dark">
+                    ¿Desea anular la orden?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="AnularOrden();">Anular</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-generico" hidden></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Reload();">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@

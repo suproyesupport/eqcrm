@@ -1,0 +1,284 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "ModOrdenServicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model CableVision
+
+
+<script src="~/js/funciones_mod_ordenservicio.js"></script>
+
+
+@*FINAL TABLA QUE MUESTRA INFORMACION PRINCIPAL*@
+<div id="panel-1" class="panel">
+    <div id="mostrar_consulta"></div>
+    <div class="panel-hdr">
+        <h2>
+            Resultado<span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+@*FINAL TABLA QUE MUESTRA INFORMACION PRINCIPAL*@
+
+
+
+
+@*INICIO MODAL DE LA INFORMACION DE LA ORDEN*@
+<div class="modal fade modal-backdrop-transparent" id="ModalFichaOrdenS" tabindex="-1" role="dialog" aria-hidden="true" overflow: scroll>
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            FICHA DE ORDEN DE SERVICIO
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Número de orden</label>
+                                            <input type="text" id="id_orden" name="id_orden" class="form-control" disabled="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Fecha de asignación</label>
+                                            <input type="text" id="fechaa" name="fechaa" class="form-control" disabled="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <input type="text" id="status" name="status" class="form-control" disabled="">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            @*<table class="table table-bordered table-hover table-striped w-100">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Buscar código de cliente</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="id" name="id" onchange="BuscarCliente();">
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaclientes">Buscar</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Cliente</label>
+                                                <input class="form-control" type="text" name="cliente" id="cliente" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>*@
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Código de cliente</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="id" name="id" disabled="">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Cliente</label>
+                                            <input class="form-control" type="text" name="cliente" id="cliente" disabled="" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Dirección</label>
+                                            <input class="form-control" type="text" name="direccion" id="direccion" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            @*<table class="table table-bordered table-hover table-striped w-100">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Fecha de inicio</label>
+                                                <input class="form-control" type="text" name="fechai" id="fechai" disabled="" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Fecha de finalización</label>
+                                                <input class="form-control" type="text" name="fechaf" id="fechaf" disabled="" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>*@
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Teléfono</label>
+                                            <input class="form-control" type="text" name="telefono" id="telefono" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Ruta</label>
+                                            @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(m => m.ruta, ViewData["Rutas"] as List<SelectListItem>, "Selecccionar Ruta...", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Técnico</label>
+                                            @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(m => m.tecnico, ViewData["Tecnicos"] as List<SelectListItem>, "Selecccionar Técnico...", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Tipo de orden</label>
+                                            @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(m => m.tipo, ViewData["Tipos"] as List<SelectListItem>, "Selecccionar Tipo de Orden...", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Observación</label>
+                                            <textarea class="form-control" rows="3" name="obs" id="obs"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            @*<table class="table table-bordered table-hover table-striped w-100">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Descripción</label>
+                                                <textarea class="form-control" rows="3" name="descripcion" id="descripcion" required disabled=""></textarea>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>*@
+                            <br />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" name="modbutton" id="modbutton" onclick="ModalConModificarOrdenS();">Modificar Orden</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" name="anularbutton" id="anularbutton" onclick="ModalConAnularOrdenS()">Anular Orden</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+            @*</form>*@
+        </div>
+    </div>
+</div>
+@*FIN MODAL DE LA INFORMACION DE LA ORDEN*@
+
+
+@*INICIO MODAL DE CLIENTES *@
+<div class="modal fade modal-backdrop-transparent" id="ayudaclientes" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Raw(ViewBag.Tabla)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*FINAL MODAL DE CLIENTES *@
+
+
+@* INICIO CONFIRMACION DE LA ACCION MODIFICAR ORDEN*@
+<div class="modal modal-alert fade" id="modal-modificarOrden" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea modificar la orden?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ModificarOrdenServicio();">Anular Orden</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN CONFIRMACION DE LA ACCION MODIFICAR ORDEN*@
+
+
+@* INICIO CONFIRMACION DE LA ACCION ANULAR ORDEN*@
+<div class="modal modal-alert fade" id="modal-anularOrden" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea anular la orden?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="AnularOrdenServicio();">Anular Orden</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN CONFIRMACION DE LA ACCION ANULAR ORDEN*@
+
+

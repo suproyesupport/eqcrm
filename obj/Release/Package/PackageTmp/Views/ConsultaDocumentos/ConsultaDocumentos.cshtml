@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "ConsultaDocumentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Encabezado_Documentos
+
+<script src="/js/funciones_consulta_documentos.js"></script>
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            CONSULTA DE DOCUMENTOS <span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+    
+    <div class="panel-container collapse">
+       
+        <div class="panel-hdr">
+            <h2>
+                FILTRAR DATOS
+            </h2>
+        </div>
+        <div class="panel-container show">
+            <div class="panel-content">
+                <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                    <tr>
+                        <th>
+                            DE LA FECHA
+                        </th>
+
+                        <th>
+                            A LA FECHA
+                        </th>
+
+                        <th>
+                            ASESOR
+                        </th>
+
+                        <th>
+                            SUCURSAL
+                        </th>
+                        <th>
+                            NIT
+                        </th>
+                        <th>
+                            UUID
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                           
+                            <div class="input-group">
+                                <input id="fecha1" class="form-control" name="fech1" placeholder="Seleccione Fecha">
+                                <div class="input-group-append">
+                                    <span class="input-group-text fs-xl">
+                                        <i class="fal fa-calendar"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                          
+
+                        </td>
+                        <td>
+                          
+                            <div class="input-group">
+                                <input id="fecha2" class="form-control" name="fech2" placeholder="Seleccione Fecha">
+                                <div class="input-group-append">
+                                    <span class="input-group-text fs-xl">
+                                        <i class="fal fa-calendar"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                          
+                        </td>
+                        <td>
+                          
+                            <div class="input-group">
+                                @Html.DropDownListFor(m => m.id_vendedor, ViewData["asesores"] as List<SelectListItem>, "Selecccionar Asesor...", new { @class = "form-control" })
+
+
+                             
+                            </div>
+                        </td>
+                        <td>
+                           
+                            <div class="input-group">
+                                @Html.DropDownListFor(m => m.id_agencia, ViewData["sucursal"] as List<SelectListItem>, "Selecccionar Sucursal...", new { @class = "form-control" })
+
+
+                            </div>
+                           
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nit" name="nit">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="uuid" name="uuid">
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+
+                <button id="ObtieneInfo" class="btn btn-primary" onclick="ActFiltroDoctos();">Filtrar Datos</button>
+                <div id="mostrar_consulta"></div>
+
+            </div>
+        </div>
+    </div>   
+</div>
+
+<div id="panel-1" class="panel">    
+    <div class="panel-container show">
+        <div id="Obs"></div>
+    </div>
+</div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">    
+        <div id="gridContainer"></div>
+    </div>
+</div>

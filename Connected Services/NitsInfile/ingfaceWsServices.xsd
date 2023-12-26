@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://services.ws.ingface.com/" targetNamespace="http://services.ws.ingface.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminDispositivo" type="tns:eliminDispositivo" />
+  <xs:element name="eliminDispositivoResponse" type="tns:eliminDispositivoResponse" />
+  <xs:element name="eliminaEstablecimiento" type="tns:eliminaEstablecimiento" />
+  <xs:element name="eliminaEstablecimientoResponse" type="tns:eliminaEstablecimientoResponse" />
+  <xs:element name="eliminaSerie" type="tns:eliminaSerie" />
+  <xs:element name="eliminaSerieResponse" type="tns:eliminaSerieResponse" />
+  <xs:element name="enviaSerie" type="tns:enviaSerie" />
+  <xs:element name="enviaSerieResponse" type="tns:enviaSerieResponse" />
+  <xs:element name="enviarDispositivo" type="tns:enviarDispositivo" />
+  <xs:element name="enviarDispositivoResponse" type="tns:enviarDispositivoResponse" />
+  <xs:element name="enviarEface" type="tns:enviarEface" />
+  <xs:element name="enviarEfaceResponse" type="tns:enviarEfaceResponse" />
+  <xs:element name="enviarEstablecimiento" type="tns:enviarEstablecimiento" />
+  <xs:element name="enviarEstablecimientoResponse" type="tns:enviarEstablecimientoResponse" />
+  <xs:element name="getSeries" type="tns:getSeries" />
+  <xs:element name="getSeriesResponse" type="tns:getSeriesResponse" />
+  <xs:element name="hello" type="tns:hello" />
+  <xs:element name="helloResponse" type="tns:helloResponse" />
+  <xs:element name="modificarDispositivo" type="tns:modificarDispositivo" />
+  <xs:element name="modificarDispositivoResponse" type="tns:modificarDispositivoResponse" />
+  <xs:element name="modificarEstablecimiento" type="tns:modificarEstablecimiento" />
+  <xs:element name="modificarEstablecimientoResponse" type="tns:modificarEstablecimientoResponse" />
+  <xs:element name="modificarSerie" type="tns:modificarSerie" />
+  <xs:element name="modificarSerieResponse" type="tns:modificarSerieResponse" />
+  <xs:element name="nitContribuyentes" type="tns:nitContribuyentes" />
+  <xs:element name="nitContribuyentesResponse" type="tns:nitContribuyentesResponse" />
+  <xs:element name="verificaDocumentos" type="tns:verificaDocumentos" />
+  <xs:element name="verificaDocumentosResponse" type="tns:verificaDocumentosResponse" />
+  <xs:complexType name="modificarEstablecimiento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="establecimiento" type="tns:modificarEstablecimientoRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarEstablecimientoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codDepartamento" type="xs:int" />
+      <xs:element minOccurs="0" name="codMunicipio" type="xs:int" />
+      <xs:element minOccurs="0" name="codigoEstablecimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="domicilioComercial" type="xs:string" />
+      <xs:element minOccurs="0" name="idestablecimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="nombreComercial" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarEstablecimientoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errores" type="xs:string" />
+      <xs:element name="idestablecimiento" type="xs:int" />
+      <xs:element name="idserieautorizada" type="xs:int" />
+      <xs:element name="insertado" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="nitContribuyentes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+      <xs:element minOccurs="0" name="clave" type="xs:string" />
+      <xs:element minOccurs="0" name="nit" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="nitContribuyentesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:cliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="apartamento" type="xs:string" />
+      <xs:element minOccurs="0" name="calle_avenida" type="xs:string" />
+      <xs:element minOccurs="0" name="colonia" type="xs:string" />
+      <xs:element minOccurs="0" name="direccion_completa" type="xs:string" />
+      <xs:element minOccurs="0" name="exento" type="xs:string" />
+      <xs:element minOccurs="0" name="letra" type="xs:string" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="numero" type="xs:string" />
+      <xs:element minOccurs="0" name="zona" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificaDocumentos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+      <xs:element minOccurs="0" name="clave" type="xs:string" />
+      <xs:element minOccurs="0" name="codigoEstablecimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="serie" type="xs:string" />
+      <xs:element minOccurs="0" name="resolucion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaAutorizacion" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoDocumento" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificaDocumentosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:recuentoDocumentos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recuentoDocumentos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="recuento" type="xs:string" />
+      <xs:element name="validado" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarSerie">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serie" type="tns:modificarSerieAutorizadaRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarSerieAutorizadaRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fechaautorizada" type="xs:string" />
+      <xs:element minOccurs="0" name="fechahabilitacion" type="xs:string" />
+      <xs:element minOccurs="0" name="idestablecimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="idserieautorizada" type="xs:int" />
+      <xs:element minOccurs="0" name="idtipodocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="numerofolio" type="xs:int" />
+      <xs:element minOccurs="0" name="numeroresolucion" type="xs:string" />
+      <xs:element minOccurs="0" name="rangofinal" type="xs:int" />
+      <xs:element minOccurs="0" name="rangoinicial" type="xs:int" />
+      <xs:element minOccurs="0" name="serie" type="xs:string" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarSerieResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminaSerie">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serie" type="tns:eliminaSerieRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminaSerieRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idserie" type="xs:int" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminaSerieResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviarEface">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="eface" type="tns:insertEfaceRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertEfaceRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="clave" type="xs:string" />
+      <xs:element minOccurs="0" name="direccionComercial" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaHabilitacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaPresentacion" type="xs:string" />
+      <xs:element minOccurs="0" name="formularioSat318" type="xs:string" />
+      <xs:element minOccurs="0" name="idRegimenISR" type="xs:string" />
+      <xs:element minOccurs="0" name="nitVendedor" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreComercial" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreCompleto" type="xs:string" />
+      <xs:element minOccurs="0" name="prefijo" type="xs:string" />
+      <xs:element minOccurs="0" name="razonSocial" type="xs:string" />
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviarEfaceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponseEface" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertResponseEface">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errores" type="xs:string" />
+      <xs:element name="ideface" type="xs:int" />
+      <xs:element name="insertado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="llave" type="xs:string" />
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarDispositivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dispositivo" type="tns:modificarDispositivoRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarDispositivoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="iddispositivo" type="xs:string" />
+      <xs:element name="ideface" type="xs:int" />
+      <xs:element name="idestablecimiento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="modificarDispositivoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviarDispositivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dispositivo" type="tns:insertDispositivoRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertDispositivoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigo_establecimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="id_dispositivo" type="xs:string" />
+      <xs:element minOccurs="0" name="llave" type="xs:string" />
+      <xs:element minOccurs="0" name="prefijo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviarDispositivoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="hello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="helloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminDispositivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dispositivo" type="tns:eliminaDispositivoRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminaDispositivoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iddispositivo" type="xs:string" />
+      <xs:element name="ideface" type="xs:int" />
+      <xs:element name="idestablecimiento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminDispositivoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminaEstablecimiento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="establecimiento" type="tns:eliminaEstablecimientoRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminaEstablecimientoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idestablecimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminaEstablecimientoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviarEstablecimiento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="establecimiento" type="tns:insertEstablecimientoRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertEstablecimientoRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codDepartamento" type="xs:int" />
+      <xs:element minOccurs="0" name="codMunicipio" type="xs:int" />
+      <xs:element minOccurs="0" name="codPais" type="xs:string" />
+      <xs:element minOccurs="0" name="codigoEstablecimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="domicilioComercial" type="xs:string" />
+      <xs:element minOccurs="0" name="llave" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreComercial" type="xs:string" />
+      <xs:element minOccurs="0" name="prefijo" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviarEstablecimientoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getSeries">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="consulta" type="tns:dataSeriesRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataSeriesRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="idEface" type="xs:int" />
+      <xs:element minOccurs="0" name="llave" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getSeriesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:dataSeriesResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataSeriesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="data" type="tns:dataSeries" />
+      <xs:element name="resultado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ultimoError" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dataSeries">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dispositivo" nillable="true" type="tns:dispositivo" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="establecimiento" nillable="true" type="tns:establecimiento" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="serie" nillable="true" type="tns:serie" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="dispositivo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="id_dispositivo" type="xs:string" />
+      <xs:element minOccurs="0" name="id_eface" type="xs:int" />
+      <xs:element minOccurs="0" name="id_establecimiento" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="establecimiento">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cod_departamento" type="xs:int" />
+      <xs:element minOccurs="0" name="cod_municipio" type="xs:int" />
+      <xs:element minOccurs="0" name="cod_pais" type="xs:string" />
+      <xs:element minOccurs="0" name="codigo_establecimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="domicilio_comercial" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="id_eface" type="xs:int" />
+      <xs:element minOccurs="0" name="id_establecimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="nombre_comercial" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="serie">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="autorizada" type="xs:string" />
+      <xs:element name="codigosat" type="xs:int" />
+      <xs:element minOccurs="0" name="fecha_autorizacion" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha_habilitacion" type="xs:string" />
+      <xs:element minOccurs="0" name="id_eface" type="xs:int" />
+      <xs:element minOccurs="0" name="id_establecimiento" type="xs:int" />
+      <xs:element minOccurs="0" name="id_serie_autorizada" type="xs:int" />
+      <xs:element minOccurs="0" name="id_tipodocumento" type="xs:int" />
+      <xs:element minOccurs="0" name="numero_de_folios" type="xs:int" />
+      <xs:element minOccurs="0" name="numero_resolucion" type="xs:string" />
+      <xs:element minOccurs="0" name="rango_final" type="xs:long" />
+      <xs:element minOccurs="0" name="rango_inicial" type="xs:long" />
+      <xs:element minOccurs="0" name="serie" type="xs:string" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="ultimo_correlativo_usado" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviaSerie">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="serie" type="tns:insertSerieAutorizadaRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="insertSerieAutorizadaRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codigoEstablecimiento" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaAutorizacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaHabilitacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="llave" type="xs:string" />
+      <xs:element minOccurs="0" name="modo" type="xs:int" />
+      <xs:element minOccurs="0" name="numeroFolios" type="xs:int" />
+      <xs:element minOccurs="0" name="numeroResolucion" type="xs:string" />
+      <xs:element minOccurs="0" name="prefijo" type="xs:string" />
+      <xs:element minOccurs="0" name="proximoCorrelativo" type="xs:int" />
+      <xs:element minOccurs="0" name="rangoFinal" type="xs:int" />
+      <xs:element minOccurs="0" name="rangoInicial" type="xs:int" />
+      <xs:element minOccurs="0" name="serie" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoDocumento" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="enviaSerieResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:insertResponse" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,259 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngresoMovKardex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Inventario
+
+<script src="~/js/funciones_ingreso_movkardex.js"></script>
+
+
+
+@* INICIO MODULO PARA INGRESAR MOVIMIENTOS*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingresar Movimiento
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>ID Movimiento</label>
+                                    <input class="form-control" type="number" name="id" id="id" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Movimiento</label>
+                                    <input class="form-control" type="text" name="movimiento" id="movimiento" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Serie</label>
+                                    <input class="form-control" type="text" name="serie" id="serie" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button id="btnGuardarr" class="btn btn-primary" onclick="GuardarMovKardex();">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO PARA INGRESAR MOVIMIENTOS*@
+
+
+
+@*INICIO MODULO DE CONSULTA TABLA DE MOVIMIENTOS*@
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+@*FIN MODULO DE CONSULTA TABLA DE MOVIMIENTOS*@
+
+
+
+@* INICIO MODULO EDITAR MOVIMIENTO*@
+<div class="modal fade modal-backdrop-transparent" id="modal-editar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            @*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">*@
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            Modificar Movimiento
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>ID</label>
+                                            <input class="form-control" type="text" name="idd" id="idd" disabled="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Movimiento</label>
+                                            <input class="form-control" type="text" name="movimientoo" id="movimientoo" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Serie</label>
+                                            <input class="form-control" type="text" name="seriee" id="seriee" maxlength="20"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" name="modificabutton" id="modificabutton">Modificar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO EDITAR MOVIMIENTO*@
+
+
+
+@*INICIO MODULO ELIMINAR MOVIMIENTO*@
+<div class="modal fade modal-backdrop-transparent" id="modal-eliminar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label>¿Desea eliminar el movimiento?</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" name="eliminabutton" id="eliminabutton">Eliminar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*FIN MODULO ELIMINAR MOVIMIENTO*@
+
+
+
+@*INICIO MODULO MENSAJE GENERICO*@
+<div class="modal fade modal-backdrop-transparent" id="modalGenerico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*FIN MODULO MENSAJE GENERICO*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalImages" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Imagenes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="panel-container show">
+                <div id="galleryContainer"></div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal modal-alert fade" id="modal-guardainv" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Actualizar este producto...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ModificarProducto();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

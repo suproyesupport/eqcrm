@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "Cajas";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+
+<script>
+    function crearCaja()
+    {
+        Nombre = $("input:text[name=Nombre]").val();
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/POS/Cajas/Create",
+            data: { Nombre },
+            success: function (response) {
+                if (response = "false") {
+                    window.location = "@Url.Action("Cajas","Cajas")";
+                }
+                else if (response = "true") {
+                    alert(response);
+                    return;
+                }
+                else {
+                    alert(response);
+                    return;
+                }
+            },
+            error: function () {
+                alert("Ocurrio un error al crear la caja");
+            }
+        });
+    }
+
+    function DesasignarCaja(caja) {
+        var Id_caja = arguments[0];
+        var usuario = arguments[1];
+
+        let seDesasigna = confirm("¿Seguro que desea desasignar la caja?");
+
+        if (seDesasigna == true) {
+            var url = '/POS/Cajas/Desasignar/';
+            var data = { Id_caja, usuario };
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                dataType: "text",
+                contentType: "application/x-www-form-urlencoded",
+                url: url,
+                data: data,
+                success: function (response) {
+                    window.location = "@Url.Action("Cajas","Cajas")";
+                },
+                error: function () {
+                    alert("Ocurrio un error al eliminar");
+                }
+            });
+        }
+    }
+
+    function EliminarCaja(caja) {
+
+        var id = arguments[0];
+        let seElimina = confirm("¿Seguro que desea eliminar la caja?");
+
+        if (seElimina == true) {
+
+            console.log(id);
+            var url = '/POS/Cajas/Eliminar/';
+            var data = { id };
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                dataType: "text",
+                contentType: "application/x-www-form-urlencoded",
+                url: url,
+                data: data,
+                success: function (response) {
+                    window.location = "@Url.Action("Cajas","Cajas")";
+                },
+                error: function () {
+                    alert("Ocurrio un error al eliminar");
+                }
+            });
+
+
+        }
+        if (seElimina == false) {
+            alert("No se eliminara");
+        }
+    }
+</script>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    REGISTRO DE CAJAS
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre que recibira la Caja</label>
+                                    <input class="form-control" type="text" name="Nombre" id="Nombre" />
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button id="crearCaja" class="btn btn-primary" onclick="crearCaja();">Crear Caja</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TABLA PARA VER LAS CAJAS REGISTRADAS-->
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    LISTADO DE CAJAS REGISTRADAS
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    @Html.Raw(ViewBag.Tabla2)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TABLA PARA VER LAS CAJAS ASIGNADAS-->
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    LISTADO DE CAJAS ASIGNADAS
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    @Html.Raw(ViewBag.Tabla)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

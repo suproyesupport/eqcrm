@@ -1,0 +1,224 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngresoClienteTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Ticket
+
+<script src="~/js/funciones_ingreso_clienteticket.js"></script>
+
+@* INICIO MODULO PARA INGRESAR LICENCIAS*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingresar Cliente
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Cliente</label>
+                                    <input class="form-control" type="text" name="cliente" id="cliente" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>NIT</label>
+                                    <input class="form-control" type="text" name="nit" id="nit" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Intercompany</label>
+                                    @Html.DropDownListFor(m => m.intercompany, ViewData["Intercompany"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button id="btnGuardar" class="btn btn-primary" onclick="GuardarClienteTicket();">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO PARA INGRESAR LICENCIAS*@
+
+
+@*INICIO MODULO DE CONSULTA TABLA DE CLIENTES*@
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+@*FIN MODULO DE CONSULTA TABLA DE CLIENTES*@
+
+
+@* INICIO MODULO EDITAR CLIENTE*@
+<div class="modal fade modal-backdrop-transparent" id="ModalClienteTicketReasignar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            @*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">*@
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            Modificar Cliente
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>ID</label>
+                                            <input class="form-control" type="text" name="id" id="id" disabled="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Cliente</label>
+                                            <input class="form-control" type="text" name="clientee" id="clientee"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>NIT</label>
+                                            <input class="form-control" type="text" name="nitt" id="nitt" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Intercompany</label>
+                                            @Html.DropDownListFor(m => m.intercompany2, ViewData["Intercompany2"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" name="modificabutton" id="modificabutton" onclick="ModificarClienteTicket();">Modificar Cliente</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO EDITAR CLIENTE*@
+
+
+@*INICIO MODULO MENSAJE GENERICO*@
+<div class="modal fade modal-backdrop-transparent" id="modalGenerico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*FIN MODULO MENSAJE GENERICO*@
+
+
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalImages" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Imagenes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="panel-container show">
+                <div id="galleryContainer"></div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-alert fade" id="modal-guardainv" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Actualizar este producto...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ModificarProducto();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

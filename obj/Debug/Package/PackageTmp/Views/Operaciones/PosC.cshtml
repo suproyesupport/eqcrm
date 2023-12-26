@@ -1,0 +1,509 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "CrearVentas";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+
+@model EqCrm.Models.POS.Caja
+
+<script src="~/js/POS/funciones_crear_ventasPosC.js"></script>
+
+@if (Session["IDCajaAsignada"].ToString() == "")
+{
+    <h2 style="color: red;"> NINGUNA CAJA SELECCIONADA, POR FAVOR SELECCIONE UNA</h2>
+}
+else
+{
+    if (ViewBag.permiso == "true")
+    {
+        <input class="form-check-input" type="checkbox" value="true" id="chckfactsinexist" style="display:none">
+    }
+    else if (ViewBag.permiso == "false")
+    {
+        <input class="form-check-input" type="checkbox" value="false" id="chckfactsinexist" style="display:none">
+    }
+
+
+
+
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+
+
+                        <table class="table table-bordered table-hover table-striped w-100">
+                            <tr>
+                                <td>
+                                    <div id="panel-1" class="panel">
+                                        @*<div class="d-flex justify-content-between">
+            <h3></h3>
+            <h3>Caja  @ViewData["CajasAsignadas"].ToString()</h3>
+        </div>*@
+
+
+                                        @*SEGUNDO PANEL*@
+                                        <div class="panel-content">
+                                            <div class="panel-hdr">
+                                                <h4>FACTURA</h4>
+                                            </div>                                            
+                                        </div>
+
+                                        <div class="panel-container show">
+                                            <div class="panel-container show">
+                                                <div class="panel-content">
+                                                    <div class="form-group row">
+
+                                                        <table class="table table-bordered table-hover table-striped w-100">
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="col">
+                                                                        <div>
+                                                                            <table id="tabladetalle" class="table table-responsive table-bordered detalleVenta">
+                                                                                <thead class="thead-dark">
+                                                                                    <tr>
+                                                                                        <th>CODIGO</th>
+                                                                                        <th>CANTIDAD</th>
+                                                                                        @*<th>SERVICIO</th>*@
+                                                                                        <th>PRODUCTO</th>
+                                                                                        <th>PRECIO</th>
+                                                                                        <th>DESCTO</th>
+                                                                                        <th>SUBTOTAL</th>
+                                                                                        <th>ELIMINAR</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody></tbody>
+                                                                            </table>
+
+                                                                            <div class="panel-content">
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-lg-2">
+                                                                            <label>Código de Producto</label>
+                                                                            <div class="input-group">
+                                                                                <input type="text" onkeydown="onKeyDownHandler(event);" class="form-control" id="id_codigo" name="id_codigo" onchange="BuscarCodigo();">
+                                                                                <span class="input-group-btn">
+                                                                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaproductos">Buscar</button>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-3">
+                                                                            <label>Producto</label>
+                                                                            <input type="text" id="producto" name="producto" class="form-control" disabled>
+                                                                        </div>
+
+                                                                        <div class="col-lg-1">
+                                                                            <label>Cantidad</label>
+                                                                            <div class="input-group">
+                                                                                <input type="number" onkeydown="enterCantidad(event);" right" class="form-control" id="cantidad" name="cantidad" onchange="focusCantidadPosC();" onblur="focusCantidadPosC();s">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-2">
+                                                                            <label>Precio</label>
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text">Q</span>
+                                                                                @*<input type="text" align="right" class="form-control" id="precio" name="precio" onchange="focusPrecio();" onblur="focusPrecio();" value="0" disabled="">*@
+                                                                                <input type="text" align="right" class="form-control" id="precio" name="precio" onchange="" onblur="" value="0" disabled="">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-1">
+                                                                            <label>Descto. </label>
+                                                                            <div class="input-group">
+                                                                                @*<input type="text" align="right" class="form-control" id="descto" name="descto" onchange="focusDescuento();" onblur="focusDescuento();" disabled="" value="0">*@
+                                                                                <input type="text" onkeydown="enterDescto(event);" align="right" class="form-control" id="descto" name="descto" onchange="" onblur="" disabled="" value="0">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-2">
+                                                                            <label>Subtotal</label>
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-text">Q</span>
+                                                                                <input type="text" align="right" class="form-control" id="tsubtotal" name="tsubtotal" disabled="">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-1">
+                                                                            <label> </label>
+                                                                            <div class="input-group">
+                                                                                <button type="button" class="btn btn-primary" id="btnagregar" onclick="AddDetallePosc();">
+                                                                                    @*<span class="fal fa-check mr-1"></span>*@
+                                                                                    Agregar
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="form-group row">
+                                                                        <div class="col-lg-1">
+                                                                            <label id="labelexistencia">Existencia</label>
+                                                                            <div class="input-group">
+                                                                                <input type="text" right" class="form-control" id="existencia" name="existencia" disabled="">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="row">
+                                                    <div class="col-lg-2" style="display:none;">
+                                                        <label style="display:none;">Código equivalente</label>*@
+                                                        <input type="text" style="display:none;"  id="codigoe" name="codigoe" class="form-control" disabled>
+                                                    @*</div>*@
+
+                                                    
+
+                                                    @*<div class="col-lg-2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                </div>*@
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div id="panel-9" class="panel">
+                                        <div class="panel-hdr">
+                                            <h2>
+                                                @*Opciones <span class="fw-300">Opciones</span>*@
+                                                <div class="d-flex justify-content-end">
+                                                    <h4>VAN Q</h4>
+                                                    <h4 id="total" name="total"></h4>
+                                                </div>
+                                            </h2>
+                                            
+                                        </div>
+                                        <div class="panel-container show">
+                                            <div class="panel-content">
+
+                                                <table class="table table-bordered table-hover table-striped w-100">
+
+
+                                                    <tr>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger btn-lg" onclick="AnularVenta();">
+                                                                @*<span class="fas fa-ban mr-1"></span>*@
+                                                                CANCELAR 
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <button type="button" class="btn accordion-button btn-dark btn-lg" data-toggle="modal" data-target="#ayudaproductos">
+                                                                @*<span class="fas fa-ban mr-1"></span>*@
+                                                                BUSCAR
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <tr>
+                                                        <td>
+                                                            <button type="button" class="btn btn-info btn-lg" onclick="SaveDataPostPosc();">
+                                                                @*<span class="fal fa-check mr-1"></span>*@
+                                                                ACEPTAR
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                                
+
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                           
+                            
+                    </div>
+                </div>
+            </div>
+
+            
+
+           
+    
+    
+
+
+    @*ESTE SERA EL MODAL PARA TENER LOS DATOS DEL CLIENTE*@
+
+    <div class="modal fade modal-backdrop-transparent" id="DatosClie" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @*<div class="modal-header">
+                        <h5 class="modal-title">Clientes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>*@
+                <div class="modal-body">
+                    <div class="panel-hdr">
+                        <div class="d-flex justify-content-between">
+                            <h2>
+                                Datos del Cliente
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="form-group row">
+                                <div class="col-lg-2">
+                                    <label>Tipo de Documento</label>
+                                    <div class="input-group">
+                                        @Html.Raw(ViewBag.TipoDocto)
+                                        @*@Html.DropDownListFor(m => m.cTipoDocto, ViewData["tipodocto"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control", @onchange = "verificarSerie(this.value);" })*@
+                                    </div>
+                                </div>
+                                <!--<div class="col-lg-2" id="mostrarIncoterm" style="display:none;">
+                                    <label>Incoterm</label>
+                                    <div class="input-group">
+                                        @Html.Raw(ViewBag.incoterm)-->
+                                        @*@Html.DropDownListFor(m => m.incoterm, ViewData["incoterm"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })*@
+                                    <!--</div>
+                                </div>-->
+                                <div class="col-lg-2" style="display:none;">
+                                    <label>Tipo de Venta</label>
+                                    <select id="tipoVenta" class="browser-default custom-select" onchange="seleccionarCreditoContado(this.value)">
+                                        <option selected value="1">Contado</option>
+                                        <option value="2">Credito</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-1" id="mostrarDiasCredito" style="display:none;">
+                                    <label>Días de Crédito</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="diascredito" name="diascredito">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2" style="display:none;">
+                                    <label>Fecha</label>
+                                    <div class="input-group">
+                                        <input type="date" id="cFecha" class="form-control" name="oportunidades.fecha" placeholder="Seleccione Fecha">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-2">
+                                    <label>Buscar Cliente</label>
+                                    <div class="input-group">
+                                        <input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="id" name="id" onchange="BuscarCliente();">
+                                        @*<span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaclientes">Buscar</button>
+                                        </span>*@
+                                    </div>
+                                </div>
+                                <div class="col-lg-10">
+                                    <label>Cliente</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="nombre" name="nombre">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>Dirección</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="direccion" name="direccion">
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>NIT</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="nit" name="nit">
+                                    </div>
+                                </div>
+                                <div class="col-lg-5" >
+                                    <label>Correo</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="correo" name="correo">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="SaveDataPostC()">Terminar Venta</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    @*AQUI VAN LOS MODALES PARA CLIENTE, ERROR Y PRODUCTOS*@
+    <div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="Error">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-backdrop-transparent" id="ayudaclientes" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Clientes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @Html.Raw(ViewBag.Tabla)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-backdrop-transparent" id="ayudaproductos" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @Html.Raw(ViewBag.TablaInventario)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-backdrop-transparent" id="formaPago" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccione una forma de pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label>Tipo de Venta</label>
+                                <select id="tipoFormaPago" class="browser-default custom-select">
+                                    <option selected value="1">Efectivo</option>
+                                    <option value="2">Tarjeta</option>
+                                    <option value="3">Cheque</option>
+                                    <option value="4">Vales</option>
+                                    <option value="5" hidden>Transferencia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="finalizarDataPostC()">Terminar Venta</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*MODAL CANTIDAD EXISTENCIA*@
+    <div class="modal fade modal-backdrop-transparent" id="ModalCantExist" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="Error">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-backdrop-transparent" id="ModalFinalizarPOS" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="Error1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+ </div>
+
+
+}

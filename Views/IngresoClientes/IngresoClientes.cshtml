@@ -1,0 +1,257 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngresoClientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model DatosIngresoProspectos
+
+<script src="~/js/funciones_ingreso_clientes.js"></script>
+<script src="~/js/eqfuncs.js"></script>
+
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="panel-1" class="panel">
+                            <div class="d-flex justify-content-between">
+                                <h3></h3>
+                            </div>
+                            <div class="panel-hdr">
+                                <div class="d-flex justify-content-between">
+                                    <h2>
+                                        Datos del Cliente
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="form-group row">
+                                        <div class="col-lg-3">
+                                            <label>NIT</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="nit" name="nit" onchange="BuscarNitProv();">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" data-toggle="modal" onclick="BuscarNitProv();">Buscar</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Cliente</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="cliente" name="cliente">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Teléfono</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="telefono" id="telefono">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-lg-5">
+                                            <label>Direccion</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="direccion" name="oportunidades.direccion">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Contacto</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="contacto" id="contacto">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Email</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="email" id="email">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-lg-3">
+                                            <label>Vendedor</label>
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(m => m.prospecto.id_vendedor, ViewData["asesores"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>Tipo de Cliente</label>
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(m => m.prospecto.tipo, ViewData["tipoclie"] as List<SelectListItem>, "Seleccionar...", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="col-lg-2" id="mostrarIncoterm" style="display:none;">
+                                        <label>Incoterm</label>
+                                        <div class="input-group">-->
+                                        @*@Html.DropDownListFor(m => m.incoterm, ViewData["incoterm"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })*@
+                                        <!--</div>
+                                    </div>-->
+
+
+
+
+                                        <div class="col-lg-2">
+                                            <label>Días de Credito</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" name="dias" id="dias" value="0">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Límite de Crédito</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" name="limite" id="limite" value="0">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <label>Comisión</label>
+                                            <div class="input-group">
+                                                <input type="number" class="form-control" name="comision" id="comision" value="0">
+                                            </div>
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                    <div class="form-group row">
+
+                                        <div class="col-lg-2">
+                                            <label>Coordinador</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="coor" id="coor" value=" ">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-lg-7">
+                                            <label>Observaciones</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="observaciones" id="observaciones">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label> </label>
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-primary" onclick="ModalGuardarCliente();">Guardar</button>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="col-lg-1">
+                                        <div class="row justify-content-md-end">
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="modal modal-alert fade" id="modal-guardaprov" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Desea Ingresar este registro...?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="GuadarCliente();">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="Error">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        @* INICIO MODAL GENERICO *@
+        <div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="Error">
+                            <label id="mensaje"></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-generico" hidden></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* FIN MODAL GENERICO *@
+
+
+
+
+    </div>
+</div>

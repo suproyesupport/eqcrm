@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://services.ws.ingface.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="ingfaceWsServices" targetNamespace="http://services.ws.ingface.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://www.ingface.net:443/ServiciosIngface/ingfaceWsServices?xsd=1" namespace="http://services.ws.ingface.com/" />
+    </xsd:schema>
+  </types>
+  <message name="hello">
+    <part name="parameters" element="tns:hello" />
+  </message>
+  <message name="helloResponse">
+    <part name="parameters" element="tns:helloResponse" />
+  </message>
+  <message name="verificaDocumentos">
+    <part name="parameters" element="tns:verificaDocumentos" />
+  </message>
+  <message name="verificaDocumentosResponse">
+    <part name="parameters" element="tns:verificaDocumentosResponse" />
+  </message>
+  <message name="getSeries">
+    <part name="parameters" element="tns:getSeries" />
+  </message>
+  <message name="getSeriesResponse">
+    <part name="parameters" element="tns:getSeriesResponse" />
+  </message>
+  <message name="eliminaEstablecimiento">
+    <part name="parameters" element="tns:eliminaEstablecimiento" />
+  </message>
+  <message name="eliminaEstablecimientoResponse">
+    <part name="parameters" element="tns:eliminaEstablecimientoResponse" />
+  </message>
+  <message name="enviarEface">
+    <part name="parameters" element="tns:enviarEface" />
+  </message>
+  <message name="enviarEfaceResponse">
+    <part name="parameters" element="tns:enviarEfaceResponse" />
+  </message>
+  <message name="enviarEstablecimiento">
+    <part name="parameters" element="tns:enviarEstablecimiento" />
+  </message>
+  <message name="enviarEstablecimientoResponse">
+    <part name="parameters" element="tns:enviarEstablecimientoResponse" />
+  </message>
+  <message name="enviaSerie">
+    <part name="parameters" element="tns:enviaSerie" />
+  </message>
+  <message name="enviaSerieResponse">
+    <part name="parameters" element="tns:enviaSerieResponse" />
+  </message>
+  <message name="nitContribuyentes">
+    <part name="parameters" element="tns:nitContribuyentes" />
+  </message>
+  <message name="nitContribuyentesResponse">
+    <part name="parameters" element="tns:nitContribuyentesResponse" />
+  </message>
+  <message name="eliminDispositivo">
+    <part name="parameters" element="tns:eliminDispositivo" />
+  </message>
+  <message name="eliminDispositivoResponse">
+    <part name="parameters" element="tns:eliminDispositivoResponse" />
+  </message>
+  <message name="modificarSerie">
+    <part name="parameters" element="tns:modificarSerie" />
+  </message>
+  <message name="modificarSerieResponse">
+    <part name="parameters" element="tns:modificarSerieResponse" />
+  </message>
+  <message name="modificarDispositivo">
+    <part name="parameters" element="tns:modificarDispositivo" />
+  </message>
+  <message name="modificarDispositivoResponse">
+    <part name="parameters" element="tns:modificarDispositivoResponse" />
+  </message>
+  <message name="enviarDispositivo">
+    <part name="parameters" element="tns:enviarDispositivo" />
+  </message>
+  <message name="enviarDispositivoResponse">
+    <part name="parameters" element="tns:enviarDispositivoResponse" />
+  </message>
+  <message name="modificarEstablecimiento">
+    <part name="parameters" element="tns:modificarEstablecimiento" />
+  </message>
+  <message name="modificarEstablecimientoResponse">
+    <part name="parameters" element="tns:modificarEstablecimientoResponse" />
+  </message>
+  <message name="eliminaSerie">
+    <part name="parameters" element="tns:eliminaSerie" />
+  </message>
+  <message name="eliminaSerieResponse">
+    <part name="parameters" element="tns:eliminaSerieResponse" />
+  </message>
+  <portType name="ingfaceWsServices">
+    <operation name="hello">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/helloRequest" message="tns:hello" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/helloResponse" message="tns:helloResponse" />
+    </operation>
+    <operation name="verificaDocumentos">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/verificaDocumentosRequest" message="tns:verificaDocumentos" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/verificaDocumentosResponse" message="tns:verificaDocumentosResponse" />
+    </operation>
+    <operation name="getSeries">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/getSeriesRequest" message="tns:getSeries" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/getSeriesResponse" message="tns:getSeriesResponse" />
+    </operation>
+    <operation name="eliminaEstablecimiento">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/eliminaEstablecimientoRequest" message="tns:eliminaEstablecimiento" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/eliminaEstablecimientoResponse" message="tns:eliminaEstablecimientoResponse" />
+    </operation>
+    <operation name="enviarEface">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviarEfaceRequest" message="tns:enviarEface" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviarEfaceResponse" message="tns:enviarEfaceResponse" />
+    </operation>
+    <operation name="enviarEstablecimiento">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviarEstablecimientoRequest" message="tns:enviarEstablecimiento" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviarEstablecimientoResponse" message="tns:enviarEstablecimientoResponse" />
+    </operation>
+    <operation name="enviaSerie">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviaSerieRequest" message="tns:enviaSerie" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviaSerieResponse" message="tns:enviaSerieResponse" />
+    </operation>
+    <operation name="nitContribuyentes">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/nitContribuyentesRequest" message="tns:nitContribuyentes" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/nitContribuyentesResponse" message="tns:nitContribuyentesResponse" />
+    </operation>
+    <operation name="eliminDispositivo">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/eliminDispositivoRequest" message="tns:eliminDispositivo" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/eliminDispositivoResponse" message="tns:eliminDispositivoResponse" />
+    </operation>
+    <operation name="modificarSerie">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/modificarSerieRequest" message="tns:modificarSerie" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/modificarSerieResponse" message="tns:modificarSerieResponse" />
+    </operation>
+    <operation name="modificarDispositivo">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/modificarDispositivoRequest" message="tns:modificarDispositivo" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/modificarDispositivoResponse" message="tns:modificarDispositivoResponse" />
+    </operation>
+    <operation name="enviarDispositivo">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviarDispositivoRequest" message="tns:enviarDispositivo" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/enviarDispositivoResponse" message="tns:enviarDispositivoResponse" />
+    </operation>
+    <operation name="modificarEstablecimiento">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/modificarEstablecimientoRequest" message="tns:modificarEstablecimiento" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/modificarEstablecimientoResponse" message="tns:modificarEstablecimientoResponse" />
+    </operation>
+    <operation name="eliminaSerie">
+      <input wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/eliminaSerieRequest" message="tns:eliminaSerie" />
+      <output wsam:Action="http://services.ws.ingface.com/ingfaceWsServices/eliminaSerieResponse" message="tns:eliminaSerieResponse" />
+    </operation>
+  </portType>
+  <binding name="ingfaceWsServicesPortBinding" type="tns:ingfaceWsServices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="hello">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificaDocumentos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="getSeries">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminaEstablecimiento">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="enviarEface">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="enviarEstablecimiento">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="enviaSerie">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="nitContribuyentes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminDispositivo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarSerie">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarDispositivo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="enviarDispositivo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="modificarEstablecimiento">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminaSerie">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ingfaceWsServices">
+    <port name="ingfaceWsServicesPort" binding="tns:ingfaceWsServicesPortBinding">
+      <soap:address location="https://www.ingface.net:443/ServiciosIngface/ingfaceWsServices" />
+    </port>
+  </service>
+</definitions>

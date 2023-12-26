@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "MaximosMinimos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Consulta de Maximos y Minimos
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    @Html.Raw(ViewBag.Tabla)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

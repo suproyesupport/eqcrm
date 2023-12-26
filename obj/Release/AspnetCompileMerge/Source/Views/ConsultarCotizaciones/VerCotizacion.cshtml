@@ -1,0 +1,523 @@
+﻿@{
+    ViewBag.Title = "VerCotizacion";
+    Layout = "~/Views/Shared/_LayoutVacio.cshtml";
+}
+
+@model List<EqCrm.Models.Cotizacion>
+   
+
+<style>
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 3px;
+    }
+
+    
+   
+</style>
+
+
+
+
+@if (@HttpContext.Current.Session["oBase"].ToString() != "cgtecsa")
+{
+    <div class="w-100 p-2">
+        <div class="w-100">
+            <table class="encabezado">
+                <tr>
+                    <td style="border:0" colspan="3">
+                        <img src="~/images/Empresas/@HttpContext.Current.Session["cIdEmpresa"].ToString()/logo.jpg" alt="Logo" width="200" height="auto">
+                    </td>
+                    <td style="border:0; font-size: 3em; color:gray; " colspan="2">
+                        COTIZACION
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:0" colspan="3">
+                        @HttpContext.Current.Session["cDireccion"].ToString()
+                    </td>
+                    <td style="border:0; color:red; font-weight:bold; text-align:center; " colspan="2">
+                        No.@Model[0].serie @Model[0].no_factura
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="border:0" colspan="3">
+                        Teléfono: 2495-1111 Ext. 1
+                    </td>
+                    <td style="border:2; background:black; color:white;">
+                        Fecha:
+                    </td>
+                    <td style="border:2; background:black; color:white; ">
+                        @Model[0].fecha
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="border:2" colspan="5">
+                        Nit: @HttpContext.Current.Session["cNit"].ToString()
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="border: 2px solid black; background: black; color: white; border-left: 2px solid black;" colspan="2">
+                        DATOS DEL VENDEDOR:
+                    </td>
+                    <td style="border: 2px solid black; background: black; color: white; border-right: 2px solid black;" colspan="3">
+                        DATOS DEL CLIENTE:
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="border:0; border-left: 2px solid black; ">Nombre:</td>
+                    <td style="border:0; border-right: 2px solid black;">@Model[0].nombre_vendedor</td>
+                    <td style="border:0;" rowspan="3"> Nombre de la empresa:</td>
+                    <td style="border:0; border-right: 2px solid black;" colspan="2" rowspan="3">@Model[0].cliente</td>
+                </tr>
+                <tr>
+                    <td style="border: 0; border-left: 3px solid black; ">Directo:</td>
+                    <td style="border:0;">@Model[0].telefono_vendedor</td>
+                </tr>
+                <tr>
+                    <td style="border:0; border-left: 3px solid black; ">E-mail:</td>
+                    <td style="border:0;">@Model[0].correo_vendedor</td>
+                </tr>
+                <tr>
+                    <td style="border: 2px solid black; background: black; color: white;  border-left: 3px solid black;" colspan="2">COMENTARIOS O INSTRUCCIONES ESPECIALES: </td>
+                    <td style="border:0; border-left:2px solid black;">Contacto:</td>
+                    <td style="border:0; border-right:2px solid black;" colspan="2">@Model[0].atencion</td>
+                </tr>
+                <tr>
+                    <td style="border: 0; border-left: 2px solid black; " colspan="2">OFERTA VALIDA 8 DIAS HABILES</td>
+                    <td style="border:0; border-left:2px solid black;">email:</td>
+                    <td style="border:0; border-right:2px solid black;" colspan="2">@Model[0].email</td>
+                </tr>
+                <tr>
+                    <td style="border: 0; border-left: 2px solid black; " colspan="2">PRECIOS SUJETOS A CAMBIOS SIN PREVIO AVISO</td>
+                    <td style="border: 0; border-left:2px solid black;">telefono:</td>
+                    <td style="border: 0; border-right:2px solid black;" colspan="2">@Model[0].telefono</td>
+                </tr>
+
+                
+                @*<tr>
+            <td style="border: 0px solid black; background: black; color: white;  border-left: 2px solid black; " colspan="2">POLITICAS DE ENTREGA*</td>
+            <td style="border: 0px solid black; background: black; color: white; border-right: 2px solid black;" colspan="3">FORMAS DE PAGO</td>
+        </tr>*@
+                @*<tr>
+            <td style="border: 0; border-left: 2px solid black; " colspan="2">LOS PRECIOS DE TRANSPORTE ESTAN SUJETOS A LA DISTANCIA DE ENTREGA Y EL TIPO DE EQUIPO ADQUIRIDO</td>
+            <td style="border:0; border-left: 2px solid black; border-right: 2px solid black;" colspan="3">* CUENTA Q. 048-002361-4 BI M D T INTERNACIONAL S A </td>
+        </tr>
+        <tr>
+            <td style="border: 0; border-left: 2px solid black; " colspan="2"></td>
+            <td style="border:0; border-left: 2px solid black; border-right: 3px solid black;" colspan="3">* CUENTA $ 004-001100-7 BI M D T INTERNACIONAL SA</td>
+        </tr>
+        <tr>
+            <td style="border: 0; border-left: 2px solid black; " colspan="2"></td>
+            <td style="border:0; border-left: 2px solid black; border-right: 2px solid black;" colspan="3">* CUENTA Q. 3416026355 BANRURAL MDT. INTERNACIONAL, S.A.</td>
+        </tr>
+
+        <tr>
+            <td style="border: 0; border-left: 2px solid black; " colspan="2"></td>
+            <td style="border:0; border-left: 2px solid black; border-right: 2px solid black;" colspan="3">* CUENTA Q. 90-008041-7 BAC  M.D.T. INTERNACIONAL, SOCIEDAD ANONIMA</td>
+        </tr>*@
+            </table>
+        </div>
+        <div class="w-100">
+            <table class="cuerpo">
+                <tr>
+                    @*<th style="border: 1px solid black; background: black; color: white; border-left:3px solid black;">ITEM NO.</th>*@
+                    <th style="border: 1px solid black; background: black; color: white;">CANTIDAD</th>
+                    <th style="border: 1px solid black; background: black; color: white; ">DESCRIPCION</th>
+                    <th style="border: 1px solid black; background: black; color: white; ">IMAGEN</th>
+                    @*<th style="border: 1px solid black; background: black; color: white; "></th>*@
+                    <th style="border: 1px solid black; background: black; color: white; ">PRECIO POR UNIDAD</th>
+                    @*<th style="border: 1px solid black; background: black; color: white; "></th>*@
+                    <th style="border: 1px solid black; background: black; color: white; ">DESCTO.</th>
+                    @*<th style="border: 1px solid black; background: black; color: white; "></th>*@
+                    <th style="border: 1px solid black; background: black; color: white; border-right: 1px solid black; ">SUBTOTAL</th>
+                </tr>
+                @{
+                    var contador = 1;
+                    double nTotalDescto = 0;
+                    double nTotTasa = 0;
+                    double nSubtotal = 0;
+                }
+                @foreach (var item in @Model)
+                {
+                    <tr>
+                        @*<td style="text-align:center; border-left: 1px solid black; border: 3px solid black;">@contador</td>*@
+
+                        <td style="text-align: center; border: 2px solid black;">@item.cantidad</td>
+
+                        <td style="border: 2px solid black;">@item.producto</td>
+
+                        <td style=" text-align:center; border: 2px solid black;">
+                            @if (item.url.Length > 41)
+                            {<img src="@item.url" width="75" height="auto" /> }
+                            else
+                            { <span></span>}
+                        </td>
+
+
+                        @if (Convert.ToDouble(item.tasa) >= 1)
+                        {
+                            double nPrecio = Convert.ToDouble(item.precio) / Convert.ToDouble(item.tasa);
+                            double nDescto = Convert.ToDouble(item.tdescto) / Convert.ToDouble(item.tasa);
+                            double nSubt = Convert.ToDouble(item.subtotal) / Convert.ToDouble(item.tasa);
+                            nTotTasa = Convert.ToDouble(item.tasa);
+                            nTotalDescto = nTotalDescto + Convert.ToDouble(item.tdescto) / Convert.ToDouble(item.tasa);
+
+                            @*<td style=" text-align:right; border: 2px solid black;">$.</td>*@
+                           <td width="150" style="text-align:right; border: 2px solid black;">$. @nPrecio.ToString("N")</td>
+                            @*<td style=" text-align:right; border: 2px solid black;">$.</td>*@
+                            <td width="150" style="text-align:right; border: 2px solid black;">$. @nDescto.ToString("N")</td>
+                            @*<td style=" text-align:right; border: 2px solid black;">$.</td>*@
+                            @*<td style="text-align: right; border-right: 2px solid black; border: 2px solid black;" class="formatPrice">$. @nSubt.ToString()</td>*@
+                            <td width="150" style="text-align: right; border-right: 2px solid black; border: 2px solid black;">$. @nSubt.ToString("N")</td>
+                        }
+                        else
+                        {
+
+                            nTotalDescto = nTotalDescto + Convert.ToDouble(item.tdescto);
+                            @*<td style=" text-align:right; border: 2px solid black;">Q.</td>*@
+                            <td width="150" style=" text-align:right; border: 2px solid black;">Q. @item.precio</td>
+                            @*<td style=" text-align:right; border: 2px solid black;">Q.</td>*@
+                            <td width="150" style=" text-align:right; border: 2px solid black;">Q. @item.tdescto</td>
+                            @*<td style=" text-align:right; border: 2px solid black;">Q.</td>*@
+                            <td width="150" style="text-align: right; border-right: 2px solid black; border: 2px solid black;">Q. @item.subtotal</td>
+                        }
+
+                    </tr>
+                    contador = contador + 1;
+
+                }
+
+                <tr>
+                    <td colspan="4" style="text-align:right; border: 0px solid white;"> </td>
+                    <td colspan="4" style="text-align:right; border: 0px solid white;"> </td>
+
+                </tr>
+                @*<tr>
+            <td colspan="4" style="text-align:right; border: 0px solid white;"> </td>
+            <td style="text-align:right; border: 0px solid white;">SUBTOTAL</td>
+            <td style="text-align: right; border: 1px solid black; background: black; color: white;" class="formatPrice">
+                @if (Convert.ToDouble(nTotTasa) >= 1)
+                {
+                    double nGranTotal = Convert.ToDouble(Model[0].total) / nTotTasa;
+                    nSubtotal = +nGranTotal + nTotalDescto;
+                    @nSubtotal.ToString()
+                }
+                else
+                {
+                    double nGranTotal = Convert.ToDouble(Model[0].total);
+                    nSubtotal = +nGranTotal + nTotalDescto;
+                    @nSubtotal.ToString()
+                }
+            </td>
+        </tr>*@
+
+                <tr>
+                    <td colspan="4" style="text-align:right; border: 0px solid white;"> </td>
+                    <td colspan="4" style="text-align:right; border: 0px solid white;"> </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="4" style="text-align:right; border: 0px solid white;"> </td>
+
+                    @if (Convert.ToDouble(nTotTasa) >= 1)
+                    {
+                        <td style="text-align:right; border: 0px solid white;">DESCTO $.</td>
+                    }
+                    else
+                    {
+                        <td style="text-align:right; border: 0px solid white;">DESCTO Q.</td>
+                    }
+
+                    @if (Convert.ToDouble(nTotTasa) >= 1)
+                    {
+                        <td style="text-align: right; border: 1px solid black; background: black; color: white;">
+                            @nTotalDescto.ToString("N")
+                        </td>
+                    }
+                    else
+                    {
+                <td style="text-align: right; border: 1px solid black; background: black; color: white;">
+                            @nTotalDescto.ToString("N")
+                </td>
+                    }
+
+
+                </tr>
+
+                <tr>
+                </tr>
+                    <td colspan="4" style="text-align:left; border: 0px solid white;">
+                        OBSERVACIONES:  @Model[0].obs
+                    </td>
+                <tr>
+
+
+
+                    <td colspan="4" style="text-align:left; border: 0px solid white;">
+                        TOTAL EN LETRAS:  @Model[0].total_letras
+                    </td>
+
+                    @if (Convert.ToDouble(nTotTasa) >= 1)
+                    {
+                        <td style="text-align:right; border: 0px solid white;">TOTAL $.</td>
+                    }
+                    else
+                    {
+                        <td style="text-align:right; border: 0px solid white;">TOTAL Q.</td>
+                    }
+                    <td style="text-align: right; border: 1px solid black; background: black; color: white; ">
+                        @if (Convert.ToDouble(nTotTasa) >= 1)
+                        {
+                            double nGranTotal = Convert.ToDouble(Model[0].total) / nTotTasa;
+
+                            @nGranTotal.ToString("N")
+                        }
+                        else
+                        {
+
+                            @Model[0].total
+                        }
+                    </td>
+                </tr>
+
+
+
+
+                <tr>
+
+                    <table class="cuerpo">
+                        <tr>
+                            <td style="text-align: center; border:0;">&nbsp;<img src="~/images/unox.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/tedesco.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/south.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/rational.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/pitco.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/krampuz.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/3M.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/ice.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/fagor.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/docri.jpeg" alt="LOGO" width="75" height="auto">&nbsp;<img src="~/images/asber.jpeg" alt="LOGO" width="75" height="auto">&nbsp;&nbsp;<img src="~/images/simonelli.jpeg" alt="LOGO" width="75" height="auto">&nbsp;&nbsp;<img src="~/images/Atoll.jpeg" alt="LOGO" width="75" height="auto">&nbsp;&nbsp;<img src="~/images/blend.jpeg" alt="LOGO" width="75" height="auto">&nbsp;&nbsp;<img src="~/images/bunn.jpeg" alt="LOGO" width="75" height="auto"> </td>
+                        </tr>
+                    </table>
+                    @* <td style="text-align: left; border:1;"> </td>*@
+                    @* <td style="text-align: center; border:0;">*@
+
+                    @* </td>*@
+                    @*<td style="text-align: center; border:0;"><img src="~/images/simonelli.jpeg" alt="LOGO" width="75" height="auto"></td>
+
+            <td style="text-align: left; border:0;"><img src="~/images/blend.jpeg" alt="LOGO" width="75" height="auto"></td>
+            <td style="text-align: left; border:0;"><img src="~/images/bunn.jpeg" alt="LOGO" width="75" height="auto"></td>*@
+                    @* </tr> *@
+                    @*<tr>
+                        <td style="text-align: left; border:0;"><img src="~/images/docri.jpeg" alt="LOGO" width="75" height="auto"></td>
+            <td style="text-align: left; border:0;"><img src="~/images/fagor.jpeg" alt="LOGO" width="75" height="auto"></td>
+            <td style="text-align: left; border:0;"><img src="~/images/ice.jpeg" alt="LOGO" width="75" height="auto"></td>
+                        <td style="text-align: left; border:0;"><img src="~/images/krampuz.jpeg" alt="LOGO" width="75" height="auto"></td>
+                        <td style="text-align: left; border:0;"><img src="~/images/pitco.jpeg" alt="LOGO" width="75" height="auto"></td>
+                        <td style="text-align: left; border:0;"><img src="~/images/rational.jpeg" alt="LOGO" width="75" height="auto"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; border:0;"><img src="~/images/south.jpeg" alt="LOGO" width="75" height="auto"></td>
+                        <td style="text-align: center; border:0;"><img src="~/images/tedesco.jpeg" alt="LOGO" width="75" height="auto"></td>
+                        <td style="text-align: center; border:0;"><img src="~/images/unox.jpeg" alt="LOGO" width="75" height="auto"></td>
+                        <td style="text-align: right; border:0;"><img src="~/images/zumex.jpeg" alt="LOGO" width="75" height="auto"></td>
+
+                    </tr>*@
+            </table>
+           <table>
+             <tr>
+                    <td  style="text-align: center; border:0;">
+                        SI EL PAGO ES EN QUETZALES SE UTILIZARÁ EL TIPO DE CAMBIO DE VENTA DEL BANCO DE AMERICA CENTRAL.
+                    </td>
+             </tr>
+           </table>
+
+        </div>
+    </div>
+}
+else if (@HttpContext.Current.Session["oBase"].ToString() == "cgsersa")
+{
+    <div class="w-100 p-2" style="font-size: x-large;">
+        <div class="w-100" style="padding-top:20px;">
+            <table class="cuerpo">
+                <tr>
+                    <td style="border:0">
+                        <img src="~/images/Empresas/@HttpContext.Current.Session["cIdEmpresa"].ToString()/logo.jpg" alt="Logo RIO" width="1200" height="auto">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none; text-align:right;">
+                        <h4>Guatemala @Model[0].fecha</h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none;">
+                        <center><h2><b>Propuesta Técnica y Económica para la Implementación de Facturación Electrónica en Línea – FEL</b></h2></center>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none;">
+                        <center><h4>PARA:</h4></center>
+                        <center><h4>@Model[0].cliente</h4></center>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="border:none;">
+
+                        <b>I.     Solución</b><br />
+
+                        <p style="text-align:justify;">
+                                                  A continuación, presentamos nuestra oferta económica para la empresa la cual se detalla
+                                                  según la necesidad que fue indicada.<br /><br />
+
+                                                  La empresa se integrarán con el software certificador de G4S Documenta utilizando
+                                                  como origen de datos un XML generado desde el sistema de facturación (ERP o POS)
+                                                  que Utiliza actualmente.<br /><br />
+
+                                                  Cada vez que se requiera certificar un documento, el XML deberá ser enviado vía Web
+                                                  Service debiendo consumir para esto un servicio publicado por G4S Documenta el cual
+                                                  cuenta con las transacciones necesarias para intercambiar la información por medio de
+                                                  protocolo SOAP y poder obtener de vuelta el certificado.<br /><br />
+                                                 
+                        </p>
+                        <p style="text-align:justify;">
+                            El alcance de los servicios prestados por CORPORACION GLOBAL DE SERVICIOS, S.A. para el proyecto, lo podemos englobar de acuerdo a los elementos y componentes de la solución, los cuales se describen a continuación: <br /><br />
+                            <b>II.1.    Setup </b><br />
+                            Configuración y creación de los Ambientes necesarios para Pruebas y Producción de FEL. <br /><br />
+                            <b>II.2.    Implementación </b><br />
+                            Configuración y habilitación de los módulos existentes en la Pagina FEL DE G4S DOCUMENTA. <br /> <br />
+                            <b>II.3.    Capacitación </b><br />
+                            Se capacitará al personal técnico de su organización para poder verificar el envío de las notificaciones vía email. <br /><br />
+
+                            CORPORACION GLOBAL DE SERVICIOS, S.A. en conjunto con el líder de proyecto asignado por su organización se encargarán de realizar un análisis o revisión de todos aquellos procesos internos que puedan ser afectados dentro de la infraestructura instalada y se hará observaciones si requieren de alguna adaptación especial para el funcionamiento adecuado de la aplicación. <br />
+                            <br />
+                            <br />
+                            <br />
+                            <img src="~/images/Empresas/@HttpContext.Current.Session["cIdEmpresa"].ToString()/footer.jpg" alt="Logo RIO" width="1200" height="auto">
+                        </p>
+
+                    </td>
+                </tr>
+            </table>
+            <table class="encabezado">
+                <tr>
+                    <td style="border:0">
+                        <img src="~/images/Empresas/@HttpContext.Current.Session["cIdEmpresa"].ToString()/logo.jpg" alt="Logo RIO" width="1200" height="auto">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none;">
+                        <b>Productos a Entregar </b>
+                        <ul>
+                            <li>Documentación técnica para el uso del WebService.</li>
+                            <li>Envío de facturas electrónicas y resguardo.</li>                           
+                            <li>Envío automático de factura electrónica, a su cliente, si desea enviarla al momento de la generación (Mejora tiempos de entrega de documentos).</li>
+                        </ul>
+
+                        
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none;">
+                        <b>Premisas</b> <br />
+
+                        CORPORACION GLOBAL DE SERVICIOS, S.A. basa la información y sus estimaciones de esta propuesta bajo las siguientes consideraciones: <br />
+                        CORPORACION GLOBAL DE SERVICIOS, S.A. mantendrá a su organización al tanto de las desviaciones que puedan presentarse durante el proceso de ejecución de las actividades propuestas, las cuales puedan representar un riesgo para el proyecto. <br />                        
+                        CORPORACION GLOBAL DE SERVICIOS, S.A. no incluye los costos de hardware ni software que no estén específicamente detallados dentro del alcance de esta propuesta.<br />
+                        El coste de la solución se basa únicamente en la información disponible al momento de generación de esta propuesta. <br />
+
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none;">
+                        <b>Propuesta Ecómica</b><br />
+                        <div>
+                            Este proyecto se basa en un precio fijo para los alcances y entregables definidos en la presente propuesta. <br />
+                            El precio y tarifas están considerados según esfuerzo y experiencia basados en soluciones similares. <br />
+
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+            <table class="cuerpo">
+                @* INICIO DE TABLA DE LOS PRODUCTOS *@
+                <b>Propuesta</b>
+                <tr>
+                    <th style="border: 1px solid black; background: black; color: white; border-left:3px solid black;">ITEM NO.</th>
+                    <th style="border: 1px solid black; background: black; color: white;">CANTIDAD</th>
+                    <th style="border: 1px solid black; background: black; color: white;">DESCRIPCION</th>
+                    <th style="border: 1px solid black; background: black; color: white;">PRECIO POR UNIDAD</th>
+                    <th style="border: 1px solid black; background: black; color: white; border-right:3px solid black;">SUBTOTAL</th>
+                </tr>
+                @{
+                    var contador = 1;
+                }
+                @foreach (var item in @Model)
+                {
+                    <tr>
+                        <td style="text-align:center; border-left: 1px solid black; border: 3px solid black;">@contador</td>
+
+                        <td style="text-align: center; border: 3px solid black;">@item.cantidad</td>
+
+                        <td style="border: 3px solid black;">@item.producto</td>
+
+                        <td style=" text-align:right; border: 3px solid black;" class="formatPrice">@item.precio</td>
+
+                        <td style="text-align: right; border-right: 1px solid black; border: 3px solid black;" class="formatPrice">@item.subtotal</td>
+
+                    </tr>
+                    contador = contador + 1;
+
+                }
+                @* FIN DE TABLA DE LOS PRODUCTOS *@
+            </table>
+            <table class="encabezado">
+                <tr>
+                    <td style="border:none;">
+                        <b>VALOR UNITARIO DE CERTIFICACION INCLUYE: </b><br />
+                        * 1 Nit<br />
+                        * Acceso ilimitado al portal<br />
+                        * Usuarios ilimitados al portal<br />
+                        * Distribución o redistribución ilimitada electrónica<br />
+                        * Reimpresiones ilimitadas<br />
+                        * Soporte y mantenimiento estándar<br />
+                        * Almacenamiento del certificado digital para el firmado electrónico de la empresa.<br />
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:none;">
+                        <b>TERMINOS Y CONDICIONES COMERCIALES: </b><br />
+                        * Los valores incluyen IVA.<br />
+                        * Los precios presentados en esta propuesta económica tienen validez por 30 días.<br />
+                        * a partir de la fecha de elaboración de esta cotización.<br />
+                        * Los valores son por un contrato de 12 meses.<br />
+                        * No incluye elaboración de formatos personalizados desde la herramienta
+                          de G4S.<br />
+                        * Habilitarse desde la agencia virtual como emisores de FEL y acreditar a
+                          G4S como su Certificador
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border:0">
+                        <img src="~/images/Empresas/@HttpContext.Current.Session["cIdEmpresa"].ToString()/footer.jpg" alt="Logo RIO" width="1200" height="auto">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+}

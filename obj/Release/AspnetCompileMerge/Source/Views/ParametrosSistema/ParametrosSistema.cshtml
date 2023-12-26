@@ -1,0 +1,115 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "ParametrosSistema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model  ParametrosSistema
+
+<script src="~/js/funciones_parametrossistema.js"></script>
+
+@* INICIO MODULO PARA INGRESAR MOVIMIENTOS*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Parámetros del Sistema
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        @{
+                                            if (ViewBag.permiso == "true")
+                                            {
+                                                <input class="form-check-input" type="checkbox" value="" id="chckfactsinexist" checked onclick="act();">
+                                            }
+                                            else
+                                            {
+                                                <input class="form-check-input" type="checkbox" value="" id="chckfactsinexist" onclick="act();">
+                                            }
+                                        }
+
+                                        <label class="form-check-label">Facturar sin Existencias</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO PARA INGRESAR MOVIMIENTOS*@
+
+
+
+
+
+
+
+
+
+@*INICIO MODULO ELIMINAR MOVIMIENTO*@
+<div class="modal fade modal-backdrop-transparent" id="modal-eliminar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label>¿Desea eliminar el movimiento?</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" name="eliminabutton" id="eliminabutton">Eliminar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*FIN MODULO ELIMINAR MOVIMIENTO*@
+
+
+
+@*INICIO MODULO MENSAJE GENERICO*@
+<div class="modal fade modal-backdrop-transparent" id="modalGenerico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*FIN MODULO MENSAJE GENERICO*@
+
+
+
+
+
+
+
+
+
+

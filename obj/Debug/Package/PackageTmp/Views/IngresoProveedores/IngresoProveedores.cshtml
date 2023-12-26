@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "IngresoProveedores";
+    Layout = "~/Views/OrdenC/Shared/_Layout.cshtml";
+}
+
+<h2>Ingreso  Proveedores</h2>
+
+@model DatosIngresoProspectos
+
+<script src="~/js/funciones_ingreso_proveedores.js"></script>
+<script src="~/js/eqfuncs.js"></script>
+
+
+
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de Proveedores
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    
+
+                            <div class="form-group row">
+                                <label>Nit</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="nit" name="nit" onchange="BuscarNitProv();">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" onclick="BuscarNitProv();">Buscar Nit</button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label>Nombre Proveedor</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cliente" name="cliente">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label>Direccion</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="direccion" name="direccion">
+                                </div>
+                            </div>
+
+
+
+                            <!--<div class="form-group row">
+                <label>Tipo Proveedor</label>
+                <div class="input-group">-->
+                            @*  @Html.DropDownListFor(m => m.oportunidades.tipo, ViewData["tipoclie"] as List<SelectListItem>, "Seleccionar Tipo Cliente...", new { @class = "form-control" })*@
+
+
+                            <!--</div>
+            </div>-->
+
+
+                            <div class="form-group row">
+                                <label>Contacto</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="nombre_contacto" name="nombre_contacto">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label>Telefono</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id ="telefono" name="telefono">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label>Días de Credito</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="dias" name="dias">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label>Límite de Credito</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="limite" name="limite">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label>Email</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="email" name="email">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label>Observaciones</label>
+                            <textarea class="form-control" rows="3" id="observaciones" name="observaciones"></textarea>
+                        </div>
+                        @*<button type="button" class="btn btn-info btn-block" onclick="GuardaProv();">Guardar Proveedor</button>*@
+                        <button type="button" class="btn btn-primary" onclick="GuadarProv();">Guardar Proveedor</button>
+                    </div>
+                </div>
+    </div>
+</div>
+
+
+<div class="modal modal-alert fade" id="modal-guardaprov" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Ingresar este registro...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GuadarProveedor();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

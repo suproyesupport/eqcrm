@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "ConsultaCompras";
+    Layout = "~/Views/OrdenC/Shared/_Layout.cshtml";
+}
+
+<script src="/js/funciones_consulta_compras.js"></script>
+
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            CONSULTA DE COMPRAS <span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div class="panel-container show">
+        <div class="panel-content">
+            @*<form method="get" enctype="application/x-www-form-urlencoded" action="/ConsultarCotizaciones/ConsultarCotizaciones">*@
+            <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                <tr>
+                    <th>
+                        DE LA FECHA
+                    </th>
+
+                    <th>
+                        A LA FECHA
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div class="input-group">
+                            <input type="hidden" name="consulta" value="1" />
+                            <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            @*<button id="ObtieneInfo" type="submit" class="btn btn-primary">Buscar Cotizaciones</button>*@
+            <button id="ObtieneInfo" class="btn btn-primary" onclick="ActFiltroDoctos();">Buscar Compras</button>
+            <div id="mostrar_consulta"></div>
+            @*</form>*@
+
+        </div>
+    </div>
+</div>
+
+
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado BUsqueda de Compras <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+<!-- Modal center Large no backdrop -->
+<div class="modal fade modal-backdrop-transparent" id="consultar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Consulta de Compras</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+               
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                
+            </div>
+        </div>
+    </div>
+</div>

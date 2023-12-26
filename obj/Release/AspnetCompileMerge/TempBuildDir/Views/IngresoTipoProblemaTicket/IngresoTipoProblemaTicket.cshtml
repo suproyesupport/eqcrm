@@ -1,0 +1,60 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngresoTipoProblemaTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TicketTipoProblema
+
+<script src="~/js/funciones_ingreso_tipoproblematicket.js"></script>
+
+@* INICIO MODULO PARA INGRESAR PROBLEMA*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingresar Tipo de Problema
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="form-group">
+                        <label>Problema</label>
+                        @Html.DropDownListFor(m => m.problema, ViewData["Problema"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control", @onchange = "ActFiltroTipoProblemaTickets();" })
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de Problema</label>
+                        <input class="form-control" style="text-transform:uppercase;" type="text" name="tipoproblema" id="tipoproblema" />
+                    </div>
+                    <button id="btnagregar" class="btn btn-primary" onclick="GuardarTipoProblemaTicket();">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO PARA INGRESAR PROBLEMA*@
+
+
+@* INICIO TABLA CONSULTA PROBLEMA*@
+<div id="mostrar_consulta"></div>
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+@* FIN TABLA CONSULTA PROBLEMA*@
+
+
+
+
+
+
+

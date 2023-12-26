@@ -1,0 +1,149 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngresoPreciosGAS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Inventario
+
+<script src="~/js/funciones_ing_preciosGAS.js"></script>
+
+@*INICIO PANEL PRINCIPAL*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de Precios
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Código de Producto</label>
+                                    <input type="text" id="idcodigoeq" name="idcodigoeq" class="form-control">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Producto</label>
+                                    <input type="text" id="productoeq" name="productoeq" class="form-control">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Costo 1</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Q</span>
+                                        <input type="number" align="right" class="form-control" id="costoeq1" name="costoeq1">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Precio 1</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Q</span>
+                                        <input class="form-control" type="number" name="precioeq1" id="precioeq1" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Costo 2</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Q</span>
+                                        <input class="form-control" type="number" name="costoeq2" id="costoeq2" />
+                                    </div>
+
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Precio 2</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Q</span>
+                                        <input class="form-control" type="number" name="precioeq2" id="precioeq2" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>IDP</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Q</span>
+                                        <input class="form-control" type="number" name="idp" id="idp" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="ModalGuardar();">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*FIN PANEL PRINCIPAL*@
+
+@*INICIO MODAL CONFIRMAR GUARDAR*@
+<div class="modal modal-alert fade" id="modal-guardar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea Ingresar el producto?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GuardarPrecioGAS();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*FIN MODAL CONFIRMAR GUARDAR*@
+
+
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="ModalGenerico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@
+
+
+
+
+

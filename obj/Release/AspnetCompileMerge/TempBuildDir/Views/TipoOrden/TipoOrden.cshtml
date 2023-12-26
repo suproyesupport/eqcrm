@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "TipoOrden";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/funciones_ingreso_tipoorden"></script>
+
+<script>
+
+    $(document).ready(InicionEventos);
+
+    function InicionEventos() {
+        LlenarTablaTipoOrden();
+    }
+
+    function GuardarTipo() {
+        $('#modal-guardatipo').modal('show');
+    }
+
+    function GuardarTipoOrden() {
+
+        $('#modal-guardatipo').modal('hide');
+
+        var descripcion = document.getElementById("descripcion").value;
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/TipoOrden/InsertarTipoOrden",
+            data: { descripcion },
+            success: function (response) {
+                var arreglo = response;
+
+                if (response.CODIGO == "ERROR") {
+                    if (response.PRODUCTO == "") {
+                        $('#Error').html("OCURRIO UN ERROR");
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                    else {
+                        $('#Error').html(response.PRODUCTO);
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                }
+
+                //ActFiltroInventario();
+
+                //$('#ModalInfoAdicional').modal('show');
+                //BuscarID();
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+
+        window.location.href = "/TipoOrden/TipoOrden";
+    }
+
+
+
+    function LlenarTablaTipoOrden() {
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/TipoOrden/ConsultaTipoOrden",
+            data: {},
+            success: function (response) {
+                $('#mostrar_consulta').html(response);
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de Tipo de Orden
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Descripción </label>
+                                    <input class="form-control" type="text" name="descripcion" id="descripcion" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="GuardarTipo();">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Confirmar ingreso -->
+<div class="modal modal-alert fade" id="modal-guardatipo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Ingresar este registro...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GuardarTipoOrden();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="panel-hdr">
+                        <h2>
+                            Consulta Catálogo de Tipos de Orden
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content" id="mostrar_consulta">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

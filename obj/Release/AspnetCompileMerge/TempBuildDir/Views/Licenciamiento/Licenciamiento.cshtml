@@ -1,0 +1,330 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "Licenciamiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Licenciamiento
+
+@*<h2>Modificación de Códigos de Inventario</h2>*@
+
+<script src="~/js/funciones_licenciamiento.js"></script>
+
+@* INICIO MODULO PARA INGRESAR LICENCIAS*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingresar licencia
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>NIT</label>
+                                    <input class="form-control" type="text" name="nit" id="nit" onchange="BuscarCliente();" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input class="form-control" type="text" name="nombre" id="nombre" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre Comercial</label>
+                                    <input class="form-control" type="text" name="nombrec" id="nombrec" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Correo</label>
+                                    <input class="form-control" type="text" name="email" id="email" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Fecha de vencimiento</label>
+                                    <input class="form-control" type="date" name="fechavencimiento" id="fechavencimiento" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>InterCompany</label>
+                                    @Html.DropDownListFor(m => m.intercompany, ViewData["Intercompany"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>FEL</label>
+                                    <select name="fel" id="fel" class="form-control">
+                                        <option value="1">SI</option>
+                                        <option value="0">NO</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="GuardarLicencia();">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO PARA INGRESAR LICENCIAS*@
+
+
+
+@* INICIO MODULO PARA FILTRAR LICENCIAS*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Filtro Licenciamiento
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>NIT</label>
+                                    <input class="form-control" type="text" name="nitb" id="nitb" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre Comercial</label>
+                                    <input class="form-control" type="text" name="nombrecb" id="nombrecb" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="ActFiltroLincencias();">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO PARA FILTRAR LICENCIAS*@
+
+
+
+
+
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="mostrar_consulta"></div>
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalExistencias" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="panel-container show">
+                <div id="mostrar_consulta_agencias"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalImages" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Imagenes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="panel-container show">
+                <div id="galleryContainer"></div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-alert fade" id="modal-guardainv" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Actualizar este producto...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ModificarProducto();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- MODAL MODIFICAR LICENCIA-->
+<div class="modal fade modal-backdrop-transparent" id="ModalFichaLicencia" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">
+                <div class="modal-body">
+                    <div id="panel-1" class="panel">
+                        <div class="panel-hdr">
+                            <h2>
+                                DATOS
+                            </h2>
+                        </div>
+                        <div class="panel-container show">
+                            <div class="panel-content">
+                                <table class="table table-bordered table-hover table-striped w-100">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>NIT</label>
+                                                <input class="form-control" type="text" name="nitm" id="nitm" onchange="BuscarCliente();" disabled=""/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input class="form-control" type="text" name="nombrem" id="nombrem" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Nombre Comercial</label>
+                                                <input class="form-control" type="text" name="nombrecm" id="nombrecm" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Fecha de vencimiento</label>
+                                                <input class="form-control" type="date" name="fechavencimientom" id="fechavencimientom" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>FEL</label>
+                                                <select name="felm" id="felm" class="form-control">
+                                                    <option value="1">SI</option>
+                                                    <option value="0">NO</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="ActualizaLicencia();">Modificar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

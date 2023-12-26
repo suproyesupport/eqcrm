@@ -1,0 +1,213 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngresoTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Ticket
+
+<script src="~/js/funciones_ingreso_ticket.js"></script>
+
+
+
+@* INICIO MODULO PARA INGRESAR TICKET*@
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingresar ticket
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Buscar Cliente</label>
+                                    <input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="id_cliente" name="id_cliente" onchange="BuscarCliente();">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Cliente</label>
+                                    <input class="form-control" type="text" name="cliente" id="cliente" disabled="" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Fecha</label>
+                                    <input class="form-control" type="date" name="fecha" id="fecha" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Reporta</label>
+                                    <input class="form-control" type="text" name="reporta" id="reporta" style="text-transform:uppercase;" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Problema</label>
+                                    @Html.DropDownListFor(m => m.problema, ViewData["Problema"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control", @onchange = "cargaDDLSecundario(this.value);" })
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Tipo de Problema</label>
+                                    <div id="tipoproblemaa">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Intercompany</label>
+                                    @Html.DropDownListFor(m => m.intercompany, ViewData["Intercompany"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Medio</label>
+                                    @Html.DropDownListFor(m => m.medio, ViewData["Medio"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Responsable</label>
+                                    @Html.DropDownListFor(m => m.usuarior, ViewData["UsuarioResponsable"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                        <label>Error</label>
+                        <input class="form-control" style="text-transform:uppercase;" type="text" name="error" id="error" />
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea class="form-control" rows="3" style="text-transform:uppercase;" name="descripcion" id="descripcion"></textarea>
+                    </div>
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="GuardarTicket();">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODULO PARA INGRESAR TICKET*@
+
+
+
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="ModalGenerico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalExistencias" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="panel-container show">
+                <div id="mostrar_consulta_agencias"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalImages" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Imagenes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="panel-container show">
+                <div id="galleryContainer"></div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ayudaclientes" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Clientes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Raw(ViewBag.Tabla)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

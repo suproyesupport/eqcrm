@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Promotores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/js/funciones_ingreso_promotores.js"></script>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de Receptores de producto
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Id:</label>
+                                    <input type="text" id="id_vendedor" name="id_vendedor" class="form-control" disabled="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre:</label>
+                                    <input class="form-control" type="text" name="nombre" id="nombre" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Telefono:</label>
+                                    <input type="text" id="telefono" name="telefono" class="form-control">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Celular:</label>
+                                    <input class="form-control" type="text" name="celular" id="celular" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                     <label>Email:</label>
+                                    <input type="text" id="email" name="email" class="form-control">
+                                </div>
+                            </td>
+                            
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="GuardaPromo();">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-alert fade" id="modal-guardapromotor" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Ingresar este Registro...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GuadarPromo();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="panel-hdr">
+                        <h2>
+                            Consulta de Promotores
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content" id="mostrar_consulta">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

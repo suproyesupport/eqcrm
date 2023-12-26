@@ -1,0 +1,457 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngProductos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Inventario
+
+<script src="~/js/funciones_ingreso_producto.js"></script>
+
+<script>
+
+    //CREAR UN ID UNICO PARA NOMBRE DEL ARCHIVO.
+    function create_UUID() {
+        var dt = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (dt + Math.random() * 16) % 16 | 0;
+            dt = Math.floor(dt / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
+
+    function subirFichaTecnica() {
+        var idTemporal = create_UUID();
+        //AGREGANDO VALOR AL FILE TO UPLOAD
+        id_codigo = document.getElementById("idcodigoeq2").value;
+
+        var idUploadPicture = idTemporal;
+        $("#nameFileUpload").val(idUploadPicture);
+        SaveFichaTecnica(id_codigo);
+    }
+
+    function subirFotoCotizacion() {
+        var idTemporal = create_UUID();
+        //AGREGANDO VALOR AL FILE TO UPLOAD
+        id_codigo = document.getElementById("idcodigoeq2").value;
+
+        var idUploadPicture = idTemporal;
+        $("#nameFileUpload2").val(idUploadPicture);
+        SaveFotoCotizacion(id_codigo);
+    }
+
+    function SaveFotoCotizacion(id_codigo) {
+        if (window.FormData == undefined)
+            alert("Error: FormData is undefined");
+
+        else {
+            id = id_codigo;
+            codigo = $("#nameFileUpload2").val();
+            console.log(codigo);
+            console.log(id);
+            var fileUpload = $("#fileToUpload2").get(0);
+            var files = fileUpload.files;
+
+            var fileData = new FormData();
+
+            fileData.append(files[0].name, files[0], codigo);
+
+            $.ajax({
+                url: '/Inventario/uploadFotoCotizacion/' + id,
+                type: 'post',
+                datatype: 'json',
+                contentType: false,
+                processData: false,
+                async: false,
+                data: fileData,
+                success: function (response) {
+                    alert(response.toString());
+                    document.getElementById("fileToUpload2").value = "";
+                    document.getElementById("nameFileUpload2").value = "";
+                    //location.reload();
+                },
+                error: function (response) {
+                    alert(response.toString());
+                }
+            });
+        }
+
+    }
+
+
+    function SaveFichaTecnica(id_codigo) {
+        if (window.FormData == undefined)
+            alert("Error: FormData is undefined");
+
+        else {
+            id = id_codigo;            
+            codigo = $("#nameFileUpload").val();
+            console.log(codigo);
+            console.log(id);
+            var fileUpload = $("#fileToUpload").get(0);
+
+            
+            var files = fileUpload.files;
+
+            var fileData = new FormData();
+
+            fileData.append(files[0].name, files[0], codigo);
+
+            $.ajax({
+                url: '/Inventario/uploadFile/' + id,
+                type: 'post',
+                datatype: 'json',
+                contentType: false,
+                processData: false,
+                async: false,
+                data: fileData,
+                success: function (response) {
+                    alert(response.toString());
+                    document.getElementById("fileToUpload").value = "";
+                    document.getElementById("nameFileUpload").value = "";
+                    //location.reload();
+                },
+                error: function (response) {
+                    alert(response.toString());
+                }
+            });
+        }
+
+    }
+</script>
+
+
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de producto
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Código de Producto</label>
+                                    <input type="text" id="idcodigoeq" name="idcodigoeq" class="form-control" disabled="">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Código Equivalente</label>
+                                    <input class="form-control" type="text" name="codigoeq" id="codigoeq" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Ubicación</label>
+                                    <input class="form-control" type="text" name="alias" id="alias" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Producto</label>
+                                    <textarea class="form-control" rows="3" name="productoeq" id="productoeq"></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Marca Inventario</label>
+                                    @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.id_linea, ViewData["Lineas"] as List<SelectListItem>, "Selecccionar Linea...", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </td>
+                            @*<td>
+                    <div class="form-group">
+                        <label>Linea de Producto</label>
+                        <input class="form-control" type="text" name="lineapeq" id="lineaeq" />
+                    </div>
+                </td>*@
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered m-0">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Ultimo Costo Reciente</label>
+                                    <input class="form-control" type="text" name="costoeq1" id="costoeq1" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Precio 1</label>
+                                    <input class="form-control" type="text" name="precioeq1" id="precioeq1" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Margen</label>
+                                    <input class="form-control" type="text" name="margeneq1" id="margeneq1" />
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Promedio Costo Reciente</label>
+                                    <input class="form-control" type="text" name="costoeq2" id="costoeq2" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Precio 2</label>
+                                    <input class="form-control" type="text" name="precioeq2" id="precioeq2" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Margen</label>
+                                    <input class="form-control" type="text" name="margeneq2" id="margeneq2" />
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Ultimo Costo Operado</label>
+                                    <input class="form-control" type="text" name="costoeq3" id="costoeq3" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Precio 3</label>
+                                    <input class="form-control" type="text" name="precioeq3" id="precioeq3" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Margen</label>
+                                    <input class="form-control" type="text" name="margeneq3" id="margeneq3" />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Promedio Costo Operado</label>
+                                    <input class="form-control" type="text" name="costoeq4" id="costoeq4" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Precio 4</label>
+                                    <input class="form-control" type="text" name="precioeq4" id="precioeq4" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Margen</label>
+                                    <input class="form-control" type="text" name="margeneq4" id="margeneq4" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Stock Minimo</label>
+                                    <input class="form-control" type="text" name="stockmin" id="stockmin" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Stock Maximo</label>
+                                    <input class="form-control" type="text" name="stockmax" id="stockmax" />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked">Servicio</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-bordered table-hover table-striped w-100">
+                    </table>
+
+                        <table class="table table-bordered table-hover table-striped w-100">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label>Observaciones</label>
+                                        <textarea class="form-control" rows="3" name="obs" id="obs"></textarea>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="GuardaInv();">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-alert fade" id="modal-guardainv" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Ingresar este producto...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GuardarProducto();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="mostrar_consulta"></div>
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalFichaInv" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">COMPLEMENTAR INFORMACIÓN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">
+                <div class="modal-body">
+                    <div id="panel-1" class="panel">
+                        <div class="panel-hdr">
+                            <h2>
+                                SUBIR INFORMACIÓN
+                            </h2>
+                        </div>
+                        <div class="panel-container show">
+                            <div class="panel-content">
+                                <table class="table table-bordered table-hover table-striped w-100">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Codigo de Producto</label>
+                                                <input class="form-control" type="text" name="idcodigoeq2" id="idcodigoeq2" />
+                                            </div>
+                                        </td>
+                                </table>
+
+                                <table class="table table-bordered m-0">
+                                    <tr>
+                                        <td>
+                                            <div class="panel-container show">
+                                                <div class="panel-content">
+                                                    <div class="dz-message needsclick">
+                                                        <i class="fal fa-cloud-upload text-muted mb-3"></i> <br>
+                                                        <span class="text-uppercase">Arrastrar imagenes aquí.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                @**AGREGANDO INPUTFILE TO UPLOAD FICHA TECNICA*@
+                                <br />
+                                <div class="form-group col-md-12">
+                                    <label>Subir PDf Info Adicional</label>
+                                    <input id="nameFileUpload" type="hidden" value="0" />
+                                    <input type="file" id="fileToUpload" class="form-control" />
+                                    <button type="button" class="btn btn-primary" onclick="subirFichaTecnica()">Subir</button>
+                                </div>
+                                <br />
+                                <div class="form-group col-md-12">
+                                    <label>Subir Foto Para Documentos</label>
+                                    <input id="nameFileUpload2" type="hidden" value="0" />
+                                    <input type="file" id="fileToUpload2" class="form-control" />
+                                    <button type="button" class="btn btn-primary" onclick="subirFotoCotizacion()">Subir</button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

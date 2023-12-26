@@ -1,0 +1,227 @@
+﻿
+@{
+    ViewBag.Title = "EmpresaLineaNegocio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/funciones_ingreso_empresa.js"></script>
+<script src="~/js/eqfuncs.js"></script>
+
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de Lineas de Negocio
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+
+                                <table class="table table-bordered table-hover table-striped w-100">
+                                    <tr>
+                                        <label>Nit Empresa</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="nit" name="nit" onchange="BuscarNitEmpresa();">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-dark waves-effect waves-themed" data-toggle="modal" onclick="BuscarNitEmpresa();">Buscar</button>
+                                            </span>
+                                        </div>
+                                    </tr>
+
+                                </table>
+                                <div class="form-group">
+                                    <label>Nombre Empresa</label>
+                                    <input class="form-control" type="text" name="Empresa" id="Empresa" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombre Comercial</label>
+                                    <input class="form-control" type="text" name="EmpresaC" id="EmpresaC" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Direccion</label>
+                                    <input class="form-control" type="text" name="direccion" id="direccion" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Departamento</label>
+                                    <input class="form-control" type="text" name="depto" id="depto" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Municipio</label>
+                                    <input class="form-control" type="text" name="muni" id="muni" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Token/Requestor</label>
+                                    <input class="form-control" type="text" name="token" id="token" />
+                                </div>
+                                <div class="form-group">
+                                    <label>UsuarioFel</label>
+                                    <input class="form-control" type="text" name="cUser" id="cUser" value="ADMINISTRADOR" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Url conecion certificador</label>
+                                    <input class="form-control" type="text" name="cUrl" id="cUrl" value="https://fel.g4sdocumenta.com/webservicefront/factwsfront.asmx?wsdl" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Frases</label>
+                                    <input class="form-control" type="text" name="cFrase" id="cFrase" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Afiliacion Iva</label>
+                                    <input class="form-control" type="text" name="cAfilia" id="cAfilia" value="GEN" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo Personeria</label>
+                                    <input class="form-control" type="text" name="cTipoP" id="cTipoP" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Autorización</label>
+                                    <input class="form-control" type="text" name="cAutorizacion" id="cAutorizacion" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Usuario</label>
+                                    <input class="form-control" type="text" name="UsuarioNit" id="UsuarioNit" />
+                                </div>
+
+                                <table class="table table-bordered table-hover table-striped w-100">
+                                    <tr>
+                                        <td>
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input class="form-control" type="text" name="Password" id="Password" />
+                                            </div>
+                                        </td>
+                                        <td align="justify">
+                                            <div class="form-group">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-dark waves-effect waves-themed" data-toggle="modal" onclick="Genera_Pass();">Generar</button>
+                                                </span>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div id="idEstablecimientos" class="col-lg-2">
+                                                <div class="btn-group">
+                                                    <button type="button" id="idcertificador" class="btn btn-dark dropdown-toggle bg-brand-gradient waves-effect waves-themed" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Elegir Certificador</button>
+                                                    <div class="dropdown-menu fadeinup" style="position: absolute; will-change: top, left; top: 36px; left: 0px;" x-placement="bottom-start">
+                                                        <h6 class="dropdown-header">Favor certificador</h6>
+                                                        <button id="G4S" class="dropdown-item" onclick="SetearCertificador('G4S')" type="button">G4S</button>
+                                                        <button id="DIGIFACT" class="dropdown-item" onclick="SetearCertificador('DIGIFACT')" type="button">DIGIFACT</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div id="idSelect" class="col-lg-2">
+                                                <div class="btn-group">
+                                                    <button type="button" id="idconsola" class="btn btn-dark dropdown-toggle bg-brand-gradient waves-effect waves-themed" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Elegir Tipo de Consola</button>
+                                                    <div class="dropdown-menu fadeinup" style="position: absolute; will-change: top, left; top: 36px; left: 0px;" x-placement="bottom-start">
+                                                        <h6 class="dropdown-header">Tipo de Consola</h6>
+                                                        <button id="1" class="dropdown-item" onclick="SetearConsola('FACTURADOR')" type="button">FACTURADOR</button>
+                                                        <button id="2" class="dropdown-item" onclick="SetearConsola('FULL WEB')" type="button">FULL WEB</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+
+                            </td>
+                            
+
+                        </tr>
+
+                      
+
+                      
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Base de Datos</label>
+                                    <input type="text" id="BaseDatos" name="BaseDatos" class="form-control">
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark  bg-brand-gradient btn-dar " data-dismiss="modal" onclick="GuardaLinea();">Guardar</button>
+                        <button type="button" class="btn btn-dar btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal modal-alert fade" id="modal-guardalinea" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Ingresar este registro...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GuadarLineaI();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="panel-hdr">
+                        <h2>
+                            Consulta Lineas de Negocios
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content" id="mostrar_consulta">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

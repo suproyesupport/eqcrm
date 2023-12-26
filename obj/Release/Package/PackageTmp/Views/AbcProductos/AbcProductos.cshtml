@@ -1,0 +1,131 @@
+﻿@using EqCrm.Models
+
+@{
+    ViewBag.Title = "AbcProductos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+
+
+<script src="/js/funciones_abc.js"></script>
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            Abc de Productos <span class="fw-300"><i>A,b,c</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+    <div class="panel-container collapse">
+        <div class="panel-content">            
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div id="panel-1" class="panel">
+                                <div class="panel-hdr">
+                                    <h2>
+                                        FILTRO
+                                    </h2>
+                                </div>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+
+                                        <div class="form-group row">
+                                            <label>DE LA FECHA</label>
+
+                                            <div class="input-group">
+                                                <input id="fecha1" class="form-control" name="fech1" placeholder="Seleccione Fecha">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fs-xl">
+                                                        <i class="fal fa-calendar"></i>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label>A LA FECHA</label>
+
+                                            <div class="input-group">
+                                                <input id="fecha2" class="form-control" name="fech2" placeholder="Seleccione Fecha">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fs-xl">
+                                                        <i class="fal fa-calendar"></i>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="frame-wrap">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="defaultInline1" name="lEnvio">
+                                                <label class="custom-control-label" for="defaultInline1">Con Envios</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="frame-wrap">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="defaultInline2" name="lEnvio">
+                                                <label class="custom-control-label" for="defaultInline2">Unidades</label>
+                                            </div>
+                                        </div>
+
+
+                                        <button id="ObtieneInfo" class="btn btn-primary" onclick="ActFiltro();">Filtrar Datos</button>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+      
+        </div>
+    </div>
+    <div class="panel-container show">
+       <div id="mostrar_consulta"></div>
+       <div id="gridContainer"></div>
+</div>
+</div>
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

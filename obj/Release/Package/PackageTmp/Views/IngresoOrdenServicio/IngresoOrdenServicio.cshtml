@@ -1,0 +1,414 @@
+﻿@using EqCrm.Models
+
+@{
+    ViewBag.Title = "IngresoOrdenServicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OrdenServicio
+
+<script src="~/js/funciones_ingresar_ordenes_servicio.js"></script>
+
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="panel-1" class="panel">
+                            @*<div id="panel-3" class="panel">*@
+                            <div class="panel-hdr">
+                                <h2>Orden de Servicio<span class="fw-300"></span></h2>
+                                <div class="panel-toolbar">
+                                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Orden</a></li>
+                                        @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">Aseguradora</a></li>*@
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Vehículo</a></li>
+                                        @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4" role="tab">Detalle Productos/Servicios</a></li>*@
+                                    </ul>
+                                    <div class="tab-content p-3">
+                                        @*TAB1*@
+                                        <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                                            <div class="panel-hdr">
+                                                <div class="d-flex justify-content-between">
+                                                    <h2>Datos de la Orden</h2>
+                                                </div>
+                                            </div>
+                                            <div class="panel-container show">
+                                                <div class="panel-content">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-2">
+                                                            <label>No. Orden</label>
+                                                            <div class="input-group">
+                                                                <input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="id_orden" name="" disabled="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label>Serie</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="serie" name="serie" disabled value="@ViewBag.Serie">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <label>Fecha Ingreso</label>
+                                                            <div class="input-group">
+                                                                <input type="date" class="form-control" id="fechaingreso" name="fechaingreso">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            @*SON LOS VENDEDORES*@
+                                                            <label>Asesor</label>
+                                                            <div class="input-group">
+                                                                @Html.DropDownListFor(m => m.asesores, ViewData["Asesores"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*SEGUNDO PANEL*@
+                                            <div class="panel-content">
+                                            </div>
+                                            <div class="panel-hdr">
+                                                <h2>Datos del Cliente</h2>
+                                            </div>
+                                            <div class="panel-container show">
+                                                <div class="panel-content">
+                                                    <div class="form-group row">
+                                                        <div class="col">
+                                                            <div class="form-group row">
+                                                                <div class="col-lg-3">
+                                                                    <label>Buscar Cliente</label>
+                                                                    <div class="input-group">
+                                                                        @*<input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="idcliente" name="idcliente" onchange="BuscarCliente();">*@
+                                                                        <input type="text" class="form-control" id="idcliente" name="idcliente" onchange="BuscarCliente();">
+                                                                        <span class="input-group-btn">
+                                                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaclientes">Buscar</button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-7">
+                                                                    <label>Cliente</label>
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" id="cliente" name="cliente">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label>Teléfono</label>
+                                                            <input type="text" id="telefono" name="telefono" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label>Correo</label>
+                                                            <input type="text" id="correo" name="correo" class="form-control">
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <label>NIT</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" id="nit" name="nit">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*TAB3*@
+                                        <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+                                            @*TERCER MODULO*@
+                                            @*<div class="panel-content">*@
+                                            <div class="panel-hdr">
+                                                <h2>Datos del Vehículo</h2>
+                                            </div>
+                                            @*</div>*@
+                                            <div class="panel-container show">
+                                                <div class="panel-container show">
+                                                    <div class="panel-content">
+                                                        <div class="form-group row">
+                                                            <div class="col">
+                                                                <div class="form-group row">
+                                                                    <div class="col-lg-3">
+                                                                        <label>Tipo</label>
+                                                                        <div class="input-group">
+                                                                            @Html.DropDownListFor(m => m.tiposvehiculos, ViewData["TiposVehiculos"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <label>Marca</label>
+                                                                        <div class="input-group">
+                                                                            @Html.DropDownListFor(m => m.marca, ViewData["MarcasVehiculos"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control", @onchange = "cargaDDLSecundario(this.value);" })
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <label>Linea</label>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control" id="lineavehiculo" name="lineavehiculo">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <label>Modelo</label>
+                                                                        <div class="input-group">
+                                                                            <input type="number" class="form-control" id="modelo" name="modelo" value="2023">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-3">
+                                                                <label>No. Placa</label>
+                                                                <div class="input-group">
+                                                                    <select id="tipoplaca" class="input-group-text">
+                                                                    </select>
+                                                                    <input type="text" class="form-control" id="placa" name="placa">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <label>Color</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" id="color" name="color">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <label>Kilometraje</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" class="form-control" id="kilometraje" name="kilometraje">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-3">
+                                                                <label>Medida</label>
+                                                                <select id="medida" class="browser-default custom-select">
+                                                                    <option selected value="1">KM</option>
+                                                                    <option value="2">Mi</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="radio" name="radio" class="form-check-input">Radio</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="encendedor" name="encendedor" class="form-check-input">Encendedor</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="documentos" name="documentos" class="form-check-input">Documentos</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="alfombras" name="alfombras" class="form-check-input">Alfombras</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="llanta" name="llanta" class="form-check-input">Llanta Rep.</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="tricket" name="tricket" class="form-check-input">Tricket/Varilla</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="llave" name="llave" class="form-check-input">Llave Chuchos</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="herramienta" name="herramienta" class="form-check-input">Herramienta</label>
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <label><input type="checkbox" id="platos" name="platos" class="form-check-input">Platos/Aros</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-content">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label>Observaciones</label>
+                                                        @*<input type="text" id="obs" name="obs" class="form-control">*@
+                                                        <textarea id="obs" name="obs" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <div class="panel-content">
+                                                    <button type="button" class="btn btn-info" onclick="GuardarOrdenServicio();">
+                                                        Guardar
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            @*AQUI VAN LOS MODALES PARA CLIENTE, ERROR Y PRODUCTOS*@
+            <div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Mensaje</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" id="Error">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade modal-backdrop-transparent" id="ayudaclientes" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Clientes</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Raw(ViewBag.Tabla)
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade modal-backdrop-transparent" id="ayudaproductos" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Producto</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Raw(ViewBag.TablaInventario)
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade modal-backdrop-transparent" id="formaPago" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Seleccione una forma de pago</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Tipo de Venta</label>
+                                        <select id="tipoFormaPago" class="browser-default custom-select">
+                                            <option selected value="1">Efectivo</option>
+                                            <option value="2">Tarjeta</option>
+                                            <option value="3">Cheque</option>
+                                            <option value="4">Vales</option>
+                                            <option value="5" hidden>Transferencia</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="finalizarDataPost()">Terminar Venta</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*MODAL CANTIDAD EXISTENCIA*@
+            <div class="modal fade modal-backdrop-transparent" id="ModalCantExist" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Mensaje</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" id="Error">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            @* INICIO MODAL GENERICO *@
+            <div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Mensaje</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" id="Error">
+                                <label id="mensaje"></label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-generico" hidden></button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* FIN MODAL GENERICO *@
+
+            <div class="modal fade modal-backdrop-transparent" id="ModalFinalizarPOS" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Mensaje</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-danger" id="Error1">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

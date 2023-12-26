@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "TicketsFinalizados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="~/js/funciones_ticketfinalizados.js"></script>
+
+
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            Consulta de tickets finalizados<span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                <tr>
+                    <th>De la fecha</th>
+                    <th>A la fecha</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <input type="hidden" name="consulta" value="1" />
+                            <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button id="btn-filtrar" class="btn btn-primary" onclick="FiltrarxFecha();">Filtrar</button>
+            <div id="mostrar_consulta"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div id="mostrar_consulta"></div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalTicketConsulta" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Consulta de Ticket</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>-->
+            @*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">*@
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            DATOS DE TICKET
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>CATEGORIA</label>
+                                            <input class="form-control" type="text" name="idcategoria" id="idcategoria" disabled="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>PROBLEMA</label>
+                                            <input class="form-control" type="text" name="problema" id="problema" disabled="" />
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>QUIEN REPORTA</label>
+                                            <input class="form-control" type="text" name="reporta" id="reporta" disabled="" />
+                                        </div>
+                                    </td>
+
+
+
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>DESCRIPCION DEL PROBLEMA</label>
+                                            <textarea class="form-control" rows="3" name="descripcion" id="descripcion"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+            @*</form>*@
+        </div>
+    </div>
+</div>

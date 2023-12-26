@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "CxcEnvioEstcue";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>ENVIO DE ESTADOS DE CUENTA POR CORREO</h2>
+
+<div class="input-group">
+    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="recorrerTabla();">Enviar Correos</button>
+</div>
+
+@Html.Raw(ViewBag.cxcClientes)
+
+
+<script>
+
+    
+
+    //RECORRER TABLA
+    function recorrerTabla() {
+        var items = [];
+
+        $("#tablacxc tr").each(function () {
+            var itemCliente = {};
+
+            var tds = $(this).find("td");
+
+            itemCliente.codigo = tds.filter(":eq(0)").text();
+            itemCliente.cliente = tds.filter(":eq(1)").text();
+            itemCliente.nit = tds.filter(":eq(2)").text();
+            itemCliente.direccion = tds.filter(":eq(3)").text();
+            itemCliente.email = tds.filter(":eq(4)").text();
+            itemCliente.saldo = tds.filter(":eq(5)").text();
+            items.push(itemCliente);
+        });
+
+        var cxc = {};
+        cxc = items;
+        var informacion = JSON.stringify(cxc);
+
+
+
+        alert(informacion);
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            data: { informacion },
+            url: "/CxcEnvioEstcue/CargarEnvio",
+
+            success: function (response) {
+                var arreglo = response;
+
+                if (response.CODIGO == "ERROR") {
+
+                    if (response.PRODUCTO == "") {
+                        $('#Error').html("EL CODIGO DE PRODUCTO NO SE ENCUENTRA EN LA BASE DE DATOS");
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                    else {
+                        $('#Error').html(response.PRODUCTO);
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                }
+
+
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+        
+        
+    }
+
+
+
+    //function ConfirmacionCarga() {
+
+    //    $('#modal-confirmacion').modal('show');
+
+
+    //    document.getElementById('cerrarbutton').addEventListener('click', function (e) {            
+    //        window.location.href = "/CargaInvExcel/CargaInvExcel";
+    //    })
+    //}
+
+
+
+
+
+
+</script>
+

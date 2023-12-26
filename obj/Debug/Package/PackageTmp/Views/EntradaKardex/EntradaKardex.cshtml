@@ -1,0 +1,259 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "EntradaKardex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model  Kardex
+
+<script src="~/js/funciones_entrada_kardex.js"></script>
+
+<!-- INICIO MODULO PRINCIPAL -->
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Entradas Kardex
+        </h2>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table class="table table-bordered table-hover table-striped w-100">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Movimiento</label>
+                            @Html.DropDownListFor(m => m.movimiento, ViewData["Movimiento"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control", @onchange = "CargarSerie();" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input class="form-control" type="date" name="fecha" id="fecha" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Serie</label>
+                            <input type="text" id="serie" name="serie" class="form-control" disabled>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label>Correlativo</label>
+                            <input type="text" id="nodocumento" name="nodocumento" class="form-control" disabled />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-bordered table-hover table-striped w-100">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Concepto</label>
+                            <textarea class="form-control" rows="3" name="concepto" id="concepto" required=""></textarea>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+@*FIN MODULO PRINCIPAL*@
+
+
+
+<!-- INICIO MODULO SECUNDARIO -->
+<div id="panel-1" class="panel">
+
+    <div class="panel-content">
+        <div class="panel-hdr">
+            <h2>
+                Ingreso detalle de Kardex
+            </h2>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table class="table table-bordered table-hover table-striped w-100">
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Código Producto</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="id_codigo" name="id_codigo" onchange="BuscarCodigo();CalcularSubtotal();" onfocus="CalcularSubtotal();">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudainventario">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label>Cantidad</label>
+                            <div class="input-group">
+                                <input type="number" right" class="form-control" id="cantidad" name="cantidad" onfocus="CalcularSubtotal();" onchange="CalcularSubtotal();" value="1" min="1" pattern="^[0-9]+">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label>Costo Unitario</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Q</span>
+                                <input type="number" id="costo" name="costo" class="form-control" onfocus="CalcularSubtotal();" onchange="CalcularSubtotal();" value="0" min="0" pattern="^[0-9]+">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Producto</label>
+                            <input class="form-control" type="text" name="producto" id="producto" disabled="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label>Equivalente</label>
+                            <input class="form-control" type="text" name="codigoe" id="codigoe" disabled="" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success" id="add" onclick="ModalAgregar();">
+                                <span class="fal fa-check mr-1"></span>
+                                Agregar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="d-flex justify-content-between">
+                <label id="subtotal"><strong>Subtotal:</strong> Q0.00</label>
+                <h3 id="total"><strong>Total:</strong> Q0.00</h3>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <table id="tabladetalle" class="table table-bordered table-hover table-striped w-100">
+            <thead class="thead-dark">
+                <tr>
+                    <th>CODIGO</th>
+                    <th>CODIGOE</th>
+                    <th>PRODUCTO</th>
+                    <th>CANTIDAD</th>
+                    <th>COSTOU</th>
+                    <th>SUBTOTAL</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="form-group row">
+                    <div class="panel-content">
+                        <button id="btn-ingreso" type="button" class="btn btn-success" onclick="ConfirmarIngresoKardex();" disabled>
+                            <span class="fal fa-check mr-1"></span>
+                            Ingresar
+                        </button>
+                        <button type="button" class="btn btn-danger">
+                            <span class="fal fa-check mr-1"></span>
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN MODULO SECUNDARIO -->
+<!-- INICIO MODAL BUSCAR INVENTARIO-->
+<div class="modal fade modal-backdrop-transparent" id="ayudainventario" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Inventario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Raw(ViewBag.Tabla)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FINAL MODAL BUSCAR INVENTARIO -->
+<!--INICIO MODAL ERROR-->
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FINAL MODAL ERROR-->
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-generico" hidden></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@
+@* CONFIRMAR INGRESO KARDEX*@
+<div class="modal fade modal-backdrop-transparent" id="modal-confirmar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-primary" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="recorrerIngresoKardex();"></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@

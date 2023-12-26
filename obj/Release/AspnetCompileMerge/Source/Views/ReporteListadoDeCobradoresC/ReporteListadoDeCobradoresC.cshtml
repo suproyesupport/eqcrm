@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "ReporteListadoDeCobradoresC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model EqCrm.Models.FiltroGenerico
+
+<script src="~/js/funciones_reporte_listadodecobradores.js"></script>
+
+<h2>Reporte de Cobradores</h2>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>

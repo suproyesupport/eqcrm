@@ -1,0 +1,523 @@
+﻿
+@{
+    ViewBag.Title = "Corte";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+@model EqCrm.Models.POS.Caja
+<script src="~/js/POS/funciones_corte_caja.js"></script>
+
+<script>
+    function abrirModal() {
+        var id_caja = document.getElementById("Nombre").value;
+        if (id_caja < 1) {
+            alert('Debe seleccionar una caja...');
+        } else {
+            $("#cortedecaja").modal("show");
+
+            //SE DEBE DE MANDAR EL ID DE LA CAJA
+            $('#tituloModal').val("Corte de Caja " + id_caja);
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                dataType: "HTML",
+                contentType: "application/x-www-form-urlencoded",
+                url: "/POS/Operaciones/GetCorte",
+                data: { id_caja },
+                success: function (data) {
+                    var objeto, x;
+                    objeto = data.substring(1, data.length - 1);
+
+                    if (objeto) {
+                        x = JSON.parse(objeto);
+                        var efectivoFormateado = x.EFECTIVO.split(',').join('');
+                        $('#calculado_efectivo').val(efectivoFormateado);
+
+                        var chequeFormateado = x.CHEQUE.split(',').join('');
+                        $('#calculado_cheque').val(chequeFormateado);
+
+                        var valeFormateado = x.VALE.split(',').join('');
+                        $('#calculado_vales').val(valeFormateado);
+
+                        var tarjetaFormateado = x.TARJETA.split(',').join('');
+                        $('#calculado_tarjeta').val(tarjetaFormateado);
+                        
+                        var totalFormateado = x.TOTAL.split(',').join('');
+                        $('#calculado_totales').val(totalFormateado);
+                    } else {
+                        $('#calculado_efectivo').val(0.00);
+                        $('#calculado_cheque').val(0.00);
+                        $('#calculado_vales').val(0.00);
+                        $('#calculado_tarjeta').val(0.00);
+                        $('#calculado_totales').val(0.00);
+                    }
+                    
+                    
+                }
+            });
+        }
+    }
+
+    function filtrarCortesFechas() {
+
+        var fecha1 = null;
+        var fecha2 = null;
+
+        fecha1 = $("#fecha1").val();
+        fecha2 = $("#fecha2").val();
+        var id_caja = document.getElementById("Nombre").value;
+
+        console.log("Fecha 1: " + fecha1);
+        console.log("Fecha 2: " + fecha2);
+
+        if (id_caja < 1 || fecha1.length == 0 || fecha2.length == 0) {
+            alert('Debe seleccionar todos los campos');
+        }
+        else {
+            $.ajax({
+                async: false,
+                type: "POST",
+                dataType: "HTML",
+                contentType: "application/x-www-form-urlencoded",
+                url: "/POS/Operaciones/FiltrarDatosFechas",
+                data: { fecha1, fecha2, id_caja },
+                beforeSend: InicioConsulta,
+                success: ConsultaCortes
+            });
+
+            function InicioConsulta() {
+                $('#mostrar_consulta').html('Cargando por favor espere...');
+            }
+
+            function ConsultaCortes(data) {
+                var arreglo = eval(data);
+                cData = arreglo;
+
+                console.log(cData);
+
+                var columnas = [
+                    {
+                        dataField: "ID",
+                        alignment: "left",
+                        width: 400,
+                        allowFiltering: true,
+                        allowSorting: false,
+
+                    },
+                    {
+                        dataField: "CAJA",
+                        alignment: "left",
+                        width: 195,
+                        allowFiltering: true,
+                        allowSorting: false,
+
+                    },
+                    {
+                        dataField: "FECHACAJA",
+                        alignment: "left",
+                        width: 195,
+                        allowFiltering: true,
+                        allowSorting: false,
+
+                    },
+
+                    {
+                        dataField: "EFECTIVOCONTADO",
+                        alignment: "left",
+                        width: 195,
+                        allowFiltering: true,
+                        allowSorting: false,
+
+                    },
+                    {
+                        dataField: "TARJETACONTADO",
+                        alignment: "left",
+                        width: 195,
+                        allowFiltering: false,
+                        allowSorting: false,
+
+                    },
+                    {
+                        dataField: "CHEQUECONTADO",
+                        alignment: "left",
+                        width: 195,
+                        allowFiltering: false,
+                        allowSorting: false,
+
+                    },
+
+                    {
+                        dataField: "VALESCONTADO",
+                        alignment: "left",
+                        width: 195,
+                        allowFiltering: false,
+                        allowSorting: false,
+
+                    }
+                ];
+
+
+
+
+                $(function () {
+                    var dataGrid = $("#gridContainer").dxDataGrid({
+
+                        dataSource: cData,
+                        keyExpr: "ID",
+                        selection: {
+                            mode: "single"
+                        },
+                        "export": {
+                            enabled: true,
+                            fileName: "ConsultaCorteCaja",
+                            allowExportSelectedData: true
+                        },
+                        rowAlternationEnabled: true,
+                        allowColumnReordering: true,
+                        allowColumnResizing: true,
+                        //columnHidingEnabled: true,   
+                        focusedRowEnabled: true,
+                        showBorders: true,
+                        columnChooser: {
+                            enabled: true
+                        },
+                        columnFixing: {
+                            enabled: true
+                        },
+                        grouping: {
+                            autoExpandAll: false,
+                        },
+                        searchPanel: {
+                            visible: true,
+                            width: 240,
+                            placeholder: "Search..."
+                        },
+                        //headerFilter: {
+                        //    visible: true
+                        //},
+                        paging: {
+                            pageSize: 18
+                        },
+                        groupPanel: {
+                            visible: true
+                        },
+                        pager: {
+                            showPageSizeSelector: true,
+                            showInfo: true
+                        },
+                        columns: columnas,
+
+
+                    }).dxDataGrid("instance");
+
+                    $("#autoExpand").dxCheckBox({
+                        value: false,
+                        text: "Expandir",
+                        onValueChanged: function (data) {
+                            dataGrid.option("grouping.autoExpandAll", data.value);
+                        }
+                    });
+
+                });
+
+                $('#mostrar_consulta').html('');
+            }
+        }
+    }
+
+    function guardarCorteCaja() {
+        var efectivocontado = parseFloat($('#contado_efectivo').val());
+        var tarjetacontado = parseFloat($('#contado_tarjeta').val());
+        var chequecontado = parseFloat($('#contado_cheque').val());
+        var valecontado = parseFloat($('#contado_vales').val());
+        var efectivocalculado = parseFloat($('#calculado_efectivo').val());
+        var tarjetacalculado = parseFloat($('#calculado_tarjeta').val());
+        var chequecalculado = parseFloat($('#calculado_cheque').val());
+        var valecalculado = parseFloat($('#calculado_vales').val());
+        var efectivodiferencia = parseFloat($('#diferencia_efectivo').val());
+        var tarjetadiferencia = parseFloat($('#diferencia_tarjeta').val());
+        var chequediferencia = parseFloat($('#diferencia_cheque').val());
+        var valediferencia = parseFloat($('#diferencia_vales').val());
+        var efectivoretiro = parseFloat($('#retiroCorte_efectivo').val());
+        var tarjetaretiro = parseFloat($('#retiroCorte_tarjeta').val());
+        var chequeretiro = parseFloat($('#retiroCorte_cheque').val());
+        var valeretiro = parseFloat($('#retiroCorte_vales').val());
+        var uuidcaja = create_UUID();
+        var id_caja = document.getElementById("Nombre").value;
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "HTML",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/POS/Operaciones/guardarCorte",
+            data: { efectivocontado, tarjetacontado, chequecontado, valecontado, efectivocalculado, tarjetacalculado, chequecalculado, valecalculado, efectivodiferencia, tarjetadiferencia, chequediferencia, valediferencia, efectivoretiro, tarjetaretiro, chequeretiro, valeretiro, uuidcaja, id_caja },
+            success: function (data) {
+                $('#Error').html(data);
+                $('#ModalError').modal('show');
+                $('#cortedecaja').modal('hide');
+                $('#contado_efectivo').val(0.00);
+                $('#contado_tarjeta').val(0.00);
+                $('#contado_cheque').val(0.00);
+                $('#contado_vales').val(0.00);
+                $('#calculado_efectivo').val(0.00);
+                $('#calculado_tarjeta').val(0.00);
+                $('#calculado_cheque').val(0.00);
+                $('#calculado_vales').val(0.0);
+                $('#diferencia_efectivo').val(0.00);
+                $('#diferencia_tarjeta').val(0.00);
+                $('#diferencia_cheque').val(0.00);
+                $('#diferencia_vales').val(0.00);
+                $('#retiroCorte_efectivo').val(0.00);
+                $('#retiroCorte_tarjeta').val(0.00);
+                $('#retiroCorte_cheque').val(0.00);
+                $('#retiroCorte_vales').val(0.00);
+                
+            }
+        });
+
+    }
+
+    //CREAR UN ID UNICO PARA NOMBRE DEL ARCHIVO.
+    function create_UUID() {
+        var dt = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (dt + Math.random() * 16) % 16 | 0;
+            dt = Math.floor(dt / 16);
+            return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
+
+    function diferenciaEfectivo() {
+        var contado_efectivo = $('#contado_efectivo').val();
+        var calculado_efectivo = $('#calculado_efectivo').val();
+        var diferencia = contado_efectivo - calculado_efectivo;
+        $('#diferencia_efectivo').val(diferencia);
+        sumarTotalesContado();
+    }
+
+    function diferenciaCheque() {
+        var contado = $('#contado_cheque').val();
+        var calculado = $('#calculado_cheque').val();
+        var diferencia = contado - calculado;
+        $('#diferencia_cheque').val(diferencia);
+        sumarTotalesContado();
+    }
+
+    function diferenciaVale() {
+        var contado = $('#contado_vales').val();
+        var calculado = $('#calculado_vales').val();
+        var diferencia = contado - calculado;
+        $('#diferencia_vales').val(diferencia);
+        sumarTotalesContado();
+    }
+    function diferenciaTarjeta() {
+        var contado = $('#contado_tarjeta').val();
+        var calculado = $('#calculado_tarjeta').val();
+        var diferencia = contado - calculado;
+        $('#diferencia_tarjeta').val(diferencia);
+        sumarTotalesContado();
+    }
+
+    function sumarTotalesContado() {
+        var efectivo = parseFloat($('#contado_efectivo').val());
+        var cheque = parseFloat($('#contado_cheque').val());
+        var tarjeta = parseFloat($('#contado_tarjeta').val()); 
+        var vale = parseFloat($('#contado_vales').val());
+
+        var suma = (efectivo + cheque + tarjeta + vale);
+        $('#contado_totales').val(suma);
+        diferenciaTotales();
+    }
+    function diferenciaTotales() {
+        
+        var contadoTotales = $('#contado_totales').val();
+        var calculadoTotales = $('#calculado_totales').val();
+
+        $('#diferencia_totales').val((contadoTotales - calculadoTotales));
+    }
+
+
+</script>
+
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    CORTE DE CAJA
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                                        <tr>
+                                            <th>
+                                                SELECCIONE LA CAJA
+                                            </th>
+                                            <th>
+                                                DE LA FECHA
+                                            </th>
+
+                                            <th>
+                                                A LA FECHA
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.DropDownListFor(m => m.Nombre, ViewData["CajasAsignadas"] as List<SelectListItem>, "Seleccionar Caja", new { @class = "browser-default custom-select" })
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="hidden" name="consulta" value="1" />
+                                                    <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text fs-xl">
+                                                            <i class="fal fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text fs-xl">
+                                                            <i class="fal fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <button id="crearCaja" class="btn btn-success" onclick="crearCaja();">Filtrar</button>
+                                    <button id="openModalCorteCaja" class="btn btn-info" onclick="abrirModal();">Corte de Caja</button>
+                                    <button id="openModalCorteCajaFiltrado" class="btn btn-warning" onclick="filtrarCortesFechas();">Filtrar Datos</button>
+                                    @* data-toggle="modal" data-target="#cortedecaja"*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="cortedecaja" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="tituloModal" class="modal-title">CORTE DE CAJA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            CONTADO
+                        </th>
+                        <th>
+                            CALCULADO
+                        </th>
+                        <th>
+                            DIFERENCIA
+                        </th>
+                        <th>
+                            RETIRO CORTE
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="form-control">Efectivo</label>
+                            <label class="form-control">Cheque</label>
+                            <label class="form-control">Vales</label>
+                            <label class="form-control">Tarjeta</label>
+                            <label class="form-control">Totales</label>
+                        </td>
+                        <td>
+                            <input type="number" min="0" class="form-control" id="contado_efectivo" onchange="diferenciaEfectivo();">
+                            <input type="number" min="0" class="form-control" id="contado_cheque" onchange="diferenciaCheque();">
+                            <input type="number" min="0" class="form-control" id="contado_vales" onchange="diferenciaVale();">
+                            <input type="number" min="0" class="form-control" id="contado_tarjeta" onchange="diferenciaTarjeta();">
+                            <input type="number" min="0" class="form-control" id="contado_totales" disabled>
+                        </td>
+                        <td>
+                            <input type="number" min="0" class="form-control" id="calculado_efectivo" disabled>
+                            <input type="number" min="0" class="form-control" id="calculado_cheque" disabled>
+                            <input type="number" min="0" class="form-control" id="calculado_vales" disabled>
+                            <input type="number" min="0" class="form-control" id="calculado_tarjeta" disabled>
+                            <input type="number" min="0" class="form-control" id="calculado_totales" disabled>
+                        </td>
+                        <td>
+                            <input type="number" min="0" class="form-control" id="diferencia_efectivo" disabled>
+                            <input type="number" min="0" class="form-control" id="diferencia_cheque" disabled>
+                            <input type="number" min="0" class="form-control" id="diferencia_vales" disabled>
+                            <input type="number" min="0" class="form-control" id="diferencia_tarjeta" disabled>
+                            <input type="number" min="0" class="form-control" id="diferencia_totales" disabled>
+                        </td>
+                        <td>
+                            <input type="number" min="0" class="form-control" id="retiroCorte_efectivo" value="0.00">
+                            <input type="number" min="0" class="form-control" id="retiroCorte_cheque" value="0.00">
+                            <input type="number" min="0" class="form-control" id="retiroCorte_vales" value="0.00">
+                            <input type="number" min="0" class="form-control" id="retiroCorte_tarjeta" value="0.00">
+                            <input type="number" min="0" class="form-control" id="retiroCorte_totales" value="0.00">
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="guardarCorteCaja();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

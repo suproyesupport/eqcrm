@@ -1,0 +1,290 @@
+﻿
+@{
+    ViewBag.Title = "PipeLine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model DatosIngresoProspectos
+
+<script>
+    var id = "";
+    $('document').ready(Inicio);
+    $('document').ready(Actividad);
+
+    function Inicio() {
+        $('.ni-check').click(Buscar)
+    }
+      
+    function Actividad() {
+        document.getElementById("submitActividad").onclick = ActActividad;        
+        
+    }
+
+    function Buscar() {
+        id = $(this).attr('nombre');
+        $('#id_oportunidad').val(id);
+
+       
+        document.getElementById('id_oportunidad').style.display = 'none';
+
+        document.getElementById('id_nombre').disabled = true;
+        document.getElementById('id_vendedor').disabled = true;
+        document.getElementById('id_dias').disabled = true;
+        document.getElementById('id_contacto_primario').disabled = true;
+        document.getElementById('id_contacto_secundario').disabled = true;
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/PipeLine/GetDataOP",
+            data: { id },
+            success: function (response) {
+
+                var arreglo = response;
+                $("#id_nombre").val(arreglo.NOMBRE);
+                $("#id_vendedor").val(arreglo.VENDEDOR);
+                $("#id_dias").val(arreglo.DIAS);
+                $("#id_contacto_primario").val(arreglo.CONTACTOPRINCIPAL);
+                $("#id_contacto_secundario").val(arreglo.CONTACTOSECUNDARIO);
+                $("#prospecto_id_tipo").val(arreglo.PIPELINE);
+
+
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+
+
+ 
+
+    function ActActividad() {
+        var id_asunto = document.getElementById("id_asunto").value;
+        var id_descripcion = document.getElementById("id_descripcion").value;
+        var id_tipo_actividad = document.getElementById("prospecto_id_tipo_actividad").value;
+        var id_status = document.getElementById("prospecto_id_status").value;
+        var fechai = document.getElementById("fechai").value;
+        var fechap = document.getElementById("fechap").value;
+        //var DataSend = [
+        //   id,
+        //   id_asunto,
+        //   id_descripcion,
+        //   id_tipo_actividad,
+        //   id_status,
+        //   fechai,
+        //   fechap
+        //];
+        
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/PipeLine/ActualizarActividad",
+            data: { id,id_asunto,id_descripcion,id_tipo_actividad,id_status,fechai,fechap },
+            success: function (response) {
+
+                alert(response);
+
+            }
+            //,
+            //error: function () {
+            //    alert("Ocurrio un Error");
+            //}
+        });
+
+    }
+   
+</script>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    PipeLine
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    @Html.Raw(ViewBag.Tabla)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade example-modal-centered-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-transparent" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4">CONSULTA y ACTUALIZACION DE DATOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Tab1" role="tab">Calificar</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Tab2" role="tab">Actividades</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Tab3" role="tab">Notas</a></li>
+                        </ul>
+                        <div class="tab-content p-3">
+                            <div class="tab-pane fade show active" id="Tab1" role="tabpanel">
+                                <div class="card mb-5">
+                                    <div class="card-body p-3">
+                                        @using (Html.BeginForm("ActualizarDatos", "PipeLine", FormMethod.Post))
+                                        {
+
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="prospecto.id" id="id_oportunidad" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Nombre</label>
+                                                <input class="form-control" type="text" name="prospecto.nombre" id="id_nombre" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Vendedor</label>
+
+                                                <input class="form-control" type="text" name="prospecto.nombre_vendedor" id="id_vendedor" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Dias Transcurridos</label>
+
+                                                <input class="form-control" type="text" name="prospecto.dias" id="id_dias" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Contacto Principal</label>
+                                                <input class="form-control" type="text" name="prospecto.nombre_contacto1" id="id_contacto_primario" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Contacto_Secundario</label>
+                                                <input class="form-control" type="text" name="prospecto.nombre_contacto2" id="id_contacto_secundario" />
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label>Calificar</label>
+                                                <div class="input-group">
+                                                    @Html.DropDownListFor(m => m.prospecto.id_tipo, ViewData["CatPipeLine"] as List<SelectListItem>, "Selecccionar Tipo...", new { @class = "form-control" })
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Actualizar Cambios</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            </div>
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="Tab2" role="tabpanel">
+                                <div class="card mb-5">
+                                    <div class="card-body p-3">
+
+                                        <div class="form-group">
+                                            <label>Asunto</label>
+                                            <input class="form-control" type="text" name="prospecto.asunto" id="id_asunto" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Descripcion</label>
+                                            <input class="form-control" type="text" name="prospecto.descripcion" id="id_descripcion" />
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label>Tipo Actividad</label>
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(m => m.prospecto.id_tipo_actividad, ViewData["TipoActividad"] as List<SelectListItem>, "Selecccionar Tipo Actividad...", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label>Tipo Actividad</label>
+                                            <div class="input-group">
+                                                @Html.DropDownListFor(m => m.prospecto.id_status, ViewData["Status"] as List<SelectListItem>, "Selecccionar Status...", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label>Fecha</label>
+
+                                            <div class="input-group">
+                                                <input type="date" class="form-control" name="prospecto.fecha" placeholder="Seleccione Fecha" id="fechai">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fs-xl">
+                                                        <i class="fal fa-calendar"></i>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label>Fecha Proximo Seguimiento</label>
+
+                                            <div class="input-group">
+                                                <input type="date" class="form-control" name="prospecto.fechap" placeholder="Seleccione Fecha" id="fechap">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text fs-xl">
+                                                        <i class="fal fa-calendar"></i>
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div id="panel-1" class="panel">
+                                                    <div class="panel-hdr">
+                                                        <h2>
+                                                            Actividades
+                                                        </h2>
+                                                    </div>
+                                                    <div class="panel-container show">
+                                                        <div class="panel-content">
+                                                           @Html.Raw(ViewBag.Tableta)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                               
+
+                                        <div class="modal-footer">
+                                            <button id="submitActividad" class="btn btn-primary">Actualizar Actividad</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="Tab3" role="tabpanel">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

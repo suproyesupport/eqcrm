@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+
+@model EqCrm.Models.POS.Caja
+
+<script>
+    function Actualizar() {
+        id_caja = $("input:text[name=IDMod]").val();
+        Nombre = $("input:text[name=NombreMod]").val();
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/POS/Cajas/ActualizarCaja"  ,
+            data: { id_caja, Nombre },
+            success: function (response) {
+
+                if (response = "false") {
+                    window.location = "@Url.Action("Cajas","Cajas")";
+                }
+                else if (response = "true") {
+                    alert("Ocurrio un error, por favor revise");
+                    return;
+                }
+                else {
+                    alert(response)
+                    return;
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+    function Cancelar() {
+            window.location = "@Url.Action("Cajas","Cajas")";
+    }
+</script>
+<div class="panel-container show">
+    <div class="panel-content">
+        <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#nav_pills_default-1">Datos Generales de la Caja</a></li>
+        </ul>
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    ACTUALIZACION DE LA CAJA @Model.id_caja
+                                </h2>
+
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <table class="table table-bordered table-hover table-striped w-100">
+                                        <tr>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label>ID DE LA CAJA</label>
+                                                    <input class="form-control" type="text" disabled="true" name="IDMod" id="IDMod" value="@Model.id_caja" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label>NOMBRE DE LA CAJA</label>
+                                                    <input class="form-control" type="text" name="NombreMod" id="NombreMod" value="@Model.Nombre" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <label>Asignar Caja a Usuario</label>
+                                                    <div class="input-group">
+                                                        @Html.DropDownListFor(m => m.Usuario, ViewData["DlUsuarios"] as List<SelectListItem>, "Seleccionar Usuario", new { @class = "btn btn-secondary btn-lg dropdown-toggle" })
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <button id="ActualizarInfo" class="btn btn-primary" onclick="Actualizar();">Actualizar Usuario</button>
+                                    <button id="Cancelar" class="btn btn-danger" onclick="Cancelar();">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,723 @@
+﻿@using EqCrm.Models
+
+@{
+    ViewBag.Title = "ConsultaOrdenServicioTaller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model OrdenServicio
+
+<script src="~/js/ConsultaOrdenServicioTaller.js"></script>
+
+<div id="panel-2" class="panel">
+    <div class="panel-hdr text-success">
+        <h2>Orden Técnica<span class="fw-300"><i>Filtros</i></span></h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="form-group row">
+                <div class="col-lg-1">
+                    <label>No. Orden</label>
+                    <div class="input-group">
+                        @*<input type="number" class="form-control" id="bid_orden" name="bid_orden" onkeydown="onKeyDownHandler(event);" onchange="limparaOrden();">*@
+                        <input type="number" class="form-control" id="bid_orden" name="bid_orden" onchange="limparaOrden();">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>Buscar Cliente</label>
+                    <div class="input-group">
+                        @*<input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="idcliente" name="idcliente" onchange="BuscarCliente();">*@
+                        <input type="text" class="form-control" id="bidcliente" name="bidcliente" onchange="BuscarCliente();limparaCliente()">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaclientes">Buscar</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label>Cliente</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="bcliente" name="bcliente" disabled="">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>De la fecha</label>
+                    <div class="input-group">
+                        @*<input type="hidden" name="consulta" value="1" />*@
+                        <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha" onchange="limparaFecha();">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>A la fecha</label>
+                    <div class="input-group">
+                        <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha" onchange="limparaFecha();">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <label> </label>
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="BuscarFiltro();">Buscar</button>
+                    <div id="mostrar_consulta"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>Resultado <span class="fw-300"><i>Consulta</i></span></h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div id="panel_tabla" class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+
+@*<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">*@
+<!--<div id="panel-3" class="panel">
+    <div class="panel-hdr">
+        <h2>Orden de Servicio<span class="fw-300"></span></h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div id="panel_datos" class="panel-container collapse">
+        <div class="panel-content">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Orden</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">Aseguradora</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Vehículo</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4" role="tab">Detalle Productos/Servicios</a></li>
+            </ul>
+            <div class="tab-content p-3">-->
+@*TAB1*@
+<!--<div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+    <div class="panel-hdr">
+        <div class="d-flex justify-content-between">
+            <h2>Datos de la Orden</h2>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <div class="form-group row">
+                <div class="col-lg-1">
+                    <label>No. Orden</label>
+                    <div class="input-group">
+                        <input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="id_orden" name="    " disabled="">
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <label>Serie</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="serie" name="serie" disabled>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>Fecha Ingreso</label>
+                    <div class="input-group">
+                        <input type="date" class="form-control" id="fechaingreso" name="fechaingreso">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>Fecha Entrega</label>
+                    <div class="input-group">
+                        <input type="date" class="form-control" id="fechaentrega" name="fechaentrega">
+                    </div>
+                </div>
+                <div class="col-lg-2">-->
+@*SON LOS VENDEDORES*@
+<!--<label>Asesor</label>
+                <div class="input-group">
+                    @Html.DropDownListFor(m => m.asesores, ViewData["Asesores"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+@*SEGUNDO PANEL*@
+<!--<div class="panel-content">
+</div>
+<div class="panel-hdr">
+    <h2>Datos del Cliente</h2>
+</div>
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="form-group row">
+            <div class="col">
+                <div class="form-group row">
+                    <div class="col-lg-2">
+                        <label>Buscar Cliente</label>
+                        <div class="input-group">-->
+@*<input onkeydown="onKeyDownHandlerCliente(event);" type="text" class="form-control" id="idcliente" name="idcliente" onchange="BuscarCliente();">*@
+<!--<input type="text" class="form-control" id="idcliente" name="idcliente" onchange="BuscarCliente();">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaclientes">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Cliente</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="cliente" name="cliente">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Dirección</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="direccion" name="direccion">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>NIT</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nit" name="nit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-2">
+                    <label>Tipo de Venta</label>
+                    <select id="tipoVenta" class="browser-default custom-select" onchange="seleccionarCreditoContado(this.value)">
+                        <option selected value="1">Contado</option>
+                        <option value="2">Crédito</option>
+                    </select>
+                </div>
+                <div class="col-lg-1" id="mostrarDiasCredito" style="display:none;">
+                    <label>Días de Crédito</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="diascredito" name="diascredito">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>Contacto</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="contacto" name="contacto">
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>Teléfono</label>
+                    <input type="text" id="telefono" name="telefono" class="form-control">
+                </div>
+                <div class="col-lg-5">
+                    <label>Correo</label>
+                    <input type="text" id="correo" name="correo" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+@*TAB2*@
+<!--<div class="tab-pane fade" id="tab_direction-2" role="tabpanel">-->
+@*TERCER MODULO*@
+@*<div class="panel-content">  *@
+<!--<div class="panel-hdr">
+    <h2>Datos Aseguradora</h2>
+</div>-->
+@* </div> *@
+<!--<div class="panel-container show">
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="form-group row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col-lg-2">
+                                <label>Aseguradora</label>
+                                <div class="input-group">
+                                    @Html.DropDownListFor(m => m.aseguradoras, ViewData["Aseguradoras"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Poliza</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="poliza" name="poliza">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Asesor de Emergencia</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="asesoremergencia" name="asesoremergencia">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Reclamo</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="reclamo" name="reclamo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-2">
+                        <label>Corredora</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="corredora" name="corredora">
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <label>Deducible</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="deducible" name="deducible">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Ajustador</label>
+                        <input type="text" id="ajustador" name="ajustador" class="form-control">
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Opciones</label>
+                        <select id="opciones" class="browser-default custom-select">
+                            <option selected value="1">Asegurado</option>
+                            <option value="2">Tercero</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+@*TAB3*@
+<!--<div class="tab-pane fade" id="tab_direction-3" role="tabpanel">-->
+@*TERCER MODULO*@
+@*<div class="panel-content">*@
+<!--<div class="panel-hdr">
+    <h2>Datos del Vehículo</h2>
+</div>-->
+@*</div>*@
+<!--<div class="panel-container show">
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="form-group row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col-lg-2">
+                                <label>Tipo</label>
+                                <div class="input-group">
+                                    @Html.DropDownListFor(m => m.tiposvehiculos, ViewData["TiposVehiculos"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Marca</label>
+                                <div class="input-group">
+                                    @Html.DropDownListFor(m => m.marca, ViewData["MarcasVehiculos"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control", @onchange = "cargar_lineav(this.value);" })
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Linea</label>
+                                <div id="lineavehiculoo">
+                                </div>
+                                <div class="input-group">
+                                    @Html.DropDownListFor(m => m.lineavehiculo, ViewData["LineasVehiculos"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control", @onchange = "cargar_lineav(this.value);" })
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Modelo</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="modelo" name="modelo" value="2023">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>No. Placa</label>
+                                <div class="input-group">
+                                    <select id="tipoplaca" class="input-group-text">
+                                    </select>
+                                    <input type="text" class="form-control" id="placa" name="placa">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-2">
+                        <label>Color</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="color" name="color">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Chassis</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="chassis" name="chassis">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Kilometraje</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="kilometraje" name="kilometraje">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <label>Medida</label>
+                        <select id="medida" class="browser-default custom-select">
+                            <option selected value="1">KM</option>
+                            <option value="2">Mi</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tab-pane fade" id="tab_direction-4" role="tabpanel">
+    <div class="panel-hdr">
+        <h2>Datos de la Venta</h2>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="form-group row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <div class="col-lg-2">
+                                <label>Código de Producto</label>
+                                <div class="input-group">
+                                    <input type="text" onkeydown="onKeyDownHandler(event);" class="form-control" id="id_codigo" name="id_codigo" onchange="BuscarCodigo();" onblur="CalcularValoresGenerico();">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaproductos">Buscar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <label>Cantidad</label>
+                                <div class="input-group">
+                                    <input type="number" right" class="form-control" id="cantidad" name="cantidad" onchange="CalcularValoresGenerico();" onblur="CalcularValoresGenerico" value="0">
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <label id="labelexistencia">Existencia</label>
+                                <div class="input-group">
+                                    <input type="text" right" class="form-control" id="existencia" name="existencia" disabled="">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Precio</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">Q</span>
+                                    <input type="text" align="right" class="form-control" id="precio" name="precio" onchange="CalcularValoresGenerico();" onblur="CalcularValoresGenerico();" value="0">
+                                </div>
+                            </div>-->
+@*<div class="col-lg-1">
+        <label>Descto. %</label>
+        <div class="input-group">
+            <input type="text" align="right" class="form-control" id="descto" name="descto" onchange="focusDescuento();" onblur="focusDescuento();" disabled="" value="0">
+        </div>
+    </div>*@
+<!--<div class="col-lg-2">
+                <label>Subtotal</label>
+                <div class="input-group">
+                    <span class="input-group-text">Q</span>
+                    <input type="text" align="right" class="form-control" id="tsubtotal" name="tsubtotal" disabled="">
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <label> </label>
+                <div class="input-group">
+                    <button type="button" class="btn btn-primary" id="btnagregar" onclick="AddDetalle();">
+                        Agregar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-2">
+        <label>Código equivalente</label>
+        <input type="text" id="codigoe" name="codigoe" class="form-control" disabled>
+    </div>
+    <div class="col-lg-8">
+        <label>Producto</label>
+        <input type="text" id="producto" name="producto" class="form-control">
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+    </div>
+</div>
+<div class="row">
+</div>
+<table border="0">
+    <thead class="thead-dark">
+        <tr>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div class="col">
+    <div>
+        <table id="tabladetalle" class="table table-responsive table-bordered detalleVenta">
+            <thead class="thead-dark">
+                <tr>
+                    <th>CODIGO</th>
+                    <th>CANTIDAD</th>-->
+@*<th>SERVICIO</th>*@
+<!--<th>PRODUCTO</th>
+                                                    <th>PRECIO</th>
+                                                    <th>DESCTO</th>
+                                                    <th>SUBTOTAL</th>
+                                                    <th>ELIMINAR</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <div class="d-flex justify-content-end">
+                                            <h4>TOTAL Q</h4>
+                                            <h4 id="total" name="total"></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <div class="form-group">
+                        <div class="row">
+                            <label>Observaciones</label>
+                            <input type="text" id="obs" name="obs" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-end">
+                    <div class="panel-content">
+                        <button type="button" class="btn btn-info" onclick="GuardarOrdenServicio();">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+@*</div>
+            </div>
+        </div>
+    </div>*@
+
+
+@*AQUI VAN LOS MODALES PARA CLIENTE, ERROR Y PRODUCTOS*@
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="ayudaclientes" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Clientes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Raw(ViewBag.Tabla)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="modal fade modal-backdrop-transparent" id="bayudaclientes" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Clientes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @Html.Raw(ViewBag.Tabla2)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div class="modal fade modal-backdrop-transparent" id="ayudaproductos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Producto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Raw(ViewBag.TablaInventario)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="formaPago" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccione una forma de pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Tipo de Venta</label>
+                            <select id="tipoFormaPago" class="browser-default custom-select">
+                                <option selected value="1">Efectivo</option>
+                                <option value="2">Tarjeta</option>
+                                <option value="3">Cheque</option>
+                                <option value="4">Vales</option>
+                                <option value="5" hidden>Transferencia</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="finalizarDataPost()">Terminar Venta</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*MODAL CANTIDAD EXISTENCIA*@
+<div class="modal fade modal-backdrop-transparent" id="ModalCantExist" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-generico" hidden></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalFinalizarPOS" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*</div>
+    </div>*@
+
+
+
+

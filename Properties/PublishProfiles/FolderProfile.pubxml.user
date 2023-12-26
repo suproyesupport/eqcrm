@@ -1,0 +1,2806 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\jaccasus\source\repos\SIS-GT\prod-eqcrm</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/10/2013 16:29:20</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>01/10/2020 20:43:29</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>01/10/2020 20:43:29</publishTime>
+    </File>
+    <File Include="bin/BouncyCastle.Crypto.dll">
+      <publishTime>08/11/2018 10:03:48</publishTime>
+    </File>
+    <File Include="bin/Dapper.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Data.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.DataAccess.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Office.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Pdf.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.PivotGrid.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Printing.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.RichEdit.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Sparkline.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Spreadsheet.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Utils.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.ASPxHtmlEditor.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.ASPxRichEdit.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.ASPxScheduler.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.ASPxSpellChecker.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.ASPxSpreadsheet.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.ASPxTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.Resources.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Web.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.Xpo.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraBars.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraCharts.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraEditors.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraGauges.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraGrid.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraLayout.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraPrinting.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraReports.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraReports.v19.1.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraScheduler.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/de/DevExpress.XtraTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Charts.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.CodeParser.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Data.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.DataAccess.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Images.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Office.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Pdf.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.PivotGrid.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Printing.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.RichEdit.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.RichEdit.v19.1.Export.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Sparkline.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.SpellChecker.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Spreadsheet.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Utils.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxHtmlEditor.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxPivotGrid.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxRichEdit.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxScheduler.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxSpellChecker.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxSpreadsheet.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxThemes.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.ASPxTreeList.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.Mvc5.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.Resources.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Web.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.Xpo.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraBars.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraCharts.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraCharts.v19.1.Web.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraEditors.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraGauges.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraGrid.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraLayout.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraPrinting.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraReports.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraReports.v19.1.Web.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraReports.v19.1.Web.WebForms.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraScheduler.v19.1.Core.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExpress.XtraTreeList.v19.1.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/DevExtreme.AspNet.Data.dll">
+      <publishTime>10/04/2019 10:42:48</publishTime>
+    </File>
+    <File Include="bin/DevExtreme.AspNet.Mvc.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/EqCrm.dll">
+      <publishTime>04/10/2020 10:26:31</publishTime>
+    </File>
+    <File Include="bin/EqCrm.pdb">
+      <publishTime>04/10/2020 10:26:31</publishTime>
+    </File>
+    <File Include="bin/EqCrm.XmlSerializers.dll">
+      <publishTime>04/10/2020 10:26:33</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Data.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.DataAccess.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Office.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Pdf.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.PivotGrid.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Printing.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.RichEdit.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Sparkline.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Spreadsheet.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Utils.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.ASPxHtmlEditor.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.ASPxRichEdit.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.ASPxScheduler.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.ASPxSpellChecker.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.ASPxSpreadsheet.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.ASPxTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.Resources.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Web.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.Xpo.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraBars.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraCharts.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraEditors.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraGauges.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraGrid.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraLayout.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraPrinting.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraReports.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraReports.v19.1.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraScheduler.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/es/DevExpress.XtraTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Google.Protobuf.dll">
+      <publishTime>08/10/2018 18:51:54</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Data.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.DataAccess.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Office.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Pdf.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.PivotGrid.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Printing.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.RichEdit.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Sparkline.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Spreadsheet.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Utils.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.ASPxHtmlEditor.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.ASPxRichEdit.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.ASPxScheduler.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.ASPxSpellChecker.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.ASPxSpreadsheet.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.ASPxTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.Resources.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Web.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.Xpo.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraBars.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraCharts.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraEditors.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraGauges.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraGrid.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraLayout.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraPrinting.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraReports.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraReports.v19.1.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraScheduler.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ja/DevExpress.XtraTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/MySql.Data.dll">
+      <publishTime>12/03/2019 10:13:46</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Renci.SshNet.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Data.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.DataAccess.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Office.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Pdf.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.PivotGrid.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Printing.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.RichEdit.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Sparkline.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Spreadsheet.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Utils.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.ASPxHtmlEditor.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.ASPxRichEdit.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.ASPxScheduler.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.ASPxSpellChecker.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.ASPxSpreadsheet.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.ASPxTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.Resources.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Web.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.Xpo.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraBars.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraCharts.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraEditors.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraGauges.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraGrid.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraLayout.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraPrinting.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraReports.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraReports.v19.1.Web.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraScheduler.v19.1.Core.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/ru/DevExpress.XtraTreeList.v19.1.resources.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/11/2014 15:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Ubiety.Dns.Core.dll">
+      <publishTime>06/02/2020 17:30:12</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>10/05/2019 12:50:23</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>10/05/2019 12:50:23</publishTime>
+    </File>
+    <File Include="Content/dx-diagram.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx-diagram.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.carmine.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.carmine.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.common.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.contrast.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.contrast.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.dark.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.dark.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.darkmoon.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.darkmoon.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.darkviolet.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.darkviolet.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.greenmist.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.greenmist.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.ios7.default.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.light.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.light.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.blue.dark.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.blue.dark.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.blue.light.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.blue.light.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.lime.dark.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.lime.dark.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.lime.light.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.lime.light.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.orange.dark.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.orange.dark.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.orange.dark.swatch.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.orange.light.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.orange.light.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.purple.dark.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.purple.dark.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.purple.light.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.purple.light.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.teal.dark.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.teal.dark.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.teal.light.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.material.teal.light.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.softblue.compact.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.softblue.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/dx.spa.css">
+      <publishTime>10/05/2019 12:50:23</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-300.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-300.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-300.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-400.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-400.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-400.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-500.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-500.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-500.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-700.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-700.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/fonts/Roboto-700.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxicons.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxicons.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxicons.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxiconsios.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxiconsios.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxiconsios.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxiconsmaterial.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxiconsmaterial.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/icons/dxiconsmaterial.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/app.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/app.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/app.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/bootstrap-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/bootstrap-rtl.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/bootstrap.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/datafilter.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/datagrid/datatables/datatables.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/datagrid/datatables/datatables.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/datagrid/datatables/datatables.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/estilo_login.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-brands-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-brands.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-brands.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-regular-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-regular.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-regular.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-solid-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-solid.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/fa-solid.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/font-awesome.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-colorpicker/bootstrap-colorpicker-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-colorpicker/bootstrap-colorpicker.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-colorpicker/bootstrap-colorpicker.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-datepicker/bootstrap-datepicker-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-markdown/bootstrap-markdown-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-markdown/bootstrap-markdown.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/bootstrap-markdown/bootstrap-markdown.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/cropperjs/cropper-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/cropperjs/cropper.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/cropperjs/cropper.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/dropzone/dropzone-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/dropzone/dropzone.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/dropzone/dropzone.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/ion-rangeslider/ion-rangeslider-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/ion-rangeslider/ion-rangeslider.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/ion-rangeslider/ion-rangeslider.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/nouislider/nouislider-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/nouislider/nouislider.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/nouislider/nouislider.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/select2/select2.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/select2/select2.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/select2/select2.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/smartwizard/smartwizard-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/smartwizard/smartwizard.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/smartwizard/smartwizard.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/summernote/summernote-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/summernote/summernote.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/formplugins/summernote/summernote.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/fullcalendar/fullcalendar.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/fullcalendar/fullcalendar.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/fullcalendar/fullcalendar.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/jqvmap/jqvmap.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/jqvmap/jqvmap.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/jqvmap/jqvmap.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/lightgallery/lightgallery.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/lightgallery/lightgallery.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/lightgallery/lightgallery.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/nestable/nestable-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/nestable/nestable.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/nestable/nestable.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/reactions/reactions-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/reactions/reactions.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/reactions/reactions.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/treeview/treeview-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/treeview/treeview.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/miscellaneous/treeview/treeview.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/notifications/sweetalert2/sweetalert2.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/notifications/sweetalert2/sweetalert2.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/notifications/sweetalert2/sweetalert2.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/notifications/toastr/toastr-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/notifications/toastr/toastr.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/notifications/toastr/toastr.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/page-invoice-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/page-invoice.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/page-invoice.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/page-login-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/page-login.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/page-login.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/plugins/morris.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/sb-admin-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/sb-admin.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/site.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/site.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/c3/c3-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/c3/c3.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/c3/c3.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/chartist/chartist-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/chartist/chartist.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/chartist/chartist.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/chartjs/chartjs-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/chartjs/chartjs.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/chartjs/chartjs.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/dygraph/dygraph-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/dygraph/dygraph.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/statistics/dygraph/dygraph.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/style.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/theme-demo-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/theme-demo.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/theme-demo.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-1-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-1.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-1.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-10-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-10.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-10.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-11-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-11.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-11.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-12-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-12.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-12.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-13-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-13.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-13.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-2-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-2.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-2.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-3-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-3.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-3.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-4-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-4.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-4.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-5-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-5.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-5.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-6-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-6.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-6.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-7-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-7.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-7.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-8-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-8.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-8.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-9-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-9.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/themes/cust-theme-9.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/vendors.bundle-rtl.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/vendors.bundle.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="css/vendors.bundle.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/fontawesome-webfont.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/FontAwesome.otf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/bg.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/cargando.gif">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/favicon.ico">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/image.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/Load.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/logo.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/logo.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/logo_login.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/recuperar_clave.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="images/tick.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/bg-1.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/bg-2.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/bg-3.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/bg-4.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/bg-5.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/clouds.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/credit.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/page-bg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/prev-bg-1.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/prev-bg-2.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/prev-bg-3.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/backgrounds/prev-bg-4.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/bitbucket-logo.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/card-backgrounds/cover-1-lg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/card-backgrounds/cover-2-lg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/card-backgrounds/cover-3-lg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/card-backgrounds/cover-4-lg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/card-backgrounds/cover-5-lg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/card-backgrounds/cover-6-lg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/ajax.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/angular.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/authors/josh.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/authors/jovanni.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/authors/roberto.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/authors/sunny.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-a.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-admin-lg.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-admin.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-admin.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-b.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-c.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-d.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-e.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-f.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-g.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-h.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-i.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-j.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-k.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/avatar-m.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/cc.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/avatars/ng.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/debounce-at_begin.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/debounce.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/demo-panel.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/1.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/10.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/11.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/12.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/13.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/14.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/15.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/16.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/17.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/18.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/19.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/2.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/20.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/21.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/22.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/23.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/24.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/25.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/26.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/27.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/28.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/29.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/3.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/30.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/31.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/32.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/33.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/34.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/35.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/36.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/37.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/38.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/39.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/4.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/40.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/41.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/42.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/43.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/44.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/45.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/46.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/47.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/48.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/49.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/5.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/50.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/51.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/52.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/53.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/54.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/55.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/56.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/57.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/58.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/59.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/6.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/7.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/8.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/9.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/source.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/1.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/10.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/11.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/12.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/13.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/14.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/15.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/16.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/17.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/18.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/19.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/2.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/20.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/21.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/22.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/23.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/24.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/25.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/26.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/27.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/28.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/29.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/3.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/30.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/31.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/32.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/33.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/34.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/35.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/36.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/37.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/38.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/39.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/4.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/40.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/41.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/42.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/43.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/44.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/45.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/46.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/47.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/48.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/49.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/5.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/50.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/51.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/52.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/53.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/54.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/55.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/56.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/57.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/58.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/59.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/6.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/7.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/8.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/gallery/thumb/9.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/grid-options.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/html5.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/mvc.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/peace-full.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/php.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/position-absolute.gif">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/position-fixed.gif">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/position-sticky.gif">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/profile/article-healthyfood.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/profile/cc.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/rails.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/react.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/relax-full.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/s-1.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/sea-full.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/1.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/10.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/11.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/12.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/13.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/14.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/15.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/2.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/3.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/4.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/5.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/search/6.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/side-panel-demo.gif">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/skins/black.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/skins/blue.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/skins/green.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/skins/pink.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/throttle-no_trailing.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/throttle.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/demo/vuejs.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/android-chrome-144x144.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/apple-touch-icon.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/browserconfig.xml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/favicon-16x16.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/favicon-32x32.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/favicon-generator.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/favicon.ico">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/mstile-150x150.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/safari-pinned-tab.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/favicon/site.webmanifest">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/loading.gif">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/logo-flat.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/logo-gradient.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/logo.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/logo.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/svg/pattern-1.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/svg/pattern-2.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/svg/pattern-3.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/svg/pattern-4.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/ng-thumb-1.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/ng-thumb-2.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/ng-thumb-3.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/ng-thumb-4.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/ng-thumb-video-1.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/ng-thumb-video-2.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-1.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-10.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-11.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-12.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-3.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-4.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-5.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-6.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-7.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-8.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="img/thumbs/pic-9.png">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/app.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/bootstrap.js.map">
+      <publishTime>09/04/2020 23:57:25</publishTime>
+    </File>
+    <File Include="js/datagrid/datatables/datatables.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/datagrid/datatables/datatables.export.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/dependency/moment/moment.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/dx.all.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/dx.aspnet.data.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/bootstrap-colorpicker/bootstrap-colorpicker.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/bootstrap-daterangepicker/bootstrap-daterangepicker.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/bootstrap-markdown/bootstrap-markdown.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/cropperjs/cropper.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/dropzone/dropzone.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/inputmask/inputmask.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/ion-rangeslider/ion-rangeslider.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/nouislider/nouislider.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/select2/select2.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/smartwizard/smartwizard.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/formplugins/summernote/summernote.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/funciones_abc.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/funciones_consulta_documentos.js">
+      <publishTime>09/04/2020 13:17:04</publishTime>
+    </File>
+    <File Include="js/funciones_inventario.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/funcion_NumLetras.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/globalize.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/holder.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/i18n/i18n.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/jquery.number.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/jszip.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/fullcalendar/fullcalendar.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/jqvmap.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.algeria.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.argentina.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.brazil.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.canada.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.europe.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.france.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.germany.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.greece.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.iran.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.iraq.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.russia.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.tunisia.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.turkey.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/jqvmap/maps/jquery.vmap.usa.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/lightgallery/lightgallery.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/lightgallery/smartvoice.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/nestable/nestable.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/miscellaneous/treeview/treeview.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/notifications/sweetalert2/sweetalert2.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/notifications/toastr/toastr.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/c3/c3.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/chartist/chartist.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/chartjs/chartjs.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/d3/d3.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/demo-data/demo-c3.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/demo-data/demo-data-dygraph.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/dygraph/dygraph.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/easypiechart/easypiechart.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/flot/flot.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/peity/peity.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/statistics/sparkline/sparkline.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="js/vendors.bundle.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/.bower.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap-theme.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap-theme.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap-theme.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap-theme.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/css/bootstrap.min.css.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/js/bootstrap.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/js/bootstrap.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/dist/js/npm.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/bootstrap/LICENSE">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation-unobtrusive/.bower.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation-unobtrusive/LICENSE.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation/.bower.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation/dist/additional-methods.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation/dist/additional-methods.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation/dist/jquery.validate.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation/dist/jquery.validate.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery-validation/LICENSE.md">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery/.bower.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery/dist/jquery.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery/dist/jquery.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery/dist/jquery.min.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="lib/jquery/LICENSE.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/2500.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/ch.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/en.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/es.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/fa-brand-list.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/fa-icon-list.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/ng-bg-colors.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/ng-icon-base.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/ng-icon-list.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/ng-text-colors.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/plugin-reference.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/data/server-demo.json">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/bigbox.mp3">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/bigbox.ogg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/license.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/messagebox.mp3">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/messagebox.ogg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/smallbox.mp3">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/smallbox.ogg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/voice_alert.mp3">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/voice_alert.ogg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/voice_off.mp3">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/voice_off.ogg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/voice_on.mp3">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/sound/voice_on.ogg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/video/36150715-heavenly-clouds-v2-license.txt">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/video/cc.mp4">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="media/video/cc.webm">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>01/10/2020 20:43:02</publishTime>
+    </File>
+    <File Include="Scripts/aspnet/dx.aspnet.data.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/aspnet/dx.aspnet.mvc.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>10/05/2019 12:50:23</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>10/05/2019 12:50:23</publishTime>
+    </File>
+    <File Include="Scripts/chosen.jquery.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr/event.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr/event.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr/supplemental.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr/supplemental.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr/unresolved.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/cldr/unresolved.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx-diagram.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx-diagram.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.all.debug.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.all.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.mobile.debug.js">
+      <publishTime>10/05/2019 12:50:23</publishTime>
+    </File>
+    <File Include="Scripts/dx.mobile.js">
+      <publishTime>10/05/2019 12:50:23</publishTime>
+    </File>
+    <File Include="Scripts/dx.viz-web.debug.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.viz-web.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.viz.debug.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.viz.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.web.debug.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/dx.web.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/currency.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/currency.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/date.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/date.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/message.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/message.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/number.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/globalize/number.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.4.1.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.4.1.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.7.1.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.0.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.0.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.0.min.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.0.slim.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.0.slim.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.0.slim.min.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.2.1.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jszip.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/jszip.min.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.cs.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.de.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.el.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.en.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.es.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.fi.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.fr.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.hu.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.it.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.ja.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.nl.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.pt.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.ru.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.sl.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.sv.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.tr.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.vi.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/localization/dx.messages.zh.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/script.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-data/africa.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-data/canada.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-data/eurasia.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-data/europe.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-data/usa.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-data/world.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-utils/dx.vectormaputils.debug.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-utils/dx.vectormaputils.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Scripts/vectormap-utils/dx.vectormaputils.node.js">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/bootstrap.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/estilos.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/estilosVacio.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/jquery-ui.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/jquery-ui.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/jquery-ui.structure.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/jquery-ui.structure.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/jquery-ui.theme.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/jquery-ui.theme.min.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/Site.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Styles/styles.css">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/AbcProductos/AbcProductos.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>08/06/2020 00:20:56</publishTime>
+    </File>
+    <File Include="Views/Account/_LayoutLogin.cshtml">
+      <publishTime>08/05/2020 22:31:43</publishTime>
+    </File>
+    <File Include="Views/CerrarSesion/CerrarSesion.cshtml">
+      <publishTime>12/02/2019 22:28:31</publishTime>
+    </File>
+    <File Include="Views/ConsultaDocumentos/ConsultaDocumentos.cshtml">
+      <publishTime>08/04/2020 23:11:11</publishTime>
+    </File>
+    <File Include="Views/ConsultarCotizaciones/ConsultarCotizaciones.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/ConsultarCotizaciones/VerCotizacion.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/detalleFacturas/detalleFacturas.cshtml">
+      <publishTime>06/05/2020 23:21:33</publishTime>
+    </File>
+    <File Include="Views/Empresas/Empresas.cshtml">
+      <publishTime>12/02/2019 22:28:31</publishTime>
+    </File>
+    <File Include="Views/Home/About.cshtml">
+      <publishTime>12/02/2019 22:28:31</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>12/02/2019 22:28:31</publishTime>
+    </File>
+    <File Include="Views/IngDoctos/IngDoctos.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Inventario/Inventario.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/LineasConsultas/LineasConsultas.cshtml">
+      <publishTime>03/02/2020 20:28:48</publishTime>
+    </File>
+    <File Include="Views/MaximosMinimos/MaximosMinimos.cshtml">
+      <publishTime>10/03/2020 08:52:21</publishTime>
+    </File>
+    <File Include="Views/Oportunidad/IngresoOportunidad.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/PipeLine/PipeLine.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/PipelineConsMan/PipelineConsMan.cshtml">
+      <publishTime>04/01/2020 18:36:27</publishTime>
+    </File>
+    <File Include="Views/Prospecto/IngProspectos.cshtml">
+      <publishTime>12/02/2019 22:28:32</publishTime>
+    </File>
+    <File Include="Views/ReportDocuments/ReportDocuments.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutVacio.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/Usuario/Editar.cshtml">
+      <publishTime>09/09/2020 16:29:24</publishTime>
+    </File>
+    <File Include="Views/Usuario/Usuario.cshtml">
+      <publishTime>10/09/2020 11:09:22</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Web References/wsG4s/Reference.map">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Web References/wsG4s/TransactionTag.datasource">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/03/2020 20:47:03</publishTime>
+    </File>
+    <File Include="webfonts/fa-brands-400.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-brands-400.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-brands-400.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-brands-400.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-brands-400.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-light-300.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-light-300.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-light-300.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-light-300.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-light-300.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-regular-400.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-regular-400.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-regular-400.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-regular-400.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-regular-400.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-solid-900.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-solid-900.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-solid-900.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-solid-900.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/fa-solid-900.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/nextgen-icons.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/nextgen-icons.svg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/nextgen-icons.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/nextgen-icons.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/nextgen-icons.woff2">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/summernote.eot">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/summernote.ttf">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="webfonts/summernote.woff">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

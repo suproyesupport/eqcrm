@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "EditarWebUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Usuario
+<!--
+    USUARIO
+    ADMIN = S/N
+    NOMBRE
+    DEPTO = NULL
+    ID_VENDEDOR = 0
+    PASSWORD
+-->
+
+<script>
+
+    function Actualizar()
+    {
+        User = $("input:text[name=User]").val();
+        Admin = $("#selectAdmin").val();
+        Nombre = $("input:text[name=Nombre]").val();
+        Depto = $("#Depto").val();
+        Sucursal = $("#Sucursal").val();
+        Id_vendedor = $("#Id_vendedor").val();;
+        Password = $("input:password[name=Password]").val();
+        console.log(Password);
+
+        let pass = $("#Sucursal").val();
+
+        if (pass == "") {
+            alert("Favor de ingresar la contraseña del usuario");
+            return false;
+        }
+        
+        if (Depto == "") {
+            alert("Favor seleccionar el ROL al que corresponde el Usuario");
+            return false;
+        }
+
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Usuario/ActualizaWebUser",
+            data: { User, Admin, Nombre, Depto, Id_vendedor, Password, Sucursal },
+            success: function (response) {
+
+                if (response = "false") {
+                    window.location = "@Url.Action("WebUser", "WebUser")";
+                }
+                else if (response = "true") {
+                    alert(response);
+                    return;
+                }
+                else {
+                    alert(response)
+                    return;
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+    
+</script>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    CREACION DE USUARIOS
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Usuario</label>
+                                    <input class="form-control" type="text" name="User" id="User" disabled="true" value="@Model.User" />
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Rol</label>
+
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.Depto, ViewData["rol"] as List<SelectListItem>, "Selecccionar Rol...", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Sucursal</label>
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.Sucursal, ViewData["sucursal"] as List<SelectListItem>, "Selecccionar Sucursal...", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre del Usuario</label>
+                                    <input class="form-control" type="text" name="Nombre" id="Nombre" value="@Model.Nombre"/>
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Correo Electronico</label>
+                                    <input class="form-control" type="email" name="Id_vendedor" id="Id_vendedor" value="@Model.Id_vendedor" />
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Contraseña del usuario</label>
+                                    <input class="form-control" type="password" name="Password" id="Password" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="Actualizar();">Actualizar Usuario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

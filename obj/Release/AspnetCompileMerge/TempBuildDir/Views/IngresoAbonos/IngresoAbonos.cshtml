@@ -1,0 +1,259 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "IngresoAbonos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model  Cxcca
+
+<script src="~/js/funciones_ingreso_abonos.js"></script>
+
+<!--INICIO VENTANA PRINCIPAL-->
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de abonos
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Buscar código de cliente</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="idcliente" name="idcliente" onchange="BuscarCliente();">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ayudaclientes">Buscar</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Cliente</label>
+                                    <input class="form-control" type="text" name="cliente" id="cliente" disabled="" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Código / Abono</label>
+                                    @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.codabono, ViewData["CodigoAbono"] as List<SelectListItem>, "Selecccionar Código...", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Fecha</label>
+                                    <input class="form-control" type="date" name="fecha" id="fecha" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>No. Documento</label>
+                                    <input type="text" id="nodocumento" name="nodocumento" class="form-control"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Serie</label>
+                                    <input type="text" id="serie" name="serie" class="form-control">
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Cobrador</label>
+                                    @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.cobradores, ViewData["Cobradores"] as List<SelectListItem>, "Selecccionar Cobrador...", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                            </td>
+                            <!--<td>
+                                <div class="form-group">
+                                    <label>Forma de pago</label>-->
+                                    @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                    <!--<div class="input-group">
+                                        <select name="formapago" id="formapago" class="form-control">
+                                            <option value="1">Efectivo</option>
+                                            <option value="2">Cheque</option>
+                                            <option value="3">Tarjeta de crédito</option>
+                                            <option value="4">Deposito</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>-->
+                            <td>
+                                <div class="form-group">
+                                    <label>Forma de pago</label>
+                                    @*<input class="form-control" type="text" name="lineaeq" id="lineaeq" />*@
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.formapago, ViewData["TiposdePago"] as List<SelectListItem>, "Selecccionar Tipo de Pago...", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Concepto</label>
+                                    @*<input type="text" id="serie" name="serie" class="form-control">*@
+                                    <textarea class="form-control" rows="3" name="concepto" id="concepto" required=""></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!--INICIO TABLA CTACC-->
+                    <div class="panel-container show">
+                        <label><strong>Nota: </strong>El monto del abono debe ser menor o igual al del saldo</label>
+                        <div class="panel-content" id="mostrar_consulta"></div>
+                        <div id="gridContainer"></div>
+                    </div>
+                    <!--FIN TABLA CTACC-->
+                    @*<label id="total"></label>*@
+                    <h3 id="total"></h3>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" disabled="" name="guardarbutton" id="guardarbutton" onclick="verificarCampos();">Ingresar abono</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN VENTANA PRINCIPAL -->
+
+
+<!-- INICIO MODAL BUSCAR CLIENTE-->
+<div class="modal fade modal-backdrop-transparent" id="ayudaclientes" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Clientes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Raw(ViewBag.Tabla)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FINAL MODAL BUSCAR CLIENTE-->
+
+
+<!--INICIO MODAL SALDO < ABONO -->
+<div class="modal modal-alert fade" id="modal-saldomenorabono" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                El monto del abono debe ser menor al saldo.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL SALDO < ABONO -->
+
+
+<!--INICIO MODAL SALDO < ABONO -->
+<div class="modal modal-alert fade" id="modal-faltacampos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Debe llenar todos los campos.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL SALDO < ABONO -->
+
+
+<!--INICIO MODAL CARACTERES -->
+<div class="modal modal-alert fade" id="modal-comprobarcaracter" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                El monto contiene caracteres no soportados.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CARACTERES -->
+
+
+<!--INICIO MODAL ERROR-->
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FINAL MODAL ERROR-->

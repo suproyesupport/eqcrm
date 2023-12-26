@@ -1,0 +1,151 @@
+@using EqCrm.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<div class="row">
+        <div align="center"><img src="~/images/EqWebLogo.png"></div>
+    </div>*@
+@*<div class="row">
+    <div class="col-sm-6 col-xl-3">
+            <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+                <div class="">
+                    <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                        @ViewData["OPORTUNIDADES"]
+                        <small class="m-0 l-h-n">OPORTUNIDADES</small>
+                    </h3>
+                </div>
+                <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+            </div>
+        </div>*@
+<div class="col-sm-6 col-xl-3">
+    <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+        <div class="">
+            <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                @ViewData["VENTAS"]
+                <small class="m-0 l-h-n">TOTAL FACTURADO EN EL MES</small>
+            </h3>
+        </div>
+        <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+    </div>
+</div>
+@*</div>*@
+
+<div id="panel-13" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Ventas por sucursal
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content">
+            <div id="multiLineLabels" class="ct-chart" style="width:100%; height:300px;"></div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="form-group row">
+
+    <div align="center" id="panel-eqopciones" class="panel col-xl-2">
+        <div class="panel-hdr">
+            <h2>
+                Menu <span class="fw-300"><i> Opciones</i></span>
+            </h2>
+        </div>
+        <div class="panel-container collapse show" style="">
+            <div class="panel-content">
+                <div class="row">
+                    <div class="panel-content">
+                        <div class="frame-wrap text-center mb-0">
+                            <div class="row">
+                                <div>
+                                    <div>
+
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Ventas Diarias</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Movimientos Diarios</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Movimientos de un producto</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Secondary</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Secondary</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+@*<div align="center" id="panel-eqopciones" class="panel col-xl-2">
+        <div class="panel-hdr">
+            <h2>
+                Menu <span class="fw-300"><i> Opciones</i></span>
+            </h2>
+        </div>
+        <div class="panel-container collapse show" style="">
+            <div class="panel-content">
+                <div class="row">
+                    <div class="panel-content">
+                        <div class="frame-wrap text-center mb-0">
+                            <div class="row">
+                                <div>
+                                    <div>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Secondary</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Secondary</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Secondary</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Secondary</button>
+                                        <button type="button" class="btn btn-lg btn-secondary btn-block waves-effect waves-themed">Secondary</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+@*</div>*@
+
+
+
+
+@Html.Raw(ViewBag.PaneWebl1)
+
+
+
+<div id="panel-13" class="panel">
+        <div align="center" class="panel-hdr">
+
+
+            <div class="col-md-12">
+                <img src="~/images/EqWebLogo.png" width="500" height="500" class="img-responsive" alt="titulo" />
+            </div>
+
+
+        </div>
+    </div>
+
+@*<div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Ventas por Vendedor
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        @Html.Raw(ViewBag.Tabla)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@

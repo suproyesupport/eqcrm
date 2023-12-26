@@ -1,0 +1,299 @@
+﻿@{
+    ViewBag.Title = "Ventas";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+
+@model EqCrm.Models.FiltroGenerico
+
+
+<script src="~/js/POS/funciones_consulta_ventas_devoluciones.js"></script>
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            BUSCAR VENTAS PARA REALIZAR ANULACION O DEVOLUCIONES <span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                <tr>
+                    <th>DE LA FECHA</th>
+                    <th>A LA FECHA</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <input type="hidden" name="consulta" value="1" />
+                            <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <button id="ObtieneInfo" class="btn btn-primary" onclick="BuscarVentas();">Buscar Ventas</button>
+            <div id="mostrar_consulta"></div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-backdrop-transparent" id="ModalAnulacion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h5 class="modal-title">Consulta de Ticket</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div*@
+            @*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">*@
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                                
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>NUMERO AUTORIZACION</label>
+                                            <input class="form-control" type="text" name="uuid" id="uuid" disabled="" />
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>TOTAL</label>
+                                            <input class="form-control" type="text" name="total" id="total" disabled="" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>NO_FACTURA</label>
+                                            <input class="form-control" type="text" name="nofactura" id="nofactura" disabled="" />
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>SERIE</label>
+                                            <input class="form-control" type="text" name="serie" id="serie" disabled="" />
+                                        </div>
+                                    </td>
+
+
+
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>CLIENTE</label>
+                                            <textarea class="form-control" rows="1" name="cliente" id="cliente"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>MOTIVO ANULACION</label>
+                                            <br/>
+                                            <label id="label_motivoanula" style="color:red; font-size:10px; display:none;"> * El campo no puede estar vacío</label>
+                                            <textarea class="form-control" rows="3" name="motivoanula" id="motivoanula"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="AnularDocumento();">Anular Documento</button>
+                    </div>
+                </div>
+            </div>
+            @*</form>*@
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalNcDescuento" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h5 class="modal-title">Consulta de Ticket</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div*@
+            @*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">*@
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            DATOS PARA NOTA DE CREDITO POR DESCUENTO
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <label>Fecha</label>
+                                        <br/>
+                                        <label id="label_fechaanula" style="color:red; font-size:10px; display:none;"> * El campo no puede estar vacío</label>
+                                        <div class="input-group">
+                                            <input type="date" id="fecha" class="form-control" name="fecha" placeholder="Seleccione Fecha">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>NUMERO AUTORIZACION</label>
+                                            <input class="form-control" type="text" name="uuid2" id="uuid2" disabled="" />
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>TOTAL</label>
+                                            <input class="form-control" type="text" name="total2" id="total2" disabled="" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>NO_FACTURA</label>
+                                            <input class="form-control" type="text" name="nofactura2" id="nofactura2" disabled="" />
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="form-group">
+                                            <label>SERIE</label>
+                                            <input class="form-control" type="text" name="serie2" id="serie2" disabled="" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>CLIENTE</label>
+                                            <textarea class="form-control" rows="1" name="cliente2" id="cliente2"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>MOTIVO NOTA DE CREDITO POR DESCUENTO</label>
+                                            <textarea class="form-control" rows="3" name="motivoanula2" id="motivoanula2"></textarea>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>ABONO</label>
+                                            <br/>
+                                            <label id="label_abono" style="color:red; font-size:10px; display:none;"> * El campo no puede estar vacío</label>
+                                            <input class="form-control" type="number" name="abono" id="abono" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="DocumentoDesc();">GENERAR NC DESCUENTO</button>
+                    </div>
+                </div>
+            </div>
+            @*</form>*@
+        </div>
+    </div>
+</div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-generico" hidden></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@

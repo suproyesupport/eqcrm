@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "Tecnico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/funciones_ingreso_tecnico"></script>
+
+<script>
+
+    
+    $(document).ready(InicionEventos);
+
+    function InicionEventos() {
+        LlenarTablaTecnico();
+    }
+
+    function GuardarT() {
+        $('#modal-guardatec').modal('show');
+    }
+
+    function GuardarTecnico() {
+
+        $('#modal-guardatec').modal('hide');
+
+        var nombre = document.getElementById("nombre").value;
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Tecnico/InsertarTecnico",
+            data: { nombre },
+            success: function (response) {
+                var arreglo = response;
+
+                if (response.CODIGO == "ERROR") {
+                    if (response.PRODUCTO == "") {
+                        $('#Error').html("OCURRIO UN ERROR");
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                    else {
+                        $('#Error').html(response.PRODUCTO);
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                }
+
+                //ActFiltroInventario();
+
+                //$('#ModalInfoAdicional').modal('show');
+                //BuscarID();
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+
+        window.location.href = "/Tecnico/Tecnico";
+    }
+
+
+    function LlenarTablaTecnico() {
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Tecnico/ConsultaTecnico",
+            data: {},
+            success: function (response) {
+                $('#mostrar_consulta').html(response);
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+</script>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Ingreso de Técnico
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre </label>
+                                    <input class="form-control" type="text" name="nombre" id="nombre" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="GuardarT();">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Confirmar ingreso -->
+<div class="modal modal-alert fade" id="modal-guardatec" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea Ingresar este registro...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="GuardarTecnico();">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xl-6">
+        <div id="panel-1" class="panel">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="panel-hdr">
+                        <h2>
+                            Consulta Catálogo de Técnicos
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content" id="mostrar_consulta"></div>
+                        <div id="gridContainer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

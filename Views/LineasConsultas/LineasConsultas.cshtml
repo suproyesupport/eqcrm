@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "LineasConsultas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var id = "";
+
+    $('document').ready(FiltrarDatos);
+
+
+    function FiltrarDatos() {
+        document.getElementById("ObtieneInfo").onclick = ActFiltro;
+    }
+
+    function ActFiltro() {
+        fecha1 = $("input:text[name=fech1]").val(); //d
+        fecha2 = $("input:text[name=fech2]").val();
+        var lEnvio = ""; 
+
+        //alert(fecha1);
+        //alert(fecha2);
+        //alert(lEnvio);
+
+        var lCheckEnvio = document.getElementById('defaultInline1');
+
+        if (lCheckEnvio.checked == true) {
+            lEnvio = "Si";
+        }
+        else
+        {
+            lEnvio = "No";
+        }
+
+        
+        if (fecha1 == "") {
+            $('#Error').html("No ha ingresado la Fecha 1 ");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+
+        if (fecha2 == "") {
+            $('#Error').html("No ha ingresado la Fecha 2 ");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        fecha1 = formatDate(fecha1)
+        fecha2 = formatDate(fecha2)
+
+       
+
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/LineasConsultas/ConsultaLinea",
+            data: { fecha1, fecha2, lEnvio },
+            success: function (response) {
+                $('#mostrar_consulta').html(response);
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
+
+
+
+</script>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>              
+            </div>
+        </div>
+    </div>
+</div>
+
+    <h2>Consultas vs Precios Costos por Linea</h2>
+
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        FILTRO
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+
+                        @*<form role="form" action="/LineasConsultas/ConsultaLinea" method="post">*@
+
+                        <div class="form-group row">
+                            <label>DE LA FECHA</label>
+
+                            <div class="input-group">
+                                <input id="fecha1" class="form-control" name="fech1" placeholder="Seleccione Fecha">
+                                <div class="input-group-append">
+                                    <span class="input-group-text fs-xl">
+                                        <i class="fal fa-calendar"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label>A LA FECHA</label>
+
+                            <div class="input-group">
+                                <input id="fecha2" class="form-control" name="fech2" placeholder="Seleccione Fecha">
+                                <div class="input-group-append">
+                                    <span class="input-group-text fs-xl">
+                                        <i class="fal fa-calendar"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="frame-wrap">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" class="custom-control-input" id="defaultInline1" name="lEnvio">
+                                <label class="custom-control-label" for="defaultInline1">Con Envios</label>
+                            </div>
+                         </div>
+                            @* <button type="submit" class="btn btn-info btn-block">Filtrar</button>*@
+                            <button id="ObtieneInfo" class="btn btn-primary" onclick="ActFiltro();">Filtrar Datos</button>
+                            @*</form>*@
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Consultas
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content" id="mostrar_consulta">
+                        @*<div id="mostrar_consulta"></div>*@
+                        @*@Html.Raw(ViewBag.Tabla)*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

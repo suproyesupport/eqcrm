@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Cajas";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    REGISTRO DE CAJAS
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Caja</label>
+                                    <input class="form-control" type="text" name="Nombre" id="Nombre" />
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button id="crearCaja" class="btn btn-primary" onclick="crearCaja();">Crear Caja</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TABLA PARA VER LOS USUARIOS REGISTRADOS-->
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    CAJAS REGISTRADAS
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    @Html.Raw(ViewBag.Tabla)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "EstadisticoAbcClientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "EstadisticaVentaProdxClie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model EqCrm.Models.FiltroGenerico
+
+<script src="~/js/funciones_estadistica_abcClie.js"></script>
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            Estadistica ABC de Clientes<span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div class="panel-container show">
+        <div class="panel-content">
+            <div class="form-group row">
+                <div class="col-lg-3">
+                    <label>ID Cliente</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="idcliente" name="idcliente">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <label>Cliente</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="cliente" name="cliente">
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <label>De la fecha</label>
+                    <div class="input-group">
+                        <input type="hidden" name="consulta" value="1" />
+                        <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <label>A la fecha</label>
+                    <div class="input-group">
+                        <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <label></label>
+                    <div class="input-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked" onClick="ActivarCasilla(this);">
+                            <label class="custom-control-label" for="defaultUnchecked">Facturas</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <label></label>
+                    <div class="input-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked2" onClick="ActivarCasilla(this);">
+                            <label class="custom-control-label" for="defaultUnchecked2">Envíos</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <label></label>
+                    <div class="input-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="defaultUnchecked3" onClick="ActivarCasilla(this);">
+                            <label class="custom-control-label" for="defaultUnchecked3">Consolidado</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="ObtieneInfo" class="btn btn-primary" onclick="BuscarEstadisticaAbcCliente();">Buscar</button>
+            <div id="mostrar_consulta"></div>
+        </div>
+    </div>
+</div>
+
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+

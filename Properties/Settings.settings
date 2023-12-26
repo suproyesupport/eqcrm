@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EqCrm.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EqCrm_wsG4s_FactWSFront" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://pruebasfel.g4sdocumenta.com/webservicefront/factwsfront.asmx</Value>
+    </Setting>
+    <Setting Name="Usuario" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Q2xhdmUwMSo=</Value>
+    </Setting>
+    <Setting Name="BaseDatosEmpresa" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">dlempresa</Value>
+    </Setting>
+    <Setting Name="PuertoServidor" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3306</Value>
+    </Setting>
+    <Setting Name="EqCrm_ConsultaNitInfile_ingfaceWsServices" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://www.ingface.net:443/ServiciosIngface/ingfaceWsServices</Value>
+    </Setting>
+    <Setting Name="DireccionServidor" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">198.49.71.42</Value>
+    </Setting>
+    <Setting Name="EqCrm_SoapDigifact_FELWSFRONT" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://felgtaws.digifact.com.gt/gt.com.fel.wsfrontalter/felwsfront.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

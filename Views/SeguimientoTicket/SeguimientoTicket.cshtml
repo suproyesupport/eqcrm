@@ -1,0 +1,340 @@
+﻿@using EqCrm.Models
+@{
+    ViewBag.Title = "SeguimientoTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Ticket
+<h2>Seguimiento de Tickets</h2>
+
+
+<script src="~/js/funciones_seguimiento_ticket.js"></script>
+
+<div id="mostrar_consulta"></div>
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalTicketConsulta" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            @*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">*@
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            FICHA DE TICKET
+                        </h2>
+                    </div>
+                    <div id="panel-3" class="panel">
+                        <div class="panel-container show">
+                            <div class="panel-content">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Ticket</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">Seguimiento</a></li>
+                                </ul>
+                                <div class="tab-content p-3">
+                                    <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                                        <div class="panel-container show">
+                                            <div class="panel-content">
+                                                <table class="table table-bordered table-hover table-striped w-100">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>ID</label>
+                                                                <input class="form-control" type="text" name="id" id="id" disabled="" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Fecha</label>
+                                                                <input class="form-control" type="text" name="fechaticket" id="fechaticket" disabled="" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Status</label>
+                                                                <input class="form-control" type="text" name="estado" id="estado" disabled="" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table class="table table-bordered table-hover table-striped w-100">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Categoría</label>
+                                                                <input class="form-control" type="text" name="idcategoria" id="idcategoria" disabled="" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Problema</label>
+                                                                <input class="form-control" type="text" name="problema" id="problema" disabled="" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table class="table table-bordered table-hover table-striped w-100">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Cliente</label>
+                                                                <input class="form-control" type="text" name="cliente" id="cliente" disabled="" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Quién reporta</label>
+                                                                <input class="form-control" type="text" name="reporta" id="reporta" disabled="" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table class="table table-bordered table-hover table-striped w-100">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Descripción del problema</label>
+                                                                <textarea class="form-control" rows="3" name="descripcion" id="descripcion" disabled=""></textarea>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table class="table table-bordered table-hover table-striped w-100">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Solución</label>
+                                                                <textarea class="form-control" rows="3" name="solucion" id="solucion"></textarea>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal" name="iniciabutton" id="iniciabutton" onclick="modalIniciarTicket();">Iniciar Ticket</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" name="cerrarbutton" id="cerrarbutton" onclick="modalFinalizarTicket();">Cerrar Ticket</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+                                        <div class="panel-container show">
+                                            <div class="panel-content">
+                                                <table class="table table-bordered table-hover table-striped w-100">
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                <label>Seguimiento</label>
+                                                                <textarea class="form-control" rows="3" name="seguimiento" id="seguimiento" oninput="ActivarButton();"></textarea>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-success" data-dismiss="modal" name="btn-seguimiento" id="btn-seguimiento" onclick="ModalSeguimiento();">Seguimiento</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                            <div class="form-group">
+                                                <h3>Seguimiento</h3>
+                                                <div id="seguimientoticket">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*MODAL REASIGNAR TICKET*@
+<div class="modal fade modal-backdrop-transparent" id="ModalTicketReasignar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            @*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">*@
+            <div class="modal-body">
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            REASIGNAR TICKET
+                        </h2>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <table class="table table-bordered table-hover table-striped w-100">
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>ID</label>
+                                            <input class="form-control" type="text" name="idd" id="idd" disabled="" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label>Responsable</label>
+                                            @Html.DropDownListFor(m => m.usuarior, ViewData["UsuarioResponsable"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" name="reasignabutton" id="reasignabutton" onclick="modalReasignarTicket();">Reasignar Ticket</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*CONFIRMACION DE LA ACCION INICIAR TICKET*@
+<div class="modal modal-alert fade" id="modal-iniciarTicket" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea iniciar el ticket?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="IniciarTicket();">Iniciar Ticket</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*CONFIRMACION DE LA ACCION SEGUIMIENTO TICKET*@
+<div class="modal modal-alert fade" id="modal-seguimientoTicket" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea agregar seguimiento al ticket?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="SeguimientoTicket();">Agregar Seguimiento</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*CONFIRMACION DE LA ACCION CERRAR TICKET*@
+<div class="modal modal-alert fade" id="modal-cerrarTicket" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea cerrar el ticket?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="FinalizarTicket();">Cerrar Ticket</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*CONFIRMACION DE LA ACCION REASIGNAR TICKET*@
+<div class="modal modal-alert fade" id="modal-reasignarTicket" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea reasignar el ticket?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ReasignarTicket();">Reasignar Ticket</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@

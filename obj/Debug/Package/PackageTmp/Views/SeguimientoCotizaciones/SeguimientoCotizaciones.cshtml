@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "SeguimientoCotizaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using EqCrm.Models
+@model Inventario
+
+<script src="/js/funciones_seguimiento_cotis.js"></script>
+@*<div class="row">
+    <div class="col-sm-6 col-xl-2">
+        <div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">                    
+                    <small id="nganada" class="m-0 l-h-n">GANADA</small>
+                </h3>
+            </div>
+            <i class="fal fa-user position-absolute pos-right pos-bottom opacity-15 mb-n1 mr-n1" style="font-size:6rem"></i>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-xl-2">
+        <div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+            <div class="">
+                <h3 class="display-4 d-block l-h-n m-0 fw-500">
+                    @ViewData["PERDIDAS"]
+                    <small class="m-0 l-h-n">PERDIDO</small>
+                </h3>
+            </div>
+            <i class="fal fa-gem position-absolute pos-right pos-bottom opacity-15  mb-n1 mr-n4" style="font-size: 6rem;"></i>
+        </div>
+    </div>
+</div>*@
+
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            SEGUIMIENTO DE COTIZACIONES <span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div class="panel-container show">
+        <div class="panel-content">
+            @*<form method="get" enctype="application/x-www-form-urlencoded" action="/ConsultarCotizaciones/ConsultarCotizaciones">*@
+            <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                <tr>
+                    <th>
+                        DE LA FECHA
+                    </th>
+
+                    <th>
+                        A LA FECHA
+                    </th>
+
+                    <th>
+                        VENDEDOR
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div class="input-group">
+                            <input type="hidden" name="consulta" value="1" />
+                            <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <div class="input-group">
+                                    @Html.DropDownListFor(m => m.linea, ViewData["Lineas"] as List<SelectListItem>, "Selecccionar Vendedor...", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-bordered table-hover table-striped w-100">
+                <tr>
+                </tr>
+            </table>
+
+            @*<button id="ObtieneInfo" type="submit" class="btn btn-primary">Buscar Cotizaciones</button>*@
+            <button id="ObtieneInfo" class="btn btn-primary" onclick="ActFiltroDoctos();">Buscar/Actualizar</button>
+            <div id="mostrar_consulta"></div>
+            @*</form>*@
+
+        </div>
+    </div>
+</div>
+
+
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+<div class="modal modal-alert fade" id="modal-ganada" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea marcar como Ganada esta Cotización...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Actganada();">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-alert fade" id="modal-perdida" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Desea marcar como Perdida esta Cotización...?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="ActPerdida();">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

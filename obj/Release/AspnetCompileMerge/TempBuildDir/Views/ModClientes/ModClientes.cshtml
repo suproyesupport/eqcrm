@@ -1,0 +1,372 @@
+﻿@{
+    ViewBag.Title = "ModClientes";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+
+@model EqCrm.Models.FiltroGenerico
+
+<script src="~/js/funciones_mod_clientes.js"></script>
+
+<!--<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            Buscar Cliente<span class="fw-300"><i>Filtros</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div class="panel-container show">
+        <div class="panel-content">
+            <div class="form-group row">
+                <div class="col-lg-2">
+                    <label>De la fecha</label>
+                    <div class="input-group">-->
+                        @*<input type="hidden" name="consulta" value="1" />*@
+                        <!--<input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <label>A la fecha</label>
+                    <div class="input-group">
+                        <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                        <div class="input-group-append">
+                            <span class="input-group-text fs-xl">
+                                <i class="fal fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-content">
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="BuscarGeneralFacturas();">Generar</button>
+                    <div id="mostrar_consulta"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+
+@* INICIO MODAL GENERICO *@
+<div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                    <label id="mensaje"></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@* FIN MODAL GENERICO *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="panel-1" class="panel">
+    <div id="mostrar_consulta"></div>
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+
+
+<!--<div class="modal fade modal-backdrop-transparent" id="ModalFichaOrdenS" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>-->
+<!--@*<form action="/Inventario/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">   SUBIR FOTO      *@-->
+<!--<!--<div class="modal-body">
+    <div id="panel-1" class="panel">
+        <div class="panel-hdr">
+            <h2>
+                REPORTE GENERAL DE FACTURAS
+            </h2>
+        </div>
+        <div class="panel-container show">
+            <div class="panel-content">
+
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Número de orden</label>
+                                <input type="text" id="id_orden" name="id_orden" class="form-control" disabled="">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label>Fecha de asignación</label>
+                                <input type="text" id="fechaa" name="fechaa" class="form-control" disabled="">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <input type="text" id="status" name="status" class="form-control" disabled="">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Código de cliente</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="id" name="id" disabled="">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label>Cliente</label>
+                                <input class="form-control" type="text" name="cliente" id="cliente" disabled="" />
+                            </div>
+                        </td>
+
+                    </tr>
+                </table>
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Dirección</label>
+                                <input class="form-control" type="text" name="direccion" id="direccion" disabled="" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Fecha de inicio</label>
+                                <input class="form-control" type="text" name="fechai" id="fechai" disabled="" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label>Fecha de finalización</label>
+                                <input class="form-control" type="text" name="fechaf" id="fechaf" disabled="" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Teléfono</label>
+                                <input class="form-control" type="text" name="telefono" id="telefono" disabled="" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label>Ruta</label>
+                                <input class="form-control" type="text" name="ruta" id="ruta" disabled="" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Técnico</label>
+                                <input class="form-control" type="text" name="tecnico" id="tecnico" disabled="" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label>Tipo de orden</label>
+                                <input class="form-control" type="text" name="tipoorden" id="tipoorden" disabled="" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Observación</label>
+                                <textarea class="form-control" rows="3" name="obs" id="obs" disabled=""></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="table table-bordered table-hover table-striped w-100">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control" rows="3" name="descripcion" id="descripcion" required disabled=""></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+            </div>
+        </div>
+        <div class="modal-footer">-->
+<!--@*<button type="button" class="btn btn-success" data-dismiss="modal" name="iniciabutton" id="iniciabutton" onclick="modalIniciarOrdenServicio();">Iniciar Orden</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal" name="cerrarbutton" id="cerrarbutton" onclick="modalFinalizarOrdenServicio();">Cerrar Orden</button>*@-->
+<!--<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+    </div>
+</div>-->
+<!--@*</form>*@-->
+<!--<!--</div>
+    </div>
+</div>-->
+<!--@*INICIO CONFIRMACION DE LA ACCION INICIAR ORDEN*@
+<!--<div class="modal modal-alert fade" id="modal-iniciarOrden" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea iniciar la orden?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="IniciarOrdenServicio();">Iniciar Orden</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+@*FIN CONFIRMACION DE LA ACCION INICIAR ORDEN
+
+
+    @* INICIO CONFIRMACION DE LA ACCION CERRAR ORDEN*@
+<!--<div class="modal modal-alert fade" id="modal-cerrarOrden" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea cerrar la orden?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="FinalizarOrdenServicio();">Cerrar Orden</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+@* FIN CONFIRMACION DE LA ACCION CERRAR ORDEN*@

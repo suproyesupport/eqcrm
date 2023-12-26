@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "EditarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model Usuario
+
+<script>
+    function Actualizar() {
+        User = $("input:text[name=UserMod]").val();
+        Nombre = $("input:text[name=NombreMod]").val();
+        Admin = $("#selectAdminMod").val();
+        Password = $("input:password[name=PasswordMod]").val();
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Usuario/ActualizarInformacion"  ,
+            data: { User, Nombre, Admin, Password },
+            success: function (response) {
+
+                if (response = "false") {
+                    window.location = "@Url.Action("Usuario","Usuario")";
+                }
+                else if (response = "true") {
+                    alert(response);
+                    return;
+                }
+                else {
+                    alert(response)
+                    return;
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+</script>
+
+
+<!-- PRUEBA PARA EDITAR EL USUARIO -->
+<div class="panel-container show">
+    <div class="panel-content">
+        @*<ul class="nav nav-pills" role="tablist">
+                <li class="nav-item"><a class="nav-link active" data-toggle="pill" href="#nav_pills_default-1">Datos Generales del Usuario</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="pill" href="#nav_pills_default-2">Accesos del Usuario</a></li>
+            </ul>
+            <div class="tab-content py-3">
+                <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div id="panel-1" class="panel">
+                                <div class="panel-hdr">
+                                    <h2>
+                                        ACTUALIZACION DEL USUARIO @Model.Nombre (@Model.User)
+                                    </h2>
+
+                                </div>
+                                <div class="panel-container show">
+                                    <div class="panel-content">
+                                        <table class="table table-bordered table-hover table-striped w-100">
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <label>Usuario</label>
+                                                        <input class="form-control" type="text" disabled="true" name="UserMod" id="UserMod" value="@Model.User" />
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <label>Nombre del Usuario</label>
+                                                        <input class="form-control" type="text" name="NombreMod" id="NombreMod" value="@Model.Nombre"/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <label>¿Es ADMIN?</label>
+                                                        <select class="form-control" name="Admin" id="selectAdminMod">
+                                                            @if (Model.Admin == "S")
+                                                            {
+                                                                <option value="S" selected>Si, es administrador</option>
+                                                                <option value="N">No, no es administrador</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="S" >Si, es administrador</option>
+                                                                <option value="N" selected>No, no es administrador</option>
+                                                            }
+
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <label>Contraseña del usuario</label>
+                                                        <input class="form-control" type="password" name="PasswordMod" id="PasswordMod" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <button id="EnviarInfo" class="btn btn-primary" onclick="Actualizar();">Actualizar Usuario</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+        @*<div class="tab-pane fade" id="nav_pills_default-2" role="tabpanel">*@
+
+
+        <div id="panel-3" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    ASIGNACION DE PERMISOS  <span class="fw-300"><i>A ROLES</i></span>
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Linea de Negocios</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">Categorias</a></li>
+                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Menus</a></li>
+                    </ul>
+                    <div class="tab-content p-3">
+                        <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                            @Html.Raw(ViewBag.Tabla3)
+                        </div>
+                        <div class="tab-pane fade" id="tab_direction-2" role="tabpanel">
+                            @Html.Raw(ViewBag.Tabla2)
+                        </div>
+                        <div class="tab-pane fade" id="tab_direction-3" role="tabpanel">
+                            @Html.Raw(ViewBag.Tabla4)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        @*<h1>ASIGNACION DE PERMISOS A ROLES</h1>
+                <div class="row">
+                    <div id="respuestaPermiso">
+                    </div>
+                </div>
+                <div class="panel accordion" id="accordionPermisos">
+                    <div class="card">
+                        <div class="card-header" id="Cardempresas">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    EMPRESAS
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="Cardempresas" data-parent="#accordionPermisos">
+                            <div class="card-body">
+                                @Html.Raw(ViewBag.Tabla3)
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div id="respuestaPermiso">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="Cardcategorias">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    CATEGORIAS
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="Cardcategorias" data-parent="#accordionPermisos">
+                            <div class="card-body">
+                                @Html.Raw(ViewBag.Tabla2)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="respuestaPermiso">
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header" id="Cardmenus">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    MENUS
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="Cardmenus" data-parent="#accordionPermisos">
+                            <div class="card-body">
+                                @Html.Raw(ViewBag.Tabla4)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>*@

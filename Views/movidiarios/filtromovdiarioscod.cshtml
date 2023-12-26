@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "filtromovdiarioscod";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+
+<table class="table table-bordered table-hover table-striped w-100">
+    <tr>
+        <td>
+            <button type="button" class="btn btn-secondary" onclick="location.href='/PanelInventario/PanelInventario';">Regresar</button>
+        </td>
+    </tr>
+</table>
+
+<h2>Movimientos Diarios de Producto</h2>
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Resultado de Consulta
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    @Html.Raw(ViewBag.Tabla1)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

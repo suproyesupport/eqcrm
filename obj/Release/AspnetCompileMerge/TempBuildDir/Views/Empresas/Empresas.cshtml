@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Empresas";
+    Layout = "~/Views/Account/_LayoutLogin.cshtml";
+
+}
+@model DatosEmpresas
+
+
+
+
+<div class="blankpage-form-field">
+    <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+        <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+            <img src="~/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+            <span class="page-logo-text mr-1">Seleccionar Linea de Negocio</span>
+            <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+        </a>
+    </div>
+
+    <form action="/Empresas/ObtenerDatosEmpresa" method="post">
+        <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+
+
+            <div class="form-group row">
+                <div class="input-group">
+                    @*@ViewData["DlEmpresa"]*@
+                    
+                    @Html.Raw(ViewBag.DlEmpresa)
+                    @*@Html.DropDownListFor(m => m.BaseDatos, ViewData["DlEmpresa"] as List<SelectListItem>, "Selecccionar Linea de Negocios", new { @class = "form-control" })*@
+                </div>
+            </div>
+
+
+
+            <button class="btn btn-primary">Ingresar</button>
+
+
+        </div>
+    </form>
+
+</div>
+
+<video poster="~/images/cclogin.webm" id="bgvid" playsinline autoplay muted loop>
+    <source src="~/images/cclogin.webm" type="video/webm">
+    <source src="~/images/cclogin.webm" type="video/mp4">
+</video>
+
+
+
+
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="eq-main">
+        <div class="bg-layer">
+
+            <div class="header-main">
+                <div class="main-icon">
+                    <span class="fa fa-eercast"></span>
+                </div>
+
+                <form action="/Empresas/ObtenerDatosEmpresa" method="post">
+
+                    <h3>Seleccionar línea de negocios</h3>
+
+                    <div class="ddropdown show">
+                        @Html.DropDownListFor(m => m.BaseDatos, ViewData["DlEmpresa"] as List<SelectListItem>, "Selecccionar Linea de Negocios", new { @class = "btn btn-secundary dropdown-toggle " })
+
+                    </div>
+
+                    <div class="header-main">
+                        <button class="eq_form-control_btn header-left">Ingresar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>*@
+
+
+

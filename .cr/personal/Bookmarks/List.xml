@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root Type="DevExpress.CodeRush.Foundation.Markers.SolutionBookmarksContainer">
+  <Options Language="Neutral">
+    <Items>
+      <Item Id="{d10bcf15-b542-4517-bbac-86a55a64e9e5}">
+        <Id>1</Id>
+        <File>EqCrmPos\Views\Shared\_Layout.cshtml</File>
+        <Line>1434</Line>
+        <Character>58</Character>
+        <ViewportTop>1424</ViewportTop>
+        <ViewportTopMax>3385</ViewportTopMax>
+        <TopLine>1424</TopLine>
+      </Item>
+    </Items>
+  </Options>
+</Root>

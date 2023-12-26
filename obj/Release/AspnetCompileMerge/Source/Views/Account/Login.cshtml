@@ -1,0 +1,434 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Account/_LayoutLogin.cshtml";
+}
+@model Account
+
+
+<script>
+
+    $(document).ready(function () {
+        $('.aLink').on('click', function (e) {
+            e.preventDefault();
+            Reenvio();
+        })
+
+        $('.aChange').on('click', function (e) {
+            e.preventDefault();
+            CambiarPassword();
+        })
+
+        $('#NewPassword').hide();
+        $('#inputNewPassword').hide();
+        $('#NewPassword2').hide();
+        $('#inputNewPassword2').hide();
+        $('#btnChangePassword').hide();
+    })
+
+
+    function CambiarPassword()
+    {
+        $('#labelpassword').html('Password actual');
+        $('#NewPassword').show();
+        $('#inputNewPassword').show();
+        $('#NewPassword2').show();
+        $('#inputNewPassword2').show();
+        $('#btnIngresar').hide();
+        $('#btnChangePassword').show();
+        $('#aChange').hide();
+        $('#aLink').hide();
+    }
+
+    function Reenvio()
+    {
+        Name = $("input:text[name=Name]").val();
+        if (Name == "") {
+
+            $('#Error').html("Por favor ingrese un usuario para cambiar su contraseña");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Account/ReenvioCorreoPassword",
+            data: { Name },
+            success: function (response) {
+                if (response.CODIGO == "ERROR") {
+                    if (response.RESULTADO == "false") {
+                       $('#Error').html(response.OBS);
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                    else {
+                        return;
+                    }
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+
+    function Login()
+    {
+        Name = $("input:text[name=Name]").val();
+        Password = $("input:password[name=Password]").val();
+
+        if (Name == "") {
+            $('#Error').html("Por favor ingrese un usuario");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        if (Password == "") {
+            $('#Error').html("El Pasword no puede estar vacio");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Account/_Login",
+            data: { Name, Password },
+            success: function (response) {
+
+                if (response.CODIGO == "ERROR") {
+                    if (response.RESULTADO == "false") {
+                        var parametros = Name + "|" + response.OBS;
+                        var url = '@Url.Action("Empresas","Empresas", new { name = "Name" })';
+                        url = url.replace('Name', encodeURIComponent(parametros));
+                        window.location = url;
+                        //window.location = "@Url.Action("Empresas","Empresas", new { name = "+   Name  +"})";
+                    }
+                    else {
+                        $('#Error').html(response.OBS);
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+
+
+
+    function ConfirmarCambioPassword() {
+        $('#modal-confirmarcambiopassword').modal('show');
+    }
+
+
+    function ChangeLogin() {
+
+        $('#modal-confirmarcambiopassword').modal('hide');
+
+        Name = $("input:text[name=Name]").val();
+        Password = $("input:password[name=Password]").val();
+
+        nPass1 = $("input:password[name=newPassword1]").val();
+        nPass2 = $("input:password[name=newPassword2]").val();
+
+        if (Name == "") {
+            $('#Error').html("Por favor ingrese un usuario");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        if (Password == "") {
+            $('#Error').html("El Pasword Actual no puede estar vacio");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        if (nPass1 == "") {
+            $('#Error').html("El nuevo Pasword no puede estar vacio");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        if (nPass2 == "") {
+            $('#Error').html("La confirmación del Password no puede estar vacio");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        if (nPass1 != nPass2) {
+            $('#Error').html("El nuevo Password no Coincide");
+            $('#ModalError').modal('show');
+            return;
+        }
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Account/_Login",
+            data: { Name, Password, nPass1 },
+            success: function (response) {
+
+                if (response.CODIGO == "ERROR") {
+                    if (response.RESULTADO == "false") {
+                        var parametros = Name + "|" + response.OBS
+                        //alert(parametros);
+                        //location.reload();
+                        ChangePassword();
+                    }
+                    else {
+                        $('#Error').html("El usuario o el password actual son incorrectos, revise por favor....");
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                    //alert(parametros);
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+        /*location.reload();*/
+
+    }
+
+    function ChangePassword() {
+        Name = $("input:text[name=Name]").val();
+        Password = $("input:password[name=Password]").val();
+
+        nPass1 = $("input:password[name=newPassword1]").val();
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Account/ModificarPassword",
+            data: { Name, Password, nPass1 },
+            success: function (response) {
+
+                if (response.CODIGO == "ERROR") {
+                    if (response.RESULTADO == "false") {
+                        alert("CONTRASEÑA ACTUALIZADA CON EXITO");
+                        location.reload();
+                    }
+                    else {
+                        $('#Error').html("El usuario o el password actual son incorrectos, revise por favor....");
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                    //alert(parametros);
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+
+</script>
+
+
+
+
+<!-- Div login -->
+<div class="blankpage-form-field">
+    <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+        <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+            <img src="~/img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+            <span class="page-logo-text mr-1">Ingreso Sistema</span>
+            <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+        </a>
+    </div>
+    <div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+        <div class="form-group">
+            <label class="form-label" for="username">Usuario</label>
+            <input id="Name" name="Name" class="form-control" placeholder="USUARIO">
+            <span class="help-block">
+                El Usuario no puede estar vacio.
+            </span>
+        </div>
+        <div class="form-group">
+            <label id="labelpassword" class="form-label" for="password">Password</label>
+            <input type="password" id="Password" name="Password" class="form-control" placeholder="Contraseña">
+            <span class="help-block">
+                El Password no puede estar vacio.
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label id="NewPassword" class="form-label" for="password">Nuevo Password</label>
+            <input type="password" id="inputNewPassword" name="newPassword1" class="form-control" placeholder="Contraseña">
+
+        </div>
+
+        <div class="form-group">
+            <label id="NewPassword2" class="form-label" for="password">Confirmar Password</label>
+            <input type="password" id="inputNewPassword2" name="newPassword2" class="form-control" placeholder="Contraseña">
+
+        </div>
+
+        <button id="btnIngresar" type="button" class="btn btn-primary" data-dismiss="modal" onclick="Login();">Ingresar</button>
+        <button id="btnChangePassword" type="button" class="btn btn-primary" data-dismiss="modal" onclick="ConfirmarCambioPassword();">Cambiar Password</button>
+    </div>
+    <div class="blankpage-footer text-center">
+        <a href='#' class='aLink' id="aLink"><strong>Recuperar Password</strong></a>
+    </div>
+    <div class="blankpage-footer text-center">
+        <div class="blankpage-footer text-center">
+            <a href='#' class='aChange' id="aChange"><strong>Cambiar Password</strong></a>
+        </div>
+</div>
+</div>
+
+<video poster="~/images/cclogin.webm" id="bgvid" playsinline autoplay muted loop>
+    <source src="~/images/cclogin.webm" type="video/webm">
+    <source src="~/images/cclogin.webm" type="video/mp4">
+</video>
+
+
+
+
+
+<!-- Modal error -->
+<div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" id="Error">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Modal confirmar cambio de contraseña-->
+<div class="modal modal-alert fade" id="modal-confirmarcambiopassword" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea cambiar la contraseña?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="ChangeLogin();">Cambiar Contraseña</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div class="login-footer p-2">
+        <div class="row">
+            <div class="col col-sm-12 text-center">
+                <i><strong>System Message:</strong> You were logged out from 198.164.246.1 on Saturday, March, 2017 at 10.56AM</i>
+            </div>
+        </div>
+    </div>
+    <video poster="~/images/image.jpg" id="bgvid" playsinline autoplay muted loop>
+        <source src="~/media/video/cc.webm" type="video/webm">
+        <source src="~/media/video/cc.mp4" type="video/mp4">
+    </video>*@
+
+
+
+
+<p id="js-color-profile" class="d-none">
+    <span class="color-primary-50"></span>
+    <span class="color-primary-100"></span>
+    <span class="color-primary-200"></span>
+    <span class="color-primary-300"></span>
+    <span class="color-primary-400"></span>
+    <span class="color-primary-500"></span>
+    <span class="color-primary-600"></span>
+    <span class="color-primary-700"></span>
+    <span class="color-primary-800"></span>
+    <span class="color-primary-900"></span>
+    <span class="color-info-50"></span>
+    <span class="color-info-100"></span>
+    <span class="color-info-200"></span>
+    <span class="color-info-300"></span>
+    <span class="color-info-400"></span>
+    <span class="color-info-500"></span>
+    <span class="color-info-600"></span>
+    <span class="color-info-700"></span>
+    <span class="color-info-800"></span>
+    <span class="color-info-900"></span>
+    <span class="color-danger-50"></span>
+    <span class="color-danger-100"></span>
+    <span class="color-danger-200"></span>
+    <span class="color-danger-300"></span>
+    <span class="color-danger-400"></span>
+    <span class="color-danger-500"></span>
+    <span class="color-danger-600"></span>
+    <span class="color-danger-700"></span>
+    <span class="color-danger-800"></span>
+    <span class="color-danger-900"></span>
+    <span class="color-warning-50"></span>
+    <span class="color-warning-100"></span>
+    <span class="color-warning-200"></span>
+    <span class="color-warning-300"></span>
+    <span class="color-warning-400"></span>
+    <span class="color-warning-500"></span>
+    <span class="color-warning-600"></span>
+    <span class="color-warning-700"></span>
+    <span class="color-warning-800"></span>
+    <span class="color-warning-900"></span>
+    <span class="color-success-50"></span>
+    <span class="color-success-100"></span>
+    <span class="color-success-200"></span>
+    <span class="color-success-300"></span>
+    <span class="color-success-400"></span>
+    <span class="color-success-500"></span>
+    <span class="color-success-600"></span>
+    <span class="color-success-700"></span>
+    <span class="color-success-800"></span>
+    <span class="color-success-900"></span>
+    <span class="color-fusion-50"></span>
+    <span class="color-fusion-100"></span>
+    <span class="color-fusion-200"></span>
+    <span class="color-fusion-300"></span>
+    <span class="color-fusion-400"></span>
+    <span class="color-fusion-500"></span>
+    <span class="color-fusion-600"></span>
+    <span class="color-fusion-700"></span>
+    <span class="color-fusion-800"></span>
+    <span class="color-fusion-900"></span>
+</p>
+
+<script src="~/js/vendors.bundle.js"></script>
+<script src="~/js/app.bundle.js"></script>
+
+
+

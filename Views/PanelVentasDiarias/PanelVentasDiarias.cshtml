@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "PanelVentasDiarias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/js/PanelWeb1/panelventasdiarias.js"></script>
+
+<h3>Ventas Diarias</h3>
+
+<table class="table table-bordered table-hover table-striped w-100">
+    <tr>
+        <td>
+            <button type="button" class="btn btn-secondary" onclick="location.href='/POS/Home';">Regresar</button>
+        </td>
+    </tr>
+</table>
+
+
+    <div class="row">
+        <div class="col-xl-3">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Consulta de Fechas
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <table class="table table-bordered table-hover table-striped w-100">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <label>De la Fecha:</label>
+                                        <input class="form-control" id="cfecha1" type="date" name="date">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <label>A la Fecha:</label>
+                                        <input class="form-control" id="cfecha2" type="date" name="date">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="FiltrarVentasDiarias();">Filtrar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-6">
+            <div id="panel-1" class="panel">
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="panel-hdr">
+                            <h2>
+                                Ventas Diarias
+                            </h2>
+                        </div>
+                        <div class="panel-container show">
+                            <div class="panel-content" id="mostrar_consulta">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

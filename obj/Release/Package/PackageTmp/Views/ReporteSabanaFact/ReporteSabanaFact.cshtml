@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "ReporteSabanaFact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model EqCrm.Models.FiltroGenerico
+
+<script src="~/js/funciones_reporte_sabanasfacturas.js"></script>
+
+<div id="panel-2" class="panel panel-collapsed">
+    <div class="panel-hdr text-success">
+        <h2>
+            Sabana Detallado de Facturas<span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table class="table table-bordered table-hover w-100 dataTable dtr-inline">
+                <tr>
+                    <th>
+                        DE LA FECHA
+                    </th>
+                    <th>
+                        A LA FECHA
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div class="input-group">
+                            <input type="hidden" name="consulta" value="1" />
+                            <input id="fecha1" class="form-control" name="fecha1" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="fecha2" class="form-control" name="fecha2" autocomplete="off" placeholder="Seleccione Fecha">
+                            <div class="input-group-append">
+                                <span class="input-group-text fs-xl">
+                                    <i class="fal fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <button id="ObtieneInfo" class="btn btn-primary" onclick="BuscarSabanaFacturas();">Buscar</button>
+            <div id="mostrar_consulta"></div>
+        </div>
+    </div>
+</div>
+
+
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Resultado <span class="fw-300"><i>Consulta</i></span>
+        </h2>
+        <div class="panel-toolbar">
+
+            <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div id="gridContainer"></div>
+    </div>
+</div>
+

@@ -1,0 +1,309 @@
+﻿
+@{
+    ViewBag.Title = "FacturacionMasiva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/datagrid/datatables/read-excel-file.min.js"></script>
+
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Carga de facturación Masiva
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="form-group row">
+                                        <div class="col-lg-3">
+                                            @*<label>Excel</label>*@
+                                            <div class="input-group">
+                                                <input type="file" id="input" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            @*<label>Nombre del Solicitante</label>*@
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" name="guardarbutton" id="guardarbutton" style="display:none;" onclick="recorrerTabla();">Cargar Información</button>                                                
+                                            </div>
+                                            <div class="input-group">                                                
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" name="facturarbutton" id="facturarbutton" style="display:none;" onclick="recorrerfacturas();">Facturar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ttable"></div>
+
+
+
+
+<script>
+
+    var input = document.getElementById('input')
+
+    input.addEventListener('change', function () {
+        readXlsxFile(input.files[0], { dateFormat: 'MM/DD/YY' }).then(function (data) {
+            // `data` is an array of rows
+            // each row being an array of cells.
+            // document.getElementById('result').innerText = JSON.stringify(data, null, 2)
+
+            // Applying `innerHTML` hangs the browser when there're a lot of rows/columns.
+            // For example, for a file having 2000 rows and 20 columns on a modern
+            // mid-tier CPU it parses the file (using a "schema") for 3 seconds
+            // (blocking) with 100% single CPU core usage.
+            // Then applying `innerHTML` hangs the browser.
+
+            document.getElementById('ttable').innerHTML =
+                '<table id=\"tablafacturas\" class=\"table table-responsive table-bordered table-hover table-striped w-100\">' +
+                '<tbody>' +
+                data.map(function (row) {
+                    return '<tr>' +
+                        row.map(function (cell) {
+                            return '<td>' +
+                                (cell === null ? '' : cell) +
+                                '</td>'
+                        }).join('') +
+                        '</tr>'
+                }).join('') +
+                '</tbody>' +
+                '</table>'
+        }, function (error) {
+            console.error(error)
+            alert("Error while parsing Excel file. See console output for the error stack trace.")
+        })
+
+        document.getElementById('guardarbutton').style.display = 'block';
+        
+    });
+
+
+
+    //RECORRER TABLA
+    function recorrerTabla() {
+        var items = [];
+
+        $("#tablafacturas tr").each(function () {
+            var itemsfactura = {};
+
+            var tds = $(this).find("td");
+
+            itemsfactura.no = tds.filter(":eq(0)").text();
+            itemsfactura.nit = tds.filter(":eq(1)").text();
+            itemsfactura.cliente = tds.filter(":eq(2)").text();
+            itemsfactura.dtes = tds.filter(":eq(3)").text();
+            itemsfactura.total = tds.filter(":eq(4)").text();
+            itemsfactura.mesano = tds.filter(":eq(5)").text();
+            
+            items.push(itemsfactura);
+        });
+
+        var facturas = {};
+        facturas = items;
+        var informacion = JSON.stringify(facturas);
+
+        /*alert(informacion);*/
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            data: { informacion },
+            url: "/FacturacionMasiva/CargarFacturas",
+
+            success: function (response) {
+                var arreglo = response;
+
+
+                arreglo.forEach(function (elemento) {
+                    console.log("CLIENTE: " + elemento.CLIENTE + ", NIT: " + elemento.NIT);
+                });
+
+
+                document.getElementById('tablafacturas').innerHTML = "";
+
+                var tablaContainer = document.getElementById("tablafacturas");
+
+                // Crea una tabla y un encabezado
+                var tabla = document.createElement("table");
+                var thead = document.createElement("thead");
+                var tbody = document.createElement("tbody");
+                tabla.appendChild(thead);
+                tabla.appendChild(tbody);
+
+                // Crea una fila de encabezado
+                var encabezado = thead.insertRow();
+                for (var clave in arreglo[0]) {
+                    var th = document.createElement("th");
+                    th.textContent = clave;
+                    encabezado.appendChild(th);
+                }
+
+                // Llena la tabla con datos del JSON
+                arreglo.forEach(function (fila) {
+                    var tr = tbody.insertRow();
+                    for (var clave in fila) {
+                        var td = tr.insertCell();
+                        td.textContent = fila[clave];
+                    }
+                });
+
+                // Agrega la tabla al contenedor
+                tablaContainer.appendChild(tabla);
+
+
+                document.getElementById('guardarbutton').style.display = 'none';
+                document.getElementById('facturarbutton').style.display = 'block';
+
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+        //ConfirmacionCarga()
+        
+    }
+
+
+    function recorrerfacturas() {
+        var items = [];
+
+        $("#tablafacturas tr").each(function () {
+            var itemsfactura = {};
+
+            var tds = $(this).find("td");
+
+            itemsfactura.CODIGO = tds.filter(":eq(0)").text();
+            itemsfactura.CLIENTE = tds.filter(":eq(1)").text();
+            itemsfactura.NIT = tds.filter(":eq(2)").text();
+            itemsfactura.FECHA = tds.filter(":eq(3)").text();
+            itemsfactura.MINIMO = tds.filter(":eq(4)").text();
+            itemsfactura.EMITIDOS = tds.filter(":eq(5)").text();
+            itemsfactura.PRECIO = tds.filter(":eq(6)").text();
+            itemsfactura.SUBTOTAL = tds.filter(":eq(7)").text();
+            itemsfactura.FACMIN = tds.filter(":eq(8)").text();
+            itemsfactura.OBS = tds.filter(":eq(9)").text();
+            itemsfactura.DIRECCION = tds.filter(":eq(10)").text();
+            itemsfactura.EMAIL = tds.filter(":eq(11)").text();
+
+            items.push(itemsfactura);
+        });
+
+        var facturas = {};
+        facturas = items;
+        var informacion = JSON.stringify(facturas);
+
+        /*alert(informacion);*/
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            data: { informacion },
+            url: "/FacturacionMasiva/Facturar",
+
+            success: function (response) {
+                var arreglo = response;
+
+
+                arreglo.forEach(function (elemento) {
+                    console.log("CLIENTE: " + elemento.CLIENTE + ", NIT: " + elemento.NIT);
+                });
+
+
+                document.getElementById('tablafacturas').innerHTML = "";
+
+                var tablaContainer = document.getElementById("tablafacturas");
+
+                // Crea una tabla y un encabezado
+                var tabla = document.createElement("table");
+                var thead = document.createElement("thead");
+                var tbody = document.createElement("tbody");
+                tabla.appendChild(thead);
+                tabla.appendChild(tbody);
+
+                // Crea una fila de encabezado
+                var encabezado = thead.insertRow();
+                for (var clave in arreglo[0]) {
+                    var th = document.createElement("th");
+                    th.textContent = clave;
+                    encabezado.appendChild(th);
+                }
+
+                // Llena la tabla con datos del JSON
+                arreglo.forEach(function (fila) {
+                    var tr = tbody.insertRow();
+                    for (var clave in fila) {
+                        var td = tr.insertCell();
+                        td.textContent = fila[clave];
+                    }
+                });
+
+                // Agrega la tabla al contenedor
+                tablaContainer.appendChild(tabla);
+
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+        //ConfirmacionCarga()
+
+    }
+
+
+    //function ConfirmacionCarga() {
+
+    //    $('#modal-confirmacion').modal('show');
+
+
+    //    document.getElementById('cerrarbutton').addEventListener('click', function (e) {
+    //        //newButton_Click(document.getElementsByClassName("t"), e)
+    //        window.location.href = "/CargaInvExcel/CargaInvExcel";
+    //    })
+    //}
+
+
+
+
+
+
+</script>
+
+
+
+
+<div class="modal modal-alert fade" id="modal-confirmacion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Facturado
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cerrarbutton" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

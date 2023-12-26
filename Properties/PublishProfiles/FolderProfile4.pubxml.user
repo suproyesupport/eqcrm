@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\EqCrm</_PublishTargetUrl>
+    <History>False|2022-07-20T01:13:54.2559879Z;False|2022-07-19T19:13:23.5936608-06:00;False|2022-07-19T19:12:51.8024404-06:00;False|2022-07-19T19:09:54.9663020-06:00;False|2022-07-19T19:04:01.0351070-06:00;False|2022-07-19T19:02:38.7649218-06:00;False|2022-07-19T19:00:50.9740068-06:00;</History>
+  </PropertyGroup>
+</Project>

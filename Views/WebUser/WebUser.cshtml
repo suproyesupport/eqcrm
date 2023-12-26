@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "WebUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model Usuario
+<!--
+    USUARIO
+    ADMIN = S/N
+    NOMBRE
+    DEPTO = NULL
+    ID_VENDEDOR = 0
+    PASSWORD
+-->
+
+<script>
+
+    function Login()
+    {
+        User = $("input:text[name=User]").val();
+        Admin = $("#selectAdmin").val();
+        Nombre = $("input:text[name=Nombre]").val();        
+        Depto = $("#Depto").val();
+        Sucursal = $("#Sucursal").val();
+        Id_vendedor = $("#Id_vendedor").val();;
+        Password = $("input:password[name=Password]").val();
+        console.log(Password);
+
+        
+        //check = $("#defaultUnchecked").val();
+        var checktecnico = document.getElementById('defaultUnchecked');
+
+
+        if (checktecnico.checked == true) {
+            Tecnico = "S";
+        }
+        else {
+            Tecnico = "N";
+        }
+
+
+        //checktecnico.addEventListener('click', function () {
+        //    if (checktecnico.checked) {
+        //        Tecnico = "S";
+        //    }
+        //    else {
+        //        Tecnico = "N";
+        //    }
+        //});
+
+
+
+
+        
+        if (Depto == "") {
+            alert("Favor seleccionar el ROL al que corresponde el Usuario");
+            return false;
+        }
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded",
+            url: "/Usuario/CreateWebUser",
+            data: { User, Admin, Nombre, Depto, Id_vendedor, Password, Tecnico, Sucursal},
+            success: function (response) {
+
+                if (response = "false") {
+                    window.location = "@Url.Action("WebUser", "WebUser")";
+                }
+                else if (response = "true") {
+                    alert(response);
+                    return;
+                }
+                else {
+                    alert(response)
+                    return;
+                }
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+    }
+
+    function EliminarUsuario(usuario) {
+
+        var id = arguments[0];
+        let seElimina = confirm("¿Seguro que desea eliminar el usuario?");
+
+        if (seElimina == true) {
+
+            console.log(id);
+            var url = '/Usuario/EliminarUWeb/';
+            var data = { id };
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                dataType: "text",
+                contentType: "application/x-www-form-urlencoded",
+                url: url,
+                data: data,
+                success: function (response) {
+                    window.location = "@Url.Action("WebUser", "WebUser")";
+                },
+                error: function () {
+                    alert("Ocurrio un error al eliminar");
+                }
+            });
+
+
+        }
+        if (seElimina == false) {
+            alert("No se eliminara");
+        }
+    }
+</script>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    CREACION DE USUARIOS
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table class="table table-bordered table-hover table-striped w-100">
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Usuario</label>
+                                    <input class="form-control" type="text" name="User" id="User" required/>
+                                </div>
+
+                            </td>
+                            <td>
+                                    <div class="form-group">
+                                        <label>Rol</label>
+                                        <div class="input-group">
+                                            @Html.DropDownListFor(m => m.Depto, ViewData["rol"] as List<SelectListItem>, "Selecccionar Rol...", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Sucursal</label>
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(m => m.Sucursal, ViewData["sucursal"] as List<SelectListItem>, "Selecccionar Sucursal...", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Nombre del Usuario</label>
+                                    <input class="form-control" type="text" name="Nombre" id="Nombre" required/>
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Correo Electronico</label>
+                                    <input class="form-control" type="email" name="Id_vendedor" id="Id_vendedor" required/>
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <label>Contraseña del usuario</label>
+                                    <input class="form-control" type="password" name="Password" id="Password" required/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked" name="defaultUnchecked">
+                                    <label class="custom-control-label" for="defaultUnchecked">Técnico</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <button id="ObtieneInfo" class="btn btn-primary" onclick="Login();">Registrar Usuario</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TABLA PARA VER LOS USUARIOS REGISTRADOS-->
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Listado de Usuarios
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    @Html.Raw(ViewBag.Tabla)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

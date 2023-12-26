@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "SeleccionarCaja";
+    Layout = "~/Views/POS/Shared/_Layout.cshtml";
+}
+@model EqCrm.Models.POS.Caja
+
+<script>
+
+    function seleccionarCaja(val) {
+        var id_caja = document.getElementById("Nombre").value;
+        if (id_caja < 1) {
+            alert("Debe seleccionar una caja para trabajar...");
+        } else {
+            $.ajax({
+                async: false,
+                type: "POST",
+                dataType: "text",
+                contentType: "application/x-www-form-urlencoded",
+                url: "/POS/Operaciones/Asignar",
+                data: { id_caja },
+                success: function (response) {
+                    alert("Caja asignada");
+                    window.location = "@Url.Action("/CrearVentas")";
+                },
+                error: function () {
+                    alert("Caja NO asignada");
+                }
+            });
+        }
+
+
+    }
+
+</script>
+
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="form-group row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <h2>SELECCIONE LA CAJA QUE UTILIZARA PARA TRABAJAR: @Html.DropDownListFor(m => m.Nombre, ViewData["Cajas"] as List<SelectListItem>, "Seleccionar Caja", new { @class = "col-md-2 browser-default custom-select" })</h2>
+                                                <button type="button" class="btn btn-lg btn-success" onclick="seleccionarCaja(this.value);">
+                                                    <span class="fal fa-check mr-1"></span>
+                                                    Seleccionar Caja
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "AsignaOrden";
+    Layout = "~/Views/OrdenC/Shared/_Layout.cshtml";
+}
+
+@model DatosIngresoProspectos
+
+<script src="/js/funciones_asignar_orden.js"></script>
+
+<form action="/IngresoOrden/SaveDropzoneJsUploadedFiles" class="dropzone needsclick" style="min-height: 7rem;">
+    <div data-size="CARTA">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <h3 class="fw-300 display-4 fw-500 color-primary-600 keep-print-font pt-4 l-h-n m-0">
+                    SOLICITUD DE PEDIDO
+
+
+                </h3>
+                <div class="text-dark fw-700 h1 mb-g keep-print-font">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="orden" name="orden" value="@ViewData["ORDEN"]" disabled="">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 d-flex">
+                <div class="table-responsive">
+                    <table class="table table-responsive table-bordered table-hover m-0">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    FECHA:
+                                </td>
+                                <td>
+                                    @ViewData["FECHA"]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    REQUIRENTE:
+                                </td>
+                                <td>
+                                    @ViewData["REQUIRENTE"]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    USO DE PRODUCTO:
+                                </td>
+                                <td>
+                                    @ViewData["USO"]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    DEPARTAMENTO:
+                                </td>
+                                <td>
+                                    @ViewData["DEPTO"]
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    CORREO #
+                                </td>
+                                <td>
+                                    @ViewData["CORREO"]
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    RECEPTOR :
+                                </td>
+                                <td>
+
+                                    <div class="form-group row">
+                                        <div class="input-group">
+                                            @Html.DropDownListFor(m => m.prospecto.id_vendedor, ViewData["asesores"] as List<SelectListItem>, "Selecccionar Receptor...", new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-4 ml-sm-auto">
+                <div class="table-responsive">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+                    @Html.Raw(ViewBag.Tabla)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 ml-sm-auto">
+
+            </div>
+        </div>
+        <div class="row">
+            @*<div class="col-sm-12">
+                    <h4 class="py-5 text-primary">
+                        Fred, thank you very much. We really appreciate your business.
+                        <br>
+                        Please send payments before the due date.
+                    </h4>
+                    <p class="mt-2 text-muted mb-0">
+                        Payment details: ACC:123006705 IBAN:US100000060345 SWIFT:BOA447
+                    </p>
+                </div>*@
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="ordenaut" name="ordenaut" value="@ViewData["AUTORIZADA"]" disabled="">
+                </div>
+                <p class="mt-2 text-muted mb-0">
+                    <input type="hidden" class="form-control" id="firma" name="firma" value="@ViewData["FIRMA"]" disabled="">
+                </p>
+            </div>
+        </div>
+        <div class="panel-container show">
+            <div class="panel-content">
+                <div class="dz-message needsclick">
+                    <i class="fal fa-cloud-upload text-muted mb-3"></i> <br>
+                    <span class="text-uppercase">Arrastrar imagenes aquí.</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btnAsigna" onclick="AutorizarO();">Asignar Mercaderia</button>
+
+        </div>
+    </div>
+</form>
+
+
+
+    <div class="modal modal-alert fade" id="modal-autorizaorden" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Desea Ingresar este Registro...?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="Autoriza();">Autorizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mensaje</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" id="Error">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>

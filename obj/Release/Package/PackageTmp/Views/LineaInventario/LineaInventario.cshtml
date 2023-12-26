@@ -1,0 +1,199 @@
+﻿@using EqCrm.Models
+
+@{
+    ViewBag.Title = "LineaInventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ClientesFac
+
+<!--Panel del gridcontainer -->
+<div id="panel-1" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Mantenimiento de línea de inventario<span class="fw-300"><i></i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+        </div>
+    </div>
+    <div id="panel_busqueda" class="panel-container show">
+        <div class="panel-content">
+            <button style="margin-right:30px" class="btn btn-info" onclick="prueba();">Agregar línea</button>
+        </div>
+
+        <div id="gridContainer"></div>
+    </div>
+</div>
+
+<!--Panel de información-->
+<div id="panel-2" class="panel">
+    <div class="panel-hdr">
+        <h2>Líneas de inventario<span class="fw-300"></span></h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+        </div>
+    </div>
+    <div id="panel_datos" class="panel-container collapse">
+        <div class="panel-content">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab_direction-1" role="tab">Datos generales</a></li>
+                <!--<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-5" role="tab">Cliente</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-2" role="tab">Aseguradora</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-3" role="tab">Vehículo</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab_direction-4" role="tab">Detalle Productos/Servicios</a></li>-->
+            </ul>
+            <div class="tab-content p-3">
+
+                <!--TAB 1-->
+                <div class="tab-pane fade show active" id="tab_direction-1" role="tabpanel">
+                    @*<div class="panel-hdr">
+                            <div class="d-flex justify-content-between">
+                                <h2>Datos de la Orden</h2>
+                            </div>
+                        </div>*@
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <div class="form-group row">
+                                <div class="col-lg-2">
+                                    <label>Código de cliente</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_codclie" name="inp_codclie" disabled="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Status</label>
+                                    <div class="input-group">
+                                        @*@Html.DropDownListFor(m => m.id_status, ViewData["status"] as List<SelectListItem>, "Selecccionar...", new { @class = "form-control" })*@
+                                        <input id="orders" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>NIT / CUI</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_nit" name="inp_nit">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-6">
+                                    @*SON LOS VENDEDORES*@
+                                    <label>Razón social / Nombre</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_nombre" name="inp_nombre">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Dirección</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_direccion" name="inp_direccion">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-2">
+                                    <label>Teléfono</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_telefono" name="inp_telefono">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Email</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_email" name="inp_email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Atención</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_atencion" name="inp_atencion">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Clasificación</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_clasificacion" name="inp_clasificacion">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <label>Ruta</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inp_serie" name="inp_serie">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <div class="form-group">
+                <button class="btn btn-primary" onclick="prueba();">alerta</button>
+            </div>
+        </div>
+
+
+
+
+
+        @*AQUI VAN LOS MODALES PARA CLIENTE, ERROR Y PRODUCTOS*@
+        <div class="modal fade modal-backdrop-transparent" id="ModalError" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success" id="Error">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        @* INICIO MODAL GENERICO *@
+        <div class="modal fade modal-backdrop-transparent" id="modal-generico" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" id="Error">
+                            <label id="mensaje"></label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-generico" hidden></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* FIN MODAL GENERICO *@
+    </div>
+</div>
+
+<script src="~/js/funciones_ingreso_lineai.js"></script>

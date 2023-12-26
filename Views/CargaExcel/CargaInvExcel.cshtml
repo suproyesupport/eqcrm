@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "CargaInvExcel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/OrdenC/Shared/_Layout.cshtml";
+}
+
+<script src="~/js/datagrid/datatables/read-excel-file.min.js"></script>
+
+<div class="panel-container show">
+    <div class="panel-content">
+        <div class="tab-content py-3">
+            <div class="tab-pane fade show active" id="nav_pills_default-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="panel-1" class="panel">
+                            <div class="panel-hdr">
+                                <h2>
+                                    Carga de Inventario Excel
+                                </h2>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="form-group row">
+                                        <div class="col-lg-3">
+                                            @*<label>Excel</label>*@
+                                            <div class="input-group">
+                                                <input type="file" id="input" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            @*<label>Nombre del Solicitante</label>*@
+                                            <div class="input-group">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" name="guardarbutton" id="guardarbutton" style="display:none;" onclick="recorrerTabla();">Cargar Inventario</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ttable"></div>
+
+
+
+
+<script>
+
+    var input = document.getElementById('input')
+
+    input.addEventListener('change', function () {
+        readXlsxFile(input.files[0], { dateFormat: 'MM/DD/YY' }).then(function (data) {
+            // `data` is an array of rows
+            // each row being an array of cells.
+            // document.getElementById('result').innerText = JSON.stringify(data, null, 2)
+
+            // Applying `innerHTML` hangs the browser when there're a lot of rows/columns.
+            // For example, for a file having 2000 rows and 20 columns on a modern
+            // mid-tier CPU it parses the file (using a "schema") for 3 seconds
+            // (blocking) with 100% single CPU core usage.
+            // Then applying `innerHTML` hangs the browser.
+
+            document.getElementById('ttable').innerHTML =
+                '<table id=\"tablainventario\" class=\"table table-responsive table-bordered table-hover table-striped w-100\">' +
+                '<tbody>' +
+                data.map(function (row) {
+                    return '<tr>' +
+                        row.map(function (cell) {
+                            return '<td>' +
+                                (cell === null ? '' : cell) +
+                                '</td>'
+                        }).join('') +
+                        '</tr>'
+                }).join('') +
+                '</tbody>' +
+                '</table>'
+        }, function (error) {
+            console.error(error)
+            alert("Error while parsing Excel file. See console output for the error stack trace.")
+        })
+
+        document.getElementById('guardarbutton').style.display = 'block';
+    });
+
+
+
+    //RECORRER TABLA
+    function recorrerTabla() {
+        var items = [];
+
+        $("#tablainventario tr").each(function () {
+            var itemInventario = {};
+
+            var tds = $(this).find("td");
+
+            itemInventario.codigoe = tds.filter(":eq(0)").text();
+            itemInventario.ubicacion = tds.filter(":eq(1)").text();
+            itemInventario.producto = tds.filter(":eq(2)").text();
+            itemInventario.marca = tds.filter(":eq(3)").text();
+            itemInventario.existencia = tds.filter(":eq(4)").text();
+            itemInventario.ultimocosto = tds.filter(":eq(5)").text();
+            itemInventario.promediocosto = tds.filter(":eq(6)").text();
+            itemInventario.precio1 = tds.filter(":eq(7)").text();
+            itemInventario.precio2 = tds.filter(":eq(8)").text();
+            itemInventario.stockminimo = tds.filter(":eq(9)").text();
+            itemInventario.stockmaximo = tds.filter(":eq(10)").text();
+            itemInventario.bienservicio = tds.filter(":eq(11)").text();
+            itemInventario.observaciones = tds.filter(":eq(12)").text();
+            items.push(itemInventario);
+        });
+
+        var inv = {};
+        inv = items;
+        var informacion = JSON.stringify(inv);
+
+        /*alert(informacion);*/
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            contentType: "application/x-www-form-urlencoded",
+            data: { informacion },
+            url: "/CargaInvExcel/CargarInventario",
+
+            success: function (response) {
+                var arreglo = response;
+
+                if (response.CODIGO == "ERROR") {
+
+                    if (response.PRODUCTO == "") {
+                        $('#Error').html("EL CODIGO DE PRODUCTO NO SE ENCUENTRA EN LA BASE DE DATOS");
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                    else {
+                        $('#Error').html(response.PRODUCTO);
+                        $('#ModalError').modal('show');
+                        return;
+                    }
+                }
+
+
+            },
+            error: function () {
+                alert("Ocurrio un Error");
+            }
+        });
+        ConfirmacionCarga()
+        //alert("Inventario cargado correctamente");
+        //window.location.href = "/CargaInvExcel/CargaInvExcel";
+    }
+
+
+
+    function ConfirmacionCarga() {
+
+        $('#modal-confirmacion').modal('show');
+
+
+        document.getElementById('cerrarbutton').addEventListener('click', function (e) {
+            //newButton_Click(document.getElementsByClassName("t"), e)
+            window.location.href = "/CargaInvExcel/CargaInvExcel";
+        })
+    }
+
+
+
+
+
+
+</script>
+
+
+
+
+<div class="modal modal-alert fade" id="modal-confirmacion" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Inventario cargado
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cerrarbutton" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
